@@ -1,0 +1,37 @@
+{
+  "name": "sr-wedding-backend",
+  "version": "1.0.0",
+  "description": "SR Wedding backend",
+  "main": "index.js",
+  "repository": "git@github.com:fahmialfareza/sr-wedding-backend.git",
+  "author": "Fahmi Alfareza <fahmialfareza@icloud.com>",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "express-rate-limit": "^6.6.0",
+    "helmet": "^6.0.0",
+    "hpp": "^0.2.3",
+    "mongoose": "^6.6.5",
+    "morgan": "^1.10.0",
+    "socket.io": "^4.5.3",
+    "validator": "^13.7.0"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.14",
+    "@types/hpp": "^0.2.2",
+    "@types/morgan": "^1.9.3",
+    "@types/node": "^18.11.0",
+    "@types/validator": "^13.7.8",
+    "concurrently": "^7.4.0",
+    "nodemon": "^2.0.20",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^4.8.4"
+  },
+  "scripts": {
+    "build": "npx tsc",
+    "start": "node dist/index.js",
+    "dev": "npx ts-node-dev src/index.ts"
+  }
+}
