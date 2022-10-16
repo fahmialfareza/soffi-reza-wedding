@@ -1,0 +1,13 @@
+version: "3.9"
+
+services:
+  sr-wedding-backend:
+    build:
+      context: .
+    ports:
+      - "8000:8000"
+    networks:
+      - sr_wedding_network
+
+networks:
+  sr_wedding_network:
