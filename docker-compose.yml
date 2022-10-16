@@ -11,7 +11,7 @@ services:
       - "--entrypoints.web.address=:80"
     ports:
       - 80:80
-      - 8009:8080
+      - 8080:8080
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
 
@@ -22,5 +22,5 @@ services:
       replicas: 2
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.whoami2.rule=Host(`srwedding.com`)"
-      - "traefik.http.routers.whoami2.entrypoints=web"
+      - "traefik.http.routers.srwedding.rule=Host(`srwedding.com`)"
+      - "traefik.http.routers.srwedding.entrypoints=web"
