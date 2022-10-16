@@ -1,13 +1,26 @@
 version: "3.9"
 
 services:
+  traefik:
+    image: traefik:2.9
+    command:
+      - "--log.level=DEBUG"
+      - "--api.insecure=true"
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
+      - "--entrypoints.web.address=:80"
+    ports:
+      - 80:80
+      - 8009:8080
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+
   sr-wedding-backend:
     build:
       context: .
-    ports:
-      - "8000:8000"
-    networks:
-      - sr_wedding_network
-
-networks:
-  sr_wedding_network:
+    deploy:
+      replicas: 2
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.whoami2.rule=Host(`srwedding.com`)"
+      - "traefik.http.routers.whoami2.entrypoints=web"
