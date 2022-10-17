@@ -1,5 +1,4 @@
 import { Router } from "express";
-import { Routes } from "../interfaces/routes.interface";
 
 import MessageDelivery from "../delivery/message";
 import { createMessageValidator } from "../middlewares/messageValidator";
