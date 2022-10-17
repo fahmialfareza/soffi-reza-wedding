@@ -34,7 +34,7 @@ jobs:
           # repository: fahmialfareza/srwedding-frontend
           IMAGE_NAME: srwedding-frontend
           # dockerfile: server/Dockerfile
-          DOCKERFILE: frontend/Dockerfile
+          DOCKERFILE: Dockerfile
           # tags: latest
           LATEST: "true"
       # - name: Copy docker compose file
