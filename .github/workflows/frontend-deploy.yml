@@ -15,7 +15,7 @@ jobs:
       - name: Git checkout
         uses: actions/checkout@v2
       - name: Docker login
-        run: docker login -u {{ secrets.DOCKER_USERNAME }} -p {{ secrets.DOCKER_PASSWORD }} cloud.canister.io:5000
+        run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }} cloud.canister.io:5000
       # - name: Create environment from secret
       #   run: echo '${{ secrets.BACKEND_ENV }}' > backend/.env
       - name: Build Frontend
