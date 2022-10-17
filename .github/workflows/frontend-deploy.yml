@@ -14,29 +14,14 @@ jobs:
     steps:
       - name: Git checkout
         uses: actions/checkout@v2
+      - name: Docker login
+        run: docker login -u {{ secrets.DOCKER_USERNAME }} -p {{ secrets.DOCKER_PASSWORD }}
       # - name: Create environment from secret
       #   run: echo '${{ secrets.BACKEND_ENV }}' > backend/.env
-      # - name: Build Frontend
-      #   run: docker build -t srwedding-frontend ./frontend
-      - name: Change directory to frontend
-        run: cd frontend
-      - name: Build and push Docker image
-        # uses: docker/build-push-action@v1
-        uses: opspresso/action-docker@master
-        # with:
-        env:
-          # username: ${{ secrets.DOCKER_USERNAME }}
-          USERNAME: ${{ secrets.DOCKER_USERNAME }}
-          # password: ${{ secrets.DOCKER_PASSWORD }}
-          PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-          # registry: cloud.canister.io:5000
-          REGISTRY: cloud.canister.io:5000
-          # repository: fahmialfareza/srwedding-frontend
-          IMAGE_NAME: srwedding-frontend
-          # dockerfile: frontend/Dockerfile
-          DOCKERFILE: frontend/Dockerfile
-          # tags: latest
-          LATEST: "true"
+      - name: Build Frontend
+        run: docker build -t cloud.canister.io:5000/fahmialfareza/srwedding-frontend ./frontend
+      - name: Push to registry
+        run: docker push cloud.canister.io:5000/fahmialfareza/srwedding-frontend
       # - name: Copy docker compose file
       #   run: cp -r docker-compose.yml /home/ubuntu
       # - name: Change directory to home
