@@ -25,4 +25,4 @@ jobs:
       - name: Change directory to srwedding
         run: cd /home/ubuntu/srwedding
       - name: Run compose
-        run: docker-compose up -d --no-deps --build backend
+        run: docker compose up -d --no-deps --build backend
