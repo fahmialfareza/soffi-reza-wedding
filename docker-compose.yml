@@ -22,8 +22,8 @@ services:
       replicas: 3
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.srwedding.rule=Host(`api.srwedding.com`)"
-      - "traefik.http.routers.srwedding.entrypoints=web"
+      - "traefik.http.routers.srweddingbackend.rule=Host(`api.srwedding.com`)"
+      - "traefik.http.routers.srweddingbackend.entrypoints=web"
 
   frontend:
     build:
@@ -32,5 +32,5 @@ services:
       replicas: 5
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.srwedding.rule=Host(`srwedding.com`)"
-      - "traefik.http.routers.srwedding.entrypoints=web"
+      - "traefik.http.routers.srweddingfrontend.rule=Host(`srwedding.com`)"
+      - "traefik.http.routers.srweddingfrontend.entrypoints=web"
