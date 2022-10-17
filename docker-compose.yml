@@ -15,11 +15,21 @@ services:
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
 
-  sr-wedding-backend:
+  backend:
     build:
-      context: .
+      context: ./backend
     deploy:
-      replicas: 2
+      replicas: 3
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.srwedding.rule=Host(`api.srwedding.com`)"
+      - "traefik.http.routers.srwedding.entrypoints=web"
+
+  frontend:
+    build:
+      context: ./frontend
+    deploy:
+      replicas: 5
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.srwedding.rule=Host(`srwedding.com`)"
