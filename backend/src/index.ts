@@ -106,6 +106,15 @@ if (process.env.NODE_ENV === "development") {
   // Routes
   app.use(messageRoute);
 
+  // Docs
+  app.get("/api/docs", (req, res, next) => {
+    try {
+      res.redirect("https://documenter.getpostman.com/view/3884681/2s847Cxadd");
+    } catch (error) {
+      next(error);
+    }
+  });
+
   // Error Handler
   app.use(errorHandler);
 
