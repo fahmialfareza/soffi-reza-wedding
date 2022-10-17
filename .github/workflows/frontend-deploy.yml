@@ -18,6 +18,8 @@ jobs:
       #   run: echo '${{ secrets.BACKEND_ENV }}' > backend/.env
       # - name: Build Frontend
       #   run: docker build -t srwedding-frontend ./frontend
+      - name: Change directory to frontend
+        run: cd frontend
       - name: Build and push Docker image
         # uses: docker/build-push-action@v1
         uses: opspresso/action-docker@master
