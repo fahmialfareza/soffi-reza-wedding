@@ -19,18 +19,22 @@ services:
     build:
       context: ./backend
     deploy:
-      replicas: 3
+      replicas: 1
     labels:
       - "traefik.enable=true"
+      - "--port=5000"
       - "traefik.http.routers.srweddingbackend.rule=Host(`api.srwedding.com`)"
       - "traefik.http.routers.srweddingbackend.entrypoints=web"
+      - "traefik.http.services.srweddingbackend.loadbalancer.server.port=5000"
 
   frontend:
     build:
       context: ./frontend
     deploy:
-      replicas: 5
+      replicas: 3
     labels:
       - "traefik.enable=true"
+      - "--port=3000"
       - "traefik.http.routers.srweddingfrontend.rule=Host(`srwedding.com`)"
       - "traefik.http.routers.srweddingfrontend.entrypoints=web"
+      - "traefik.http.services.srweddingfrontend.loadbalancer.server.port=3000"
