@@ -1,0 +1,24 @@
+name: Backend Deploy
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "backend/**"
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Git checkout
+        uses: actions/checkout@v2
+      - name: Docker login
+        run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }} cloud.canister.io:5000
+      - name: Create environment from secret
+        run: echo '${{ secrets.BACKEND_ENV }}' > backend/.env
+      - name: Build Backend
+        run: docker build -t cloud.canister.io:5000/fahmialfareza/srwedding-backend ./backend
+      - name: Push to registry
+        run: docker push cloud.canister.io:5000/fahmialfareza/srwedding-backend

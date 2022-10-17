@@ -1,4 +1,4 @@
-name: Frontend Deploy
+name: Frontend Build
 
 on:
   push:
@@ -22,9 +22,3 @@ jobs:
         run: docker build -t cloud.canister.io:5000/fahmialfareza/srwedding-frontend ./frontend
       - name: Push to registry
         run: docker push cloud.canister.io:5000/fahmialfareza/srwedding-frontend
-      # - name: Copy docker compose file
-      #   run: cp -r docker-compose.yml /home/ubuntu
-      # - name: Change directory to home
-      #   run: cd /home/ubuntu
-      # - name: Run compose
-      #   run: docker compose up -d --no-deps --build srwedding-frontend
