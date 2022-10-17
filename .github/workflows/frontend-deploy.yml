@@ -17,9 +17,9 @@ jobs:
       # - name: Create environment from secret
       #   run: echo '${{ secrets.BACKEND_ENV }}' > backend/.env
       - name: Copy files to server
-        run: cp -r frontend /home/ubuntu/srwedding
+        run: cp -r frontend/ /home/ubuntu/srwedding
       - name: Copy files to server
-        run: cp -r backend /home/ubuntu/srwedding
+        run: cp -r backend/ /home/ubuntu/srwedding
       - name: Copy files to server
         run: cp -r docker-compose.yml /home/ubuntu/srwedding
       - name: Change directory to srwedding
