@@ -23,7 +23,7 @@ services:
     labels:
       - "traefik.enable=true"
       - "--port=5000"
-      - "traefik.http.routers.srweddingbackend.rule=Host(`api.srwedding.com`)"
+      - "traefik.http.routers.srweddingbackend.rule=Host(`api.soffi-reza.wedding`)"
       - "traefik.http.routers.srweddingbackend.entrypoints=web"
       - "traefik.http.services.srweddingbackend.loadbalancer.server.port=5000"
 
@@ -35,6 +35,6 @@ services:
     labels:
       - "traefik.enable=true"
       - "--port=3000"
-      - "traefik.http.routers.srweddingfrontend.rule=Host(`srwedding.com`)"
+      - "traefik.http.routers.srweddingfrontend.rule=Host(`soffi-reza.wedding`)"
       - "traefik.http.routers.srweddingfrontend.entrypoints=web"
       - "traefik.http.services.srweddingfrontend.loadbalancer.server.port=3000"
