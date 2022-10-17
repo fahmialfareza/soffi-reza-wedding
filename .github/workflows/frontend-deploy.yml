@@ -33,8 +33,6 @@ jobs:
           REGISTRY: cloud.canister.io:5000
           # repository: fahmialfareza/srwedding-frontend
           IMAGE_NAME: srwedding-frontend
-          # dockerfile: server/Dockerfile
-          DOCKERFILE: Dockerfile
           # tags: latest
           LATEST: "true"
       # - name: Copy docker compose file
