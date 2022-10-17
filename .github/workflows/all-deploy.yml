@@ -15,9 +15,9 @@ jobs:
         run: docker build -t srwedding-backend ./backend
       - name: Build Frontend
         run: docker build -t srwedding-frontend ./frontend
-      - name: Copy docker compose file
-        run: cp -r docker-compose.yml /home/ubuntu
-      - name: Change directory to home
-        run: cd /home/ubuntu
-      - name: Run compose
-        run: docker compose up -d --no-deps --build
+      # - name: Copy docker compose file
+      #   run: cp -r docker-compose.yml /home/ubuntu
+      # - name: Change directory to home
+      #   run: cd /home/ubuntu
+      # - name: Run compose
+      #   run: docker compose up -d --no-deps --build
