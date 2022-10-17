@@ -15,9 +15,8 @@ services:
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
 
-  backend:
-    build:
-      context: ./backend
+  srwedding-backend:
+    image: srwedding-backend:latest
     deploy:
       replicas: 1
     labels:
@@ -27,9 +26,8 @@ services:
       - "traefik.http.routers.srweddingbackend.entrypoints=web"
       - "traefik.http.services.srweddingbackend.loadbalancer.server.port=5000"
 
-  frontend:
-    build:
-      context: ./frontend
+  srwedding-frontend:
+    image: srwedding-frontend:latest
     deploy:
       replicas: 3
     labels:
