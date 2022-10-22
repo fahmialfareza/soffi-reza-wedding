@@ -43,7 +43,7 @@ function InvitationTable({ invitations }: InvitationTableProps) {
                     <FontAwesomeIcon icon={faCancel} size="xl" color="red" />
                   )}
                 </td>
-                <td>
+                <td className="text-center">
                   <Button
                     variant={"outline-secondary"}
                     onClick={async () => {
