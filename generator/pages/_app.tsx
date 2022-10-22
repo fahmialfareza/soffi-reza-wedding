@@ -1,7 +1,12 @@
 import "bootstrap/dist/css/bootstrap.min.css";
+import "nprogress/nprogress.css";
+import "../styles/nprogress.css";
+import { useEffect } from "react";
 import type { AppProps } from "next/app";
+import Router from "next/router";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import NProgress from "nprogress";
 
 import Footer from "../components/Footer";
 import Header from "../components/Header";
@@ -11,6 +16,22 @@ import "@fortawesome/fontawesome-svg-core/styles.css";
 config.autoAddCss = false;
 
 function MyApp({ Component, pageProps }: AppProps) {
+  useEffect(() => {
+    const handleRouteStart = () => NProgress.start();
+    const handleRouteDone = () => NProgress.done();
+
+    Router.events.on("routeChangeStart", handleRouteStart);
+    Router.events.on("routeChangeComplete", handleRouteDone);
+    Router.events.on("routeChangeError", handleRouteDone);
+
+    return () => {
+      // Make sure to remove the event handler on unmount!
+      Router.events.off("routeChangeStart", handleRouteStart);
+      Router.events.off("routeChangeComplete", handleRouteDone);
+      Router.events.off("routeChangeError", handleRouteDone);
+    };
+  }, []);
+
   return (
     <>
       <Header />
