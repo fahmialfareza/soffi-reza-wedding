@@ -5,12 +5,12 @@ import path from "path";
 import express, { Express, NextFunction, Request, Response } from "express";
 import { Server } from "socket.io";
 import http from "http";
-import * as dotenv from "dotenv";
 import cors from "cors";
 import rateLimit from "express-rate-limit";
 import hpp from "hpp";
 import helmet from "helmet";
 import morgan from "morgan";
+import fileUpload from "express-fileupload";
 
 import {
   IClientToServerEvents,
@@ -20,6 +20,7 @@ import {
 } from "./interfaces/socket.interface";
 import errorHandler from "./middlewares/errorHandler";
 import messageRoute from "./routes/message";
+import generatorRoute from "./routes/generator";
 
 declare global {
   namespace Express {
@@ -63,6 +64,9 @@ app.use(
   })
 );
 
+// File upload
+app.use(fileUpload());
+
 // Using socket.io to controllers
 app.use(async function (req: Request, res: Response, next: NextFunction) {
   req.io = io;
@@ -105,6 +109,7 @@ if (process.env.NODE_ENV === "development") {
 
   // Routes
   app.use(messageRoute);
+  app.use(generatorRoute);
 
   // Docs
   app.get("/api/docs", (req, res, next) => {

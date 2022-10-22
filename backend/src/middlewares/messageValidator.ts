@@ -1,5 +1,4 @@
 import { NextFunction, Request, Response } from "express";
-import validator from "validator";
 
 import { IMessage } from "../interfaces/message.interface";
 

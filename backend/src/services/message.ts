@@ -1,5 +1,4 @@
 import { IMessage } from "../interfaces/message.interface";
-import { Message } from "../models";
 import MessageRepository from "../repository/message";
 
 export default class MessageService {
