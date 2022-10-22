@@ -1,26 +1,35 @@
-html,
-body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+
+.font-bukhari {
+  font-family: "Bukhari Script", sans-serif;
+}
+.font-pacifio {
+  font-family: "Pacifico", sans-serif;
+}
+.font-inter {
+  font-family: "Inter", sans-serif;
+}
+.font-bookerly {
+  font-family: "Bookerly", sans-serif;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+
+.scroolbar::-webkit-scrollbar {
+    width: 8px;
 }
 
-* {
-  box-sizing: border-box;
+body.thin::-webkit-scrollbar {
+    width: 2px;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-  body {
-    color: white;
-    background: black;
-  }
+::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background: #eee;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: #888;
+}
+::-webkit-scrollbar-thumb:window-inactive {
+    background: rgba(100,100,100,0.4); 
 }
