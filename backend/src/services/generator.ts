@@ -23,6 +23,7 @@ export default class GeneratorService {
       const newGenerator = encodeURIComponent(generator);
       const newURL = `${process.env.URL}/?to=${newGenerator}`;
       newGenerators.push({
+        copied: false,
         name: generator,
         url: newURL,
         id: 0,
@@ -30,5 +31,9 @@ export default class GeneratorService {
     }
 
     return this.generatorService.createGenerators(newGenerators);
+  }
+
+  async copy(id: string) {
+    return this.generatorService.copy(id);
   }
 }

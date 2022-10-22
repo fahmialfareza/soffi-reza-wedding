@@ -3,11 +3,13 @@ import mongoose from "mongoose";
 interface GeneratorAttrs {
   name: string;
   url: string;
+  copied: boolean;
 }
 
 interface GeneratorDoc extends mongoose.Document {
   name: string;
   url: string;
+  copied: boolean;
 }
 
 interface GeneratorModel extends mongoose.Model<GeneratorDoc> {
@@ -23,6 +25,10 @@ const generatorSchema = new mongoose.Schema(
     url: {
       type: String,
       required: true,
+    },
+    copied: {
+      type: Boolean,
+      default: false,
     },
   },
   {

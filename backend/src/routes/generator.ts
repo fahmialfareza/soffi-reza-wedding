@@ -15,4 +15,6 @@ router
 
 router.route(`${path}/:name`).get(generatorDelivery.findByName);
 
+router.route(`${path}/:id`).post(generatorDelivery.copy);
+
 export default router;

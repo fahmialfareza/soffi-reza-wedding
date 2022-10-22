@@ -19,4 +19,8 @@ export default class GeneratorRepository {
   async deleteGenerators() {
     return Generator.deleteMany({});
   }
+
+  async copy(id: string) {
+    return Generator.updateOne({ _id: id }, { copied: true });
+  }
 }

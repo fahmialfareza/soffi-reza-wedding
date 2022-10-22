@@ -91,4 +91,21 @@ export default class GeneratorDelivery {
       next(error);
     }
   };
+
+  public copy = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const { id } = req.params;
+
+      const data = await this.generatorService.copy(id);
+
+      const response: IResponse = {
+        data,
+        status: 200,
+      };
+
+      res.status(200).json(response);
+    } catch (error) {
+      next(error);
+    }
+  };
 }
