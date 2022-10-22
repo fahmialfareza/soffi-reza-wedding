@@ -4,6 +4,16 @@ import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import { confirmable, createConfirmation } from "react-confirm";
 
+interface ConfirmationProps {
+  okLabel: string;
+  cancelLabel: string;
+  title: string;
+  confirmation: string;
+  show: boolean;
+  proceed: (data: boolean) => void; // called when ok button is clicked.
+  enableEscape: boolean;
+}
+
 const Confirmation = ({
   okLabel = "Ya",
   cancelLabel = "Tidak",
@@ -12,7 +22,7 @@ const Confirmation = ({
   show,
   proceed,
   enableEscape = true,
-}) => {
+}: ConfirmationProps) => {
   return (
     <div className="static-modal">
       <Modal
@@ -52,11 +62,12 @@ Confirmation.propTypes = {
 };
 
 export function confirm(
-  confirmation,
+  confirmation = "Apakah yakin ingin melakukannya?",
   proceedLabel = "Ya",
   cancelLabel = "Tidak",
   options = {}
 ) {
+  // @ts-ignore
   return createConfirmation(confirmable(Confirmation))({
     confirmation,
     proceedLabel,
