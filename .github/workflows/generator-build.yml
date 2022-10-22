@@ -1,4 +1,4 @@
-name: Backend Build and Deploy
+name: Generator Build and Deploy
 
 on:
   push:
@@ -18,7 +18,7 @@ jobs:
         run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }} cloud.canister.io:5000
       - name: Create environment from secret
         run: echo '${{ secrets.GENERATOR_ENV }}' > generator/.env
-      - name: Build Backend
+      - name: Build Generator
         run: docker build -t cloud.canister.io:5000/fahmialfareza/srwedding-generator ./generator
       - name: Push to registry
         run: docker push cloud.canister.io:5000/fahmialfareza/srwedding-generator
