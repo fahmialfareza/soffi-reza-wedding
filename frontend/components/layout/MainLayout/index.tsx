@@ -7,7 +7,7 @@ interface Props {
 
 function MainLayout({ children }: Props) {
   return (
-    <VStack >
+    <VStack>
       <Box
         backgroundColor={"background"}
         width="100%"
@@ -51,6 +51,8 @@ function MainLayout({ children }: Props) {
           maxW={"924px"}
           maxH={"100vh"}
           minH={"100vh"}
+          mx={0}
+          px={0}
           top={"50%"}
           left={"50%"}
           transform={"translate(-50%, -50%)"}
@@ -65,12 +67,11 @@ function MainLayout({ children }: Props) {
             },
           }}
         >
-          <Center width={"100%"} maxH={"100vh"}>
+          <VStack width={"100%"} maxH={"100vh"} scrollSnapType="y mandatory">
             {children}
-          </Center>
+          </VStack>
         </Container>
         <Box
-        
           backgroundRepeat={"no-repeat"}
           position={"absolute"}
           bottom={"-390"}
@@ -78,7 +79,6 @@ function MainLayout({ children }: Props) {
         >
           <Image
             width={{
-            
               sm: "100%",
             }}
             src={"./assets/bg-down-left.png"}
@@ -86,7 +86,6 @@ function MainLayout({ children }: Props) {
           ></Image>
         </Box>
         <Box
-          
           backgroundRepeat={"no-repeat"}
           position={"absolute"}
           bottom={"-300"}
@@ -94,7 +93,6 @@ function MainLayout({ children }: Props) {
         >
           <Image
             width={{
-            
               sm: "100%",
             }}
             src={"./assets/bg-down-right.png"}
