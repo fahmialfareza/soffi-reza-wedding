@@ -1,3 +1,15 @@
+@font-face {
+  font-family: 'bookerly-bold';
+  src: url(./fonts/BookerlyBold.ttf) format("truetype");
+  font-weight: bold;
+}
+
+html {
+  font-family: sans-serif;
+  scroll-snap-type: mandatory;
+  scroll-snap-points-y: repeat(100vh);
+  scroll-snap-type: y mandatory;
+}
 
 .font-bukhari {
   font-family: "Bukhari Script", sans-serif;
@@ -10,6 +22,10 @@
 }
 .font-bookerly {
   font-family: "Bookerly", sans-serif;
+}
+.font-bookerly-bold {
+  font-family: "bookerly-bold", sans-serif;
+  font-weight: 700;
 }
 
 
