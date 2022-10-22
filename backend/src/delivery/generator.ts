@@ -79,6 +79,10 @@ export default class GeneratorDelivery {
         newGenerators.push(generator[0] as string);
       }
 
+      for (const generator of generators) {
+        newGenerators.push(generator[1] as string);
+      }
+
       const data = await this.generatorService.createGenerators(newGenerators);
 
       const response: IResponse = {

@@ -93,3 +93,4 @@
 ::ffff:127.0.0.1 - - [22/Oct/2022:17:46:53 +0000] "GET /api/v1/invitations HTTP/1.1" 200 1077 "-" "node-fetch/1.0 (+https://github.com/bitinn/node-fetch)"
 ::ffff:127.0.0.1 - - [22/Oct/2022:17:50:16 +0000] "GET /api/v1/invitations HTTP/1.1" 200 1077 "-" "node-fetch/1.0 (+https://github.com/bitinn/node-fetch)"
 ::1 - - [22/Oct/2022:17:56:26 +0000] "POST /api/v1/invitations HTTP/1.1" 200 1078 "http://localhost:3000/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36"
+::1 - - [22/Oct/2022:20:57:01 +0000] "POST /api/v1/invitations HTTP/1.1" 200 1255 "-" "PostmanRuntime/7.29.2"
