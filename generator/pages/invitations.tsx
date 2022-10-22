@@ -27,7 +27,7 @@ function Invitations() {
       };
 
       await fetch(
-        "https://api.soffi-reza.wedding/api/v1/invitations",
+        `${process.env.NEXT_PUBLIC_BACKEND_API}/api/v1/invitations`,
         requestOptions
       );
 

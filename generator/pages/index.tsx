@@ -2,12 +2,11 @@ import { FormEvent, useState } from "react";
 import type { GetServerSideProps } from "next";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import { Col, Container, Row, Form, Button } from "react-bootstrap";
-import { toast } from "react-toastify";
+import { Container } from "react-bootstrap";
 
 import InvitationTable from "../components/InvitationTable";
-import { confirm } from "../components/Confirmation";
 import IInvitation from "../interfaces/invitation.interface";
+import Search from "../components/Search";
 
 interface HomeProps {
   invitations: IInvitation[];
@@ -35,56 +34,7 @@ const Home = ({ invitations }: HomeProps) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Form onSubmit={onSearch}>
-        <Row>
-          <Col md={8} sm={8}>
-            <Form.Group className="mb-3">
-              <Form.Control
-                id="search"
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-                placeholder="Cari Undangan"
-              />
-            </Form.Group>
-          </Col>
-          <Col md={2} sm={2}>
-            <div className="d-grid gap-2">
-              <Button type="submit" variant="primary">
-                Cari
-              </Button>
-            </div>
-          </Col>
-          <Col md={2} sm={2}>
-            <div className="d-grid gap-2">
-              <Button
-                variant="danger"
-                onClick={async (e) => {
-                  e.preventDefault();
-
-                  const confirmation = await confirm(
-                    "Yakin ingin menghapus semuanya?"
-                  );
-                  if (confirmation) {
-                    try {
-                      await fetch(
-                        `${process.env.NEXT_PUBLIC_BACKEND_API}/api/v1/invitations`,
-                        { method: "DELETE" }
-                      );
-
-                      toast.success("Berhasil menghapus data!");
-                      router.push("/?to=");
-                    } catch (error) {
-                      toast.error("Gagal menghapus semua data!");
-                    }
-                  }
-                }}
-              >
-                Hapus Semua
-              </Button>
-            </div>
-          </Col>
-        </Row>
-      </Form>
+      <Search onSearch={onSearch} search={search} setSearch={setSearch} />
 
       <InvitationTable invitations={invitations} />
     </Container>
