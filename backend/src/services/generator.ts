@@ -8,6 +8,10 @@ export default class GeneratorService {
     return this.generatorService.getURLs();
   }
 
+  async findByName(name: string) {
+    return this.generatorService.findByName(name);
+  }
+
   async deleteGenerators() {
     return this.generatorService.deleteGenerators();
   }

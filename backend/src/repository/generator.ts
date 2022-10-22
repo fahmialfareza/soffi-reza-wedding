@@ -6,6 +6,12 @@ export default class GeneratorRepository {
     return Generator.find().sort("-createdAt");
   }
 
+  async findByName(name: string) {
+    return Generator.find({
+      name: new RegExp(name, "i"),
+    }).sort("-createdAt");
+  }
+
   async createGenerators(generators: IGenerator[]) {
     return Generator.create(generators);
   }

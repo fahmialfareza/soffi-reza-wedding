@@ -13,4 +13,6 @@ router
   .post(createInvitationValidator, generatorDelivery.createGenerators)
   .delete(generatorDelivery.deleteGenerators);
 
+router.route(`${path}/:name`).get(generatorDelivery.findByName);
+
 export default router;

@@ -64,3 +64,5 @@
 ::1 - - [22/Oct/2022:09:05:39 +0000] "GET /api/v1/invitations HTTP/1.1" 200 24 "-" "PostmanRuntime/7.29.2"
 ::1 - - [22/Oct/2022:09:05:42 +0000] "POST /api/v1/invitations HTTP/1.1" 200 1003 "-" "PostmanRuntime/7.29.2"
 ::1 - - [22/Oct/2022:09:06:16 +0000] "GET /api/v1/invitations HTTP/1.1" 200 1003 "-" "PostmanRuntime/7.29.2"
+::1 - - [22/Oct/2022:12:45:16 +0000] "GET /api/v1/invitations/reza HTTP/1.1" 200 223 "-" "PostmanRuntime/7.29.2"
+::1 - - [22/Oct/2022:12:45:21 +0000] "GET /api/v1/invitations/soffi HTTP/1.1" 200 249 "-" "PostmanRuntime/7.29.2"

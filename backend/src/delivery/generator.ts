@@ -23,6 +23,27 @@ export default class GeneratorDelivery {
     }
   };
 
+  public findByName = async (
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ) => {
+    try {
+      const { name } = req.params;
+
+      const data = await this.generatorService.findByName(name);
+
+      const response: IResponse = {
+        data,
+        status: 200,
+      };
+
+      res.status(200).json(response);
+    } catch (error) {
+      next(error);
+    }
+  };
+
   public deleteGenerators = async (
     req: Request,
     res: Response,
