@@ -16,23 +16,32 @@ function Header() {
   }, [router]);
 
   return (
-    <Navbar bg="primary" variant="dark" className="mb-4">
+    <Navbar
+      bg="primary"
+      variant="dark"
+      className="mb-4"
+      expand="lg"
+      sticky="top"
+    >
       <Container>
         <Link href={"/"} passHref>
           <Navbar.Brand>Generator Undangan</Navbar.Brand>
         </Link>
-        <Nav className="me-auto">
-          <Link href={"/"} passHref>
-            <Nav.Link className={pathname === "/" ? "active" : ""}>
-              Beranda
-            </Nav.Link>
-          </Link>
-          <Link href="/invitations" passHref>
-            <Nav.Link className={pathname === "/invitations" ? "active" : ""}>
-              Import Undangan
-            </Nav.Link>
-          </Link>
-        </Nav>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="me-auto">
+            <Link href={"/"} passHref>
+              <Nav.Link className={pathname === "/" ? "active" : ""}>
+                Beranda
+              </Nav.Link>
+            </Link>
+            <Link href="/invitations" passHref>
+              <Nav.Link className={pathname === "/invitations" ? "active" : ""}>
+                Import Undangan
+              </Nav.Link>
+            </Link>
+          </Nav>
+        </Navbar.Collapse>
       </Container>
     </Navbar>
   );
