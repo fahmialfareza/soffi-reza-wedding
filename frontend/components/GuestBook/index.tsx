@@ -70,6 +70,7 @@ function GuestBook() {
         position={"absolute"}
         width={{
           base: "20%",
+          md: "15%",
         }}
         top={-20}
         left={0}
@@ -80,6 +81,7 @@ function GuestBook() {
         position={"absolute"}
         width={{
           base: "20%",
+          md: "15%",
         }}
         top={-20}
         right={0}
@@ -107,7 +109,7 @@ function GuestBook() {
           }}
           height={{
             base: "50vh",
-            md:"60vh"
+            md: "60vh",
           }}
           overflowY={"scroll"}
           sx={{
@@ -206,6 +208,7 @@ function GuestBook() {
         position={"absolute"}
         width={{
           base: "20%",
+          md: "15%",
         }}
         bottom={0}
         left={0}
@@ -216,6 +219,7 @@ function GuestBook() {
         position={"absolute"}
         width={{
           base: "20%",
+          md: "15%",
         }}
         bottom={0}
         right={0}
