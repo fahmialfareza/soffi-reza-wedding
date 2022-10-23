@@ -141,6 +141,9 @@ function ModalUcapan({ isOpen, onClose }: ModalUcapanProps) {
                 width={"100%"}
                 size={"lg"}
                 backgroundColor={"green"}
+                _hover={{
+                  backgroundColor:"green"
+                }}
                 color={"white"}
                 type="submit"
               >

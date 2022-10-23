@@ -52,7 +52,10 @@ function ClosingInvitation() {
         <Text
           maxWidth={"620px"}
           className={"font-inter"}
-          fontWeight={"medium"}
+          fontWeight={{
+            base: "normal",
+            md:"medium"
+          }}
           fontSize={{
             base: "1rem",
             md: "1.5rem",
@@ -73,7 +76,10 @@ function ClosingInvitation() {
         >
           Wassalamu`alaikum Warahmatullahi Wabarakatuh.
         </Text>
-        <Image src={"/assets/bride.png"} alt={"bride"} />
+        <Image width={{
+          base:"50%",
+          md: "30%"
+        }} src={"/assets/bride.png"} alt={"bride"} />
         <Text
           maxWidth={"650px"}
           className={"font-inter"}
