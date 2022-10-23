@@ -1,9 +1,13 @@
+import { NextPage } from "next";
 import {
   Box,
-  Button, HStack,
-  Image, keyframes, Text,
+  Button,
+  HStack,
+  Image,
+  keyframes,
+  Text,
   useDisclosure,
-  VStack
+  VStack,
 } from "@chakra-ui/react";
 import CardChat from "../ChatCard";
 import { BubbleChat } from "../icons/BubbleChat";
@@ -12,8 +16,12 @@ import { Gift } from "../icons/Gift";
 import { motion } from "framer-motion";
 import ModalUcapan from "../ModalUcapan";
 import ModalGift from "../ModalGift";
+import { IMessage } from "../../interfaces/messages.interface";
+import convertToMonth from "../../helpers/month";
 
-
+interface GuestBookProps {
+  messages: IMessage[];
+}
 
 const animationKeyframes = keyframes`
  0% {
@@ -44,16 +52,15 @@ const animationKeyframes = keyframes`
 }
 `;
 
-
 const animation = `${animationKeyframes} 1s ease-in-out infinite`;
 
-function GuestBook() {
+const GuestBook: NextPage<GuestBookProps> = ({ messages }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-   const {
-     isOpen: isOpenGiftModal,
-     onOpen: onOpenGiftModal,
-     onClose: onCloseGiftModal,
-   } = useDisclosure();
+  const {
+    isOpen: isOpenGiftModal,
+    onOpen: onOpenGiftModal,
+    onClose: onCloseGiftModal,
+  } = useDisclosure();
   return (
     <Box
       width={"100%"}
@@ -117,48 +124,24 @@ function GuestBook() {
             },
           }}
         >
-          <CardChat
-            date={`27 DEC`}
-            name={"Ahmad Aji Santoso"}
-            message={`“Selamat menikah dan menempuh hidup baru! Semoga menjadi pasangan yang sakinah mawaddah warohmah.”😍 `}
-            status={"hadir"}
-          />
-          <CardChat
-            date={`27 DEC`}
-            name={"Wahyu"}
-            message={`“Selamat menikah dan menempuh hidup baru! Semoga menjadi pasangan yang sakinah mawaddah warohmah.”😍`}
-            status={"tidakhadir"}
-          />
-          <CardChat
-            date={`27 DEC`}
-            name={"Wahyu"}
-            message={`“Selamat menikah dan menempuh hidup baru! Semoga menjadi pasangan yang sakinah mawaddah warohmah.”😍`}
-            status={"hadir"}
-          />
-          <CardChat
-            date={`27 DEC`}
-            name={"Wahyu"}
-            message={`“Selamat menikah dan menempuh hidup baru! Semoga menjadi pasangan yang sakinah mawaddah warohmah.”😍`}
-            status={"tidakhadir"}
-          />
-          <CardChat
-            date={`27 DEC`}
-            name={"Wahyu"}
-            message={`“Selamat menikah dan menempuh hidup baru! Semoga menjadi pasangan yang sakinah mawaddah warohmah.”😍`}
-            status={"hadir"}
-          />
-          <CardChat
-            date={`27 DEC`}
-            name={"Wahyu"}
-            message={`“Selamat menikah dan menempuh hidup baru! Semoga menjadi pasangan yang sakinah mawaddah warohmah.”😍`}
-            status={"hadir"}
-          />
-          <CardChat
-            date={`27 DEC`}
-            name={"Wahyu"}
-            message={`“Selamat menikah dan menempuh hidup baru! Semoga menjadi pasangan yang sakinah mawaddah warohmah.”😍`}
-            status={"hadir"}
-          />
+          {messages &&
+            messages.length > 0 &&
+            messages.map((message) => {
+              const date = new Date(message.createdAt);
+              const displayedDate = `${date.getDate()} ${convertToMonth(
+                date.getMonth()
+              )}`.toUpperCase();
+
+              return (
+                <CardChat
+                  key={message.id}
+                  date={displayedDate}
+                  name={message.name}
+                  message={message.message}
+                  status={message.attending ? "hadir" : "tidakhadir"}
+                />
+              );
+            })}
         </VStack>
 
         <HStack
@@ -222,6 +205,6 @@ function GuestBook() {
       ></Image>
     </Box>
   );
-}
+};
 
 export default GuestBook;
