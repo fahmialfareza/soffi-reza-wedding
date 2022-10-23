@@ -68,6 +68,9 @@ function GuestBook() {
         src="/assets/white-flower-up-left.png"
         alt="white-flower-up-left"
         position={"absolute"}
+        width={{
+          base: "20%",
+        }}
         top={-20}
         left={0}
       ></Image>
@@ -75,6 +78,9 @@ function GuestBook() {
         src="/assets/white-flower-up-right.png"
         alt="white-flower-up-left"
         position={"absolute"}
+        width={{
+          base: "20%",
+        }}
         top={-20}
         right={0}
       ></Image>
@@ -82,7 +88,10 @@ function GuestBook() {
       <VStack
         textAlign={"center"}
         color={"white"}
-        gap={"3rem"}
+        gap={{
+          base: "1rem",
+          md: "3rem",
+        }}
         justifyContent={"center"}
         height={"100vh"}
       >
@@ -92,8 +101,14 @@ function GuestBook() {
 
         <VStack
           gap={"1rem"}
-          px={"2rem"}
-          height={"60vh"}
+          px={{
+            base: "1rem",
+            md: "2rem",
+          }}
+          height={{
+            base: "50vh",
+            md:"60vh"
+          }}
           overflowY={"scroll"}
           sx={{
             scrollbarWidth: "thin",
@@ -146,7 +161,12 @@ function GuestBook() {
           />
         </VStack>
 
-        <HStack gap={"8rem"}>
+        <HStack
+          gap={{
+            base: "1rem",
+            md: "8rem",
+          }}
+        >
           <Button
             size={"lg"}
             backgroundColor={"grey"}
@@ -184,6 +204,9 @@ function GuestBook() {
         src="/assets/white-flower-down-left.png"
         alt="white-flower-up-left"
         position={"absolute"}
+        width={{
+          base: "20%",
+        }}
         bottom={0}
         left={0}
       ></Image>
@@ -191,6 +214,9 @@ function GuestBook() {
         src="/assets/white-flower-down-right.png"
         alt="white-flower-up-left"
         position={"absolute"}
+        width={{
+          base: "20%",
+        }}
         bottom={0}
         right={0}
       ></Image>

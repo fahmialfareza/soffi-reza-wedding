@@ -13,14 +13,14 @@ import WeddingText from "../components/WeddingText";
 const Home: NextPage = () => {
   return (
     <MainLayout>
-      <Hero/>
-      <WeddingText/>
-      <WeddingSchedule />
-      <MapsInvitation />
+      {/* <Hero/> */}
+      {/* <WeddingText/> */}
+      {/* <WeddingSchedule /> */}
+      {/* <MapsInvitation /> */}
       <GuestBook />
-      <ProkesCovid />
-      <ClosingInvitation />
-      <Footer />
+      {/* <ProkesCovid /> */}
+      {/* <ClosingInvitation /> */}
+      {/* <Footer /> */}
     </MainLayout>
   );
 };

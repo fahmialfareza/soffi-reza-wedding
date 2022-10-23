@@ -18,6 +18,9 @@ function ClosingInvitation() {
         src="/assets/clossing-up-left.png"
         alt="clossing-up-left"
         position={"absolute"}
+        width={{
+          base: "15%",
+        }}
         top={0}
         left={0}
       ></Image>
@@ -25,6 +28,9 @@ function ClosingInvitation() {
         src="/assets/clossing-up-right.png"
         alt="clossing-up-right"
         position={"absolute"}
+        width={{
+          base: "15%",
+        }}
         top={0}
         right={0}
       ></Image>
@@ -32,7 +38,14 @@ function ClosingInvitation() {
       <VStack
         textAlign={"center"}
         color={"white"}
-        gap={"3rem"}
+        gap={{
+          base: "1rem",
+          md:"3rem"
+        }}
+        mx={{
+          base: "0.5rem",
+          md: "0"
+        }}
         justifyContent={"center"}
         height={"100vh"}
       >
@@ -40,7 +53,10 @@ function ClosingInvitation() {
           maxWidth={"620px"}
           className={"font-inter"}
           fontWeight={"medium"}
-          fontSize={"1.5rem"}
+          fontSize={{
+            base: "1rem",
+            md: "1.5rem",
+          }}
         >
           Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila
           Bapak/Ibu/Saudara/i berkenan hadir untuk memberikan doa restu kepada
@@ -50,7 +66,10 @@ function ClosingInvitation() {
           maxWidth={"620px"}
           className={"font-inter"}
           fontWeight={"medium"}
-          fontSize={"1.5rem"}
+          fontSize={{
+            base: "1rem",
+            md: "1.5rem",
+          }}
         >
           Wassalamu`alaikum Warahmatullahi Wabarakatuh.
         </Text>
@@ -59,7 +78,10 @@ function ClosingInvitation() {
           maxWidth={"650px"}
           className={"font-inter"}
           fontWeight={"normal"}
-          fontSize={"1.2rem"}
+              fontSize={{
+            base: "1rem",
+            md: "1.2rem",
+          }}
         >
           “Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan untukmu
           isteri-isteri dari jenismu sendiri, supaya kamu merasa tenang dan
@@ -73,6 +95,9 @@ function ClosingInvitation() {
         src="/assets/white-flower-down-left.png"
         alt="white-flower-up-left"
         position={"absolute"}
+        width={{
+          base: "15%",
+        }}
         bottom={0}
         left={0}
       ></Image>
@@ -80,6 +105,9 @@ function ClosingInvitation() {
         src="/assets/white-flower-down-right.png"
         alt="white-flower-up-left"
         position={"absolute"}
+        width={{
+          base: "15%",
+        }}
         bottom={0}
         right={0}
       ></Image>

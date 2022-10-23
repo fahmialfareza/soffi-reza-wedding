@@ -7,8 +7,14 @@ function MapsInvitation() {
       width={"100%"}
       px={"3rem"}
       minHeight={"100vh"}
-      justifyContent={"space-between"}
-      gap={"3rem"}
+      justifyContent={{
+        base: "space-evenly",
+        md: "space-between"
+      }}
+      gap={{
+        base: "1rem",
+        md: "3rem"
+      }}
       my={"2rem"}
       color={"grey-light"}
     >

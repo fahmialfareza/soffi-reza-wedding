@@ -41,18 +41,30 @@ function ModalGift({ isOpen, onClose }: ModalGiftProps) {
               <TabList>
                 <Tab
                   _selected={{ border: "2px solid #99A1AA" }}
-                  width={"126px"}
+                  width={{
+                    base: "100px",
+                    md: "126px",
+                  }}
                   border={"1px solid #DFE1E8"}
-                  mx={"1rem"}
+                  mx={{
+                    base: "0.5rem",
+                    md:"1rem"
+                  }}
                   borderRadius={"8px"}
                 >
                   <Image src={"/assets/bsi-icon.png"} alt={"bsi"} />
                 </Tab>
                 <Tab
                   _selected={{ border: "2px solid #99A1AA" }}
-                  width={"126px"}
+                  width={{
+                    base: "100px",
+                    md: "126px",
+                  }}
                   border={"1px solid #DFE1E8"}
-                  mx={"1rem"}
+                    mx={{
+                    base: "0.5rem",
+                    md:"1rem"
+                  }}
                   borderRadius={"8px"}
                 >
                   {" "}
@@ -60,9 +72,15 @@ function ModalGift({ isOpen, onClose }: ModalGiftProps) {
                 </Tab>
                 <Tab
                   _selected={{ border: "2px solid #99A1AA" }}
-                  width={"126px"}
+                  width={{
+                    base: "100px",
+                    md: "126px",
+                  }}
                   border={"1px solid #DFE1E8"}
-                  mx={"1rem"}
+                    mx={{
+                    base: "0.5rem",
+                    md:"1rem"
+                  }}
                   borderRadius={"8px"}
                 >
                   {" "}
@@ -71,7 +89,7 @@ function ModalGift({ isOpen, onClose }: ModalGiftProps) {
               </TabList>
               <TabPanels>
                 <TabPanel>
-                 <BsiModalContent />
+                  <BsiModalContent />
                 </TabPanel>
                 <TabPanel>
                   <GopayContent />

@@ -13,21 +13,45 @@ function CardChat({ date, name, message, status }: CardChatProps) {
     <Box
       minWidth={"100%"}
       backgroundColor={"white"}
-      padding={"1rem"}
+      padding={{
+        base: "0.2rem",
+        md: "1rem",
+      }}
       borderRadius={"8px"}
       color={"grey"}
     >
-      <HStack color={"black"} height={"100%"} gap={"1.5rem"} mx={"1rem"}>
+      <HStack
+        color={"black"}
+        height={"100%"}
+        gap={{
+          base: "0.2rem",
+          md: "1.5rem",
+        }}
+        mx={"1rem"}
+        direction={{
+          base: "column",
+          md: "row",
+        }}
+      >
         <Text className={"font-inter"}>{date}</Text>
         <Divider orientation="vertical" height={"100%"} border={"1px"} />
-        <Text textAlign={"left"} className={"font-inter"}>{message}</Text>
+        <Text textAlign={"left"} className={"font-inter"}>
+          {message}
+        </Text>
         <Divider orientation="vertical" height={"100%"} border={"1px"} />
-        <VStack minWidth={"146px"}>
+        <VStack
+          minWidth={{
+            md: "146px",
+          }}
+        >
           <Text className={"font-inter"}>{name}</Text>
 
           {status === "hadir" ? (
             <Button
-              size={"sm"}
+              size={{
+                base: "xs",
+                md: "sm",
+              }}
               px={"2rem"}
               textTransform={"uppercase"}
               colorScheme={"green"}
@@ -36,7 +60,10 @@ function CardChat({ date, name, message, status }: CardChatProps) {
             </Button>
           ) : (
             <Button
-              size={"sm"}
+              size={{
+                base: "xs",
+                md: "sm",
+              }}
               px={"2rem"}
               textTransform={"uppercase"}
               colorScheme={"red"}

@@ -4,7 +4,10 @@ import React from "react";
 function ProkesCovid() {
   return (
     <VStack justifyContent={"center"} height={"100vh"} gap={"4rem"}>
-      <Text className="font-bukhari" color={"grey"} fontSize={"3rem"}>Protokol Kesehatan</Text>
+      <Text className="font-bukhari" color={"grey"} fontSize={{
+        base: "2rem",
+        md: "3rem"
+      }}>Protokol Kesehatan</Text>
       <Image src={"/assets/covid-prokes.png" } alt={"Prokes"} />
     </VStack>
   );
