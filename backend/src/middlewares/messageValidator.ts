@@ -15,10 +15,6 @@ export const createMessageValidator = async (
       errorMessages.push("Nama harus diisi!");
     }
 
-    if (!body.attending) {
-      errorMessages.push("Kehadiran harus diisi!");
-    }
-
     if (!body.message) {
       errorMessages.push("Pesan harus diisi!");
     }

@@ -45,7 +45,12 @@ const PORT = process.env.PORT || 5000;
 // Socket.io init
 const app: Express = express();
 const server = http.createServer(app);
-const options = {};
+const options = {
+  cors: {
+    origin: "*",
+    methods: "*",
+  },
+};
 const io = new Server<
   IClientToServerEvents,
   IServerToClientEvents,
