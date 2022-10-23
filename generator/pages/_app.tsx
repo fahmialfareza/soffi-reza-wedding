@@ -3,6 +3,7 @@ import "nprogress/nprogress.css";
 import "../styles/nprogress.css";
 import { useEffect } from "react";
 import type { AppProps } from "next/app";
+import Head from "next/head";
 import Router from "next/router";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -34,6 +35,14 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   return (
     <>
+      <Head>
+        <title>Generator Undangan</title>
+        <meta
+          name="viewport"
+          content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"
+        />
+      </Head>
+
       <Header />
 
       <Component {...pageProps} />

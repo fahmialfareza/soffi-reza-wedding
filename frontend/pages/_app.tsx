@@ -1,6 +1,7 @@
 import "../styles/globals.css";
 import type { AppProps } from "next/app";
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
+import Head from "next/head";
 
 import "@fontsource/pacifico";
 import "@fontsource/inter";
@@ -36,6 +37,14 @@ const theme = extendTheme({
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <ChakraProvider theme={theme}>
+      <Head>
+        <title>Undangan Pernikahan Soffi & Reza</title>
+        <meta
+          name="viewport"
+          content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"
+        />
+      </Head>
+
       <Component {...pageProps} />
 
       <ToastContainer theme="colored" />
