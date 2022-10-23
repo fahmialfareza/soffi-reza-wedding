@@ -77,6 +77,7 @@ const GuestBook: NextPage<GuestBookProps> = ({ messages }) => {
         position={"absolute"}
         width={{
           base: "20%",
+          md: "15%",
         }}
         top={-20}
         left={0}
@@ -87,6 +88,7 @@ const GuestBook: NextPage<GuestBookProps> = ({ messages }) => {
         position={"absolute"}
         width={{
           base: "20%",
+          md: "15%",
         }}
         top={-20}
         right={0}
@@ -114,7 +116,7 @@ const GuestBook: NextPage<GuestBookProps> = ({ messages }) => {
           }}
           height={{
             base: "50vh",
-            md:"60vh"
+            md: "60vh",
           }}
           overflowY={"scroll"}
           sx={{
@@ -189,6 +191,7 @@ const GuestBook: NextPage<GuestBookProps> = ({ messages }) => {
         position={"absolute"}
         width={{
           base: "20%",
+          md: "15%",
         }}
         bottom={0}
         left={0}
@@ -199,6 +202,7 @@ const GuestBook: NextPage<GuestBookProps> = ({ messages }) => {
         position={"absolute"}
         width={{
           base: "20%",
+          md: "15%",
         }}
         bottom={0}
         right={0}
