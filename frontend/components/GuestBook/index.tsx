@@ -2,6 +2,7 @@ import {
   Box,
   Button, HStack,
   Image, keyframes, Text,
+  useDisclosure,
   VStack
 } from "@chakra-ui/react";
 import CardChat from "../ChatCard";
@@ -9,6 +10,10 @@ import { BubbleChat } from "../icons/BubbleChat";
 import { Gift } from "../icons/Gift";
 
 import { motion } from "framer-motion";
+import ModalUcapan from "../ModalUcapan";
+import ModalGift from "../ModalGift";
+
+
 
 const animationKeyframes = keyframes`
  0% {
@@ -43,6 +48,12 @@ const animationKeyframes = keyframes`
 const animation = `${animationKeyframes} 1s ease-in-out infinite`;
 
 function GuestBook() {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+   const {
+     isOpen: isOpenGiftModal,
+     onOpen: onOpenGiftModal,
+     onClose: onCloseGiftModal,
+   } = useDisclosure();
   return (
     <Box
       width={"100%"}
@@ -94,7 +105,7 @@ function GuestBook() {
           <CardChat
             date={`27 DEC`}
             name={"Ahmad Aji Santoso"}
-            message={`“Selamat menikah dan menempuh hidup baru! Semoga menjadi pasangan yang sakinah mawaddah warohmah.”😍`}
+            message={`“Selamat menikah dan menempuh hidup baru! Semoga menjadi pasangan yang sakinah mawaddah warohmah.”😍 `}
             status={"hadir"}
           />
           <CardChat
@@ -144,14 +155,12 @@ function GuestBook() {
               boxShadow: "0 0 0 2px #FAB8C4",
             }}
             leftIcon={<BubbleChat />}
+            onClick={onOpen}
           >
             Kirim Ucapan
           </Button>
 
-          <Box
-            as={motion.div}
-            animation={animation}
-          >
+          <Box as={motion.div} animation={animation}>
             <Button
               size={"lg"}
               backgroundColor={"grey"}
@@ -160,12 +169,16 @@ function GuestBook() {
                 boxShadow: "0 0 0 2px #FAB8C4",
               }}
               leftIcon={<Gift />}
+              onClick={onOpenGiftModal}
             >
               Kirim Amplop
             </Button>
           </Box>
         </HStack>
       </VStack>
+
+      <ModalUcapan isOpen={isOpen} onClose={onClose} />
+      <ModalGift isOpen={isOpenGiftModal} onClose={onCloseGiftModal} />
 
       <Image
         src="/assets/white-flower-down-left.png"
