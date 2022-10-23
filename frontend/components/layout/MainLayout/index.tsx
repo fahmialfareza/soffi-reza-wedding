@@ -1,6 +1,5 @@
 import { Box, Center, Container, Image, VStack } from "@chakra-ui/react";
 import React from "react";
-
 interface Props {
   children: React.ReactNode;
 }
@@ -67,7 +66,7 @@ function MainLayout({ children }: Props) {
             },
           }}
         >
-          <VStack width={"100%"} maxH={"100vh"} scrollSnapType="y mandatory">
+          <VStack width={"100%"} maxH={"100vh"} scrollSnapType="y mandatory" gap={"2rem"}>
             {children}
           </VStack>
         </Container>
