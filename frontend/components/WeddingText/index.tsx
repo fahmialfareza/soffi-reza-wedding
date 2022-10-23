@@ -11,12 +11,25 @@ function WeddingText() {
       position={"relative"}
     >
       <VStack
-        mx={"7rem"}
+        mx={{
+          base: "3rem",
+          md: "7rem",
+        }}
         height={"100vh"}
         justifyContent={"center"}
-        gap={"6rem"}
+        gap={{
+          base: "3rem",
+          md: "6rem",
+        }}
       >
-        <Text className="font-pacifio" color={"grey-light"} fontSize={"3rem"}>
+        <Text
+          className="font-pacifio"
+          color={"grey-light"}
+          fontSize={{
+            base: "1.5rem",
+            md: "3rem",
+          }}
+        >
           Bismillahirrahmanirrahim
         </Text>
         <Text
@@ -24,7 +37,10 @@ function WeddingText() {
           fontWeight={"500"}
           textAlign={"center"}
           color={"grey-light"}
-          fontSize={"1.5rem"}
+          fontSize={{
+            base: "1rem",
+            md: "1.5rem",
+          }}
         >
           Assalamu`alaikum Warahmatullahi Wabarakatuh. Dengan memohon rahmat dan
           ridho Allah SWT, kami bermaksud menyelenggarakan acara pernikahan
@@ -35,13 +51,19 @@ function WeddingText() {
             <Text
               className="font-pacifio"
               color={"grey-light"}
-              fontSize={"2.2rem"}
+              fontSize={{
+                base: "1.5rem",
+                md: "2.2rem",
+              }}
             >
               Fahmi Alfareza
             </Text>
             <Text
               className="font-inter"
-              fontSize={"1.2rem"}
+              fontSize={{
+                base: "0.8rem",
+                md: "1.2rem",
+              }}
               textAlign={"center"}
               color={"grey-light"}
             >
@@ -59,13 +81,19 @@ function WeddingText() {
             <Text
               className="font-pacifio"
               color={"grey-light"}
-              fontSize={"2.2rem"}
+              fontSize={{
+                base: "1.5rem",
+                md: "2.2rem",
+              }}
             >
               Soffi Lutfia Dewi Trizana
             </Text>
             <Text
               className="font-inter"
-              fontSize={"1.2rem"}
+              fontSize={{
+                base: "0.8rem",
+                md: "1.2rem",
+              }}
               textAlign={"center"}
               color={"grey-light"}
             >

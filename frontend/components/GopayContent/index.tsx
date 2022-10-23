@@ -6,6 +6,7 @@ import {
   Input,
   InputGroup,
   InputRightElement,
+  Show,
   Text,
   VStack,
 } from "@chakra-ui/react"
@@ -21,6 +22,7 @@ function GopayContent() {
       try {
         await navigator.clipboard.writeText(copyMe);
         setCopySuccess("Copied!");
+        setTimeout(() => setCopySuccess(""), 3000);
       } catch (err) {
         setCopySuccess("Failed to copy!");
       }
@@ -29,10 +31,16 @@ function GopayContent() {
   return (
     <Center>
       <VStack>
-        <Text className="font-inter" fontSize={"1.2rem"} fontWeight={"medium"}>
-          Scan Barcode
-        </Text>
-        <Image src={"/assets/gopay-reza.png"} alt={"BSI REZA"} />
+        <Show above={"sm"}>
+          <Text
+            className="font-inter"
+            fontSize={"1.2rem"}
+            fontWeight={"medium"}
+          >
+            Scan Barcode
+          </Text>
+          <Image src={"/assets/gopay-reza.png"} alt={"BSI REZA"} />
+        </Show>
 
         <VStack>
           <FormLabel className="font-inter">a.n. Fahmi Alfareza</FormLabel>

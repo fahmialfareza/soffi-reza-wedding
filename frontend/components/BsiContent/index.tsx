@@ -6,6 +6,7 @@ import {
   Input,
   InputGroup,
   InputRightElement,
+  Show,
   Text,
   VStack,
 } from "@chakra-ui/react";
@@ -22,6 +23,7 @@ function BsiModalContent() {
       try {
         await navigator.clipboard.writeText(copyMe);
         setCopySuccess("Copied!");
+        setTimeout(() => setCopySuccess(""), 3000);
       } catch (err) {
         setCopySuccess("Failed to copy!");
       }
@@ -30,6 +32,8 @@ function BsiModalContent() {
       try {
         await navigator.clipboard.writeText(copyMe);
         setSoffiSuccess("Copied!");
+        setTimeout(() => setSoffiSuccess(""), 3000);
+
       } catch (err) {
         setSoffiSuccess("Failed to copy!");
       }
@@ -38,10 +42,16 @@ function BsiModalContent() {
   return (
     <Center>
       <VStack>
-        <Text className="font-inter" fontSize={"1.2rem"} fontWeight={"medium"}>
-          Scan Barcode
-        </Text>
-        <Image src={"/assets/bsi-reza.png"} alt={"BSI REZA"} />
+        <Show above={"sm"}>
+          <Text
+            className="font-inter"
+            fontSize={"1.2rem"}
+            fontWeight={"medium"}
+          >
+            Scan Barcode
+          </Text>
+          <Image src={"/assets/bsi-reza.png"} alt={"BSI REZA"} />
+        </Show>
 
         <VStack>
           <FormLabel className="font-inter">a.n. Fahmi Alfareza</FormLabel>
@@ -58,7 +68,11 @@ function BsiModalContent() {
             </InputRightElement>
           </InputGroup>
         </VStack>
-        <Image src={"/assets/bsi-soffi.png"} alt={"BSI Soffi"} />
+
+        <Show above={"sm"}>
+          <Image src={"/assets/bsi-soffi.png"} alt={"BSI Soffi"} />
+        </Show>
+
         <VStack>
           <FormLabel className="font-inter">
             a.n. Soffi Lutfia Dewi Trizana
@@ -66,8 +80,12 @@ function BsiModalContent() {
           <InputGroup size="md">
             <Input pr="4.5rem" value="BSI 7118619115" />
             <InputRightElement width="4.5rem">
-              <Button h="1.75rem" size="sm" onClick={() => copyToClipBoardSoffi("7118619115")}>
-              {soffiSuccess ? soffiSuccess : "Copy"}
+              <Button
+                h="1.75rem"
+                size="sm"
+                onClick={() => copyToClipBoardSoffi("7118619115")}
+              >
+                {soffiSuccess ? soffiSuccess : "Copy"}
               </Button>
             </InputRightElement>
           </InputGroup>
