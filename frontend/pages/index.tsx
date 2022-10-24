@@ -12,14 +12,17 @@ import ProkesCovid from "../components/Prokes";
 import WeddingSchedule from "../components/WeddingSchedule";
 import WeddingText from "../components/WeddingText";
 import { IMessage } from "../interfaces/messages.interface";
+import NotValid from "../components/NotValid";
 
 interface HomeProps {
   messages: IMessage[];
+  error: string;
+  to: string;
 }
 
 const socket = io(process.env.NEXT_PUBLIC_BACKEND_API!);
 
-const Home: NextPage<HomeProps> = ({ messages: messageFromSSR }) => {
+const Home: NextPage<HomeProps> = ({ messages: messageFromSSR, error, to }) => {
   const [messages, setMessages] = useState(messageFromSSR);
 
   useEffect(() => {
@@ -29,6 +32,17 @@ const Home: NextPage<HomeProps> = ({ messages: messageFromSSR }) => {
       setMessages([message, ...messages]);
     });
   }, [messages]);
+
+  if (error) {
+    return (
+      <MainLayout>
+        <NotValid />
+      </MainLayout>
+    );
+  }
+
+  // TODO: Consume "to" variable to modal
+  // The user need to "Buka Undangan if thet want to look at the invitation"
 
   return (
     <MainLayout>
@@ -45,7 +59,17 @@ const Home: NextPage<HomeProps> = ({ messages: messageFromSSR }) => {
 };
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
+  let to = "";
+
   try {
+    if (!context.query.to) {
+      return {
+        props: {
+          error: "Undangan tidak valid!",
+        },
+      };
+    }
+
     const response = await fetch(`${process.env.BACKEND_API}/api/v1/messages`, {
       method: "GET",
     });
@@ -54,12 +78,14 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     return {
       props: {
         messages,
+        to: context.query.to,
       },
     };
   } catch (error) {
     return {
       props: {
         messages: [],
+        to: context.query.to,
       },
     };
   }
