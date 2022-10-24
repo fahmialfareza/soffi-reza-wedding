@@ -5,6 +5,8 @@ import { toast } from "react-toastify";
 import { useRouter } from "next/router";
 
 import IInvitation from "../interfaces/invitation.interface";
+import unduhMantu from "../helpers/unduhMantu";
+import akadResepsi from "../helpers/akadResepsi";
 
 interface InvitationTableProps {
   invitations: IInvitation[];
@@ -22,7 +24,7 @@ function InvitationTable({ invitations }: InvitationTableProps) {
             <th>Nama</th>
             <th>Link</th>
             <th>Disalin</th>
-            <th>Aksi</th>
+            <th>Salin Undangan</th>
           </tr>
         </thead>
         <tbody>
@@ -46,9 +48,12 @@ function InvitationTable({ invitations }: InvitationTableProps) {
                 <td className="text-center">
                   <Button
                     variant={"outline-secondary"}
+                    className="mx-1"
                     onClick={async () => {
                       try {
-                        navigator.clipboard.writeText(invitation.url);
+                        navigator.clipboard.writeText(
+                          akadResepsi(invitation.name, invitation.url)
+                        );
 
                         await fetch(
                           `${process.env.NEXT_PUBLIC_BACKEND_API}/api/v1/invitations/${invitation.id}`,
@@ -70,8 +75,40 @@ function InvitationTable({ invitations }: InvitationTableProps) {
                       }
                     }}
                   >
-                    <FontAwesomeIcon icon={faCopy} size={"2xl"} /> {"   "} Salin
-                    Link
+                    <FontAwesomeIcon icon={faCopy} size={"2xl"} /> {"   "} Akad
+                    & Resepsi
+                  </Button>
+                  <Button
+                    variant={"outline-secondary"}
+                    className="mx-1"
+                    onClick={async () => {
+                      try {
+                        navigator.clipboard.writeText(
+                          unduhMantu(invitation.name, invitation.url)
+                        );
+
+                        await fetch(
+                          `${process.env.NEXT_PUBLIC_BACKEND_API}/api/v1/invitations/${invitation.id}`,
+                          { method: "POST" }
+                        );
+
+                        toast.success(
+                          `Berhasil menyalin undangan untuk ${invitation.name}!`
+                        );
+                        if (router.asPath === "/") {
+                          router.push("/?to=");
+                          return;
+                        }
+                        router.replace(router.asPath);
+                      } catch (error) {
+                        toast.error(
+                          `Gagal menyalin undangan untuk ${invitation.name}!`
+                        );
+                      }
+                    }}
+                  >
+                    <FontAwesomeIcon icon={faCopy} size={"2xl"} /> {"   "} Unduh
+                    Mantu
                   </Button>
                 </td>
               </tr>
