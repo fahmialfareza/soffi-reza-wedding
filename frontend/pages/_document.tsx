@@ -87,14 +87,6 @@ class MyDocument extends Document {
           />
           <link href="/icon-72x72.png" rel="apple-touch-icon" sizes="72x72" />
           <link rel="manifest" href="/manifest.json" />
-          <link
-            href="http://fonts.cdnfonts.com/css/bukhari-script"
-            rel="stylesheet"
-          />
-          <link
-            href="http://fonts.cdnfonts.com/css/bookerly"
-            rel="stylesheet"
-          />
         </Head>
         <body>
           <Main />

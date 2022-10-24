@@ -3,6 +3,14 @@
   src: url(./fonts/BookerlyBold.ttf) format("truetype");
   font-weight: bold;
 }
+@font-face {
+  font-family: 'Bookerly';
+  src: url(./fonts/Bookerly.ttf) format("truetype");
+}
+@font-face {
+  font-family: 'Bukhari';
+  src: url(./fonts/BukhariScript.ttf) format("truetype");
+}
 
 html {
   font-family: sans-serif;
@@ -12,7 +20,7 @@ html {
 }
 
 .font-bukhari {
-  font-family: "Bukhari Script", sans-serif;
+  font-family: "Bukhari", sans-serif;
 }
 .font-pacifio {
   font-family: "Pacifico", sans-serif;
