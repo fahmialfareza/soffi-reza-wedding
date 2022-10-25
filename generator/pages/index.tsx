@@ -1,4 +1,4 @@
-import { FormEvent, useState } from "react";
+import { FormEvent, useState, useEffect } from "react";
 import type { GetServerSideProps } from "next";
 import Head from "next/head";
 import { useRouter } from "next/router";
@@ -25,6 +25,12 @@ const Home = ({ invitations }: HomeProps) => {
     }
     router.push(`/?to=${search}`);
   };
+
+  useEffect(() => {
+    if (!router.query.to) {
+      setSearch("");
+    }
+  }, [router.query]);
 
   return (
     <Container className="mb-5">

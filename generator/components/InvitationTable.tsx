@@ -1,6 +1,7 @@
-import { Button, Table } from "react-bootstrap";
+import { MouseEvent, useEffect, useState } from "react";
+import { Button, Table, Alert, Row, Col } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCopy, faCheck, faCancel } from "@fortawesome/free-solid-svg-icons";
+import { faCopy } from "@fortawesome/free-solid-svg-icons";
 import { toast } from "react-toastify";
 import { useRouter } from "next/router";
 
@@ -15,24 +16,103 @@ interface InvitationTableProps {
   invitations: IInvitation[];
 }
 
-function InvitationTable({ invitations }: InvitationTableProps) {
+function InvitationTable({
+  invitations: invitationsFromIndex,
+}: InvitationTableProps) {
   const router = useRouter();
+
+  const [filter, setFilter] = useState(0);
+  const [invitations, setInvitations] =
+    useState<IInvitation[]>(invitationsFromIndex);
+
+  useEffect(() => {
+    if (filter === 0) {
+      setInvitations(invitationsFromIndex);
+    } else if (filter === 1) {
+      const filteredInvitations = invitationsFromIndex.filter(
+        (invitation) =>
+          invitation.copiedResepsi ||
+          invitation.copiedUnduh ||
+          invitation.copiedResepsiUnduh
+      );
+      setInvitations(filteredInvitations);
+    } else if (filter === 2) {
+      const filteredInvitations = invitationsFromIndex.filter(
+        (invitation) =>
+          !(
+            invitation.copiedResepsi ||
+            invitation.copiedUnduh ||
+            invitation.copiedResepsiUnduh
+          )
+      );
+      setInvitations(filteredInvitations);
+    }
+  }, [filter, invitationsFromIndex]);
 
   return (
     <>
+      <div>
+        <Alert variant="primary">Biru: Undangan pernah disalin</Alert>
+        <Alert variant="secondary">Abu-abu: Undangan belum disalin</Alert>
+      </div>
+
+      <Row className="my-4">
+        <Col>
+          <div className="d-grid gap-2">
+            <Button
+              variant={filter === 0 ? "primary" : "secondary"}
+              onClick={(e) => {
+                e.preventDefault();
+                setFilter(0);
+              }}
+            >
+              Tampilkan semua undangan
+            </Button>
+          </div>
+        </Col>
+        <Col>
+          <div className="d-grid gap-2">
+            <Button
+              variant={filter === 1 ? "primary" : "secondary"}
+              onClick={(e) => {
+                e.preventDefault();
+                setFilter(1);
+              }}
+            >
+              Tampilkan undangan yang pernah disalin
+            </Button>
+          </div>
+        </Col>
+        <Col>
+          <div className="d-grid gap-2">
+            <Button
+              variant={filter === 2 ? "primary" : "secondary"}
+              onClick={(e) => {
+                e.preventDefault();
+                setFilter(2);
+              }}
+            >
+              Tampilkan undangan yang belum disalin
+            </Button>
+          </div>
+        </Col>
+      </Row>
+
       <Table bordered striped hover responsive className="mb-5">
         <thead>
           <tr className="text-center">
-            <th>No</th>
-            <th>Nama</th>
-            <th>Link</th>
-            <th>
-              Salin Undangan <br />
-              <p style={{ fontWeight: "normal" }}>
-                Biru: Undangan pernah disalin <br />
-                Abu-abu: Undangan belum disalin
-              </p>
-            </th>
+            <th rowSpan={2}>No</th>
+            <th rowSpan={2}>Nama</th>
+            <th colSpan={3}>Link</th>
+            <th colSpan={3}>Salin Undangan</th>
+          </tr>
+          <tr className="text-center">
+            <th>Resepsi</th>
+            <th>Unduh Mantu</th>
+            <th>Resepsi & Unduh Mantu</th>
+            <th>Resepsi</th>
+            <th>Unduh Mantu</th>
+            <th>Resepsi & Unduh Mantu</th>
           </tr>
         </thead>
         <tbody>
@@ -41,32 +121,64 @@ function InvitationTable({ invitations }: InvitationTableProps) {
               <tr key={invitation.id}>
                 <td className="text-center">{index + 1}</td>
                 <td>{invitation.name}</td>
-                <td>
-                  <h6>Resepsi: </h6>
+                <td className="text-center">
+                  <FontAwesomeIcon
+                    icon={faCopy}
+                    size={"xl"}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      navigator.clipboard.writeText(invitation.urlResepsi);
+                      toast.success(
+                        `Berhasil menyalin link resepsi untuk ${invitation.name}`
+                      );
+                    }}
+                  />{" "}
                   <a
                     href={invitation.urlResepsi}
                     target={"_blank"}
                     rel="noreferrer"
                   >
-                    {invitation.urlResepsi}
+                    Buka
                   </a>
-                  <hr />
-                  <h6>Unduh Mantu: </h6>
+                </td>
+                <td className="text-center">
+                  <FontAwesomeIcon
+                    icon={faCopy}
+                    size={"xl"}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      navigator.clipboard.writeText(invitation.urlUnduh);
+                      toast.success(
+                        `Berhasil menyalin link unduh mantu untuk ${invitation.name}`
+                      );
+                    }}
+                  />{" "}
                   <a
                     href={invitation.urlUnduh}
                     target={"_blank"}
                     rel="noreferrer"
                   >
-                    {invitation.urlUnduh}
+                    Buka
                   </a>
-                  <hr />
-                  <h6>Resepsi & Unduh Mantu: </h6>
+                </td>
+                <td className="text-center">
+                  <FontAwesomeIcon
+                    icon={faCopy}
+                    size={"xl"}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      navigator.clipboard.writeText(invitation.urlResepsiUnduh);
+                      toast.success(
+                        `Berhasil menyalin link resepsi & unduh mantu untuk ${invitation.name}`
+                      );
+                    }}
+                  />{" "}
                   <a
                     href={invitation.urlResepsiUnduh}
                     target={"_blank"}
                     rel="noreferrer"
                   >
-                    {invitation.urlResepsiUnduh}
+                    Buka
                   </a>
                 </td>
                 <td className="text-center">
@@ -112,10 +224,10 @@ function InvitationTable({ invitations }: InvitationTableProps) {
                       }
                     }}
                   >
-                    <FontAwesomeIcon icon={faCopy} size={"2xl"} /> {"   "}{" "}
-                    Resepsi
+                    <FontAwesomeIcon icon={faCopy} size={"2xl"} />
                   </Button>
-                  <hr />
+                </td>
+                <td className="text-center">
                   <Button
                     variant={
                       invitation.copiedUnduh ? "primary" : "outline-secondary"
@@ -158,10 +270,10 @@ function InvitationTable({ invitations }: InvitationTableProps) {
                       }
                     }}
                   >
-                    <FontAwesomeIcon icon={faCopy} size={"2xl"} /> {"   "} Unduh
-                    Mantu
+                    <FontAwesomeIcon icon={faCopy} size={"2xl"} />
                   </Button>
-                  <hr />
+                </td>
+                <td className="text-center">
                   <Button
                     variant={
                       invitation.copiedResepsiUnduh
@@ -209,8 +321,7 @@ function InvitationTable({ invitations }: InvitationTableProps) {
                       }
                     }}
                   >
-                    <FontAwesomeIcon icon={faCopy} size={"2xl"} /> {"   "}{" "}
-                    Resepsi & Unduh Mantu
+                    <FontAwesomeIcon icon={faCopy} size={"2xl"} />
                   </Button>
                 </td>
               </tr>
