@@ -1,14 +1,19 @@
 import { Box, Button, HStack, Image, Text, VStack } from "@chakra-ui/react";
 import { MutableRefObject } from "react";
+import { atcb_action } from "add-to-calendar-button";
+import "add-to-calendar-button/assets/css/atcb.css";
+
+import InvitationType from "../../interfaces/type.interface";
 import { CalendarFill } from "../icons/CalendarFill";
 import { MapsFill } from "../icons/Maps";
 
 interface WeddingScheduleProps {
   maps: MutableRefObject<HTMLDivElement> | undefined;
   handleScroll: (ref: any) => void;
+  type: InvitationType;
 }
 
-function WeddingSchedule({ maps, handleScroll }: WeddingScheduleProps) {
+function WeddingSchedule({ maps, handleScroll, type }: WeddingScheduleProps) {
   return (
     <Box
       width={"100%"}
@@ -162,9 +167,49 @@ function WeddingSchedule({ maps, handleScroll }: WeddingScheduleProps) {
               boxShadow: "0 0 0 2px #FAB8C4",
             }}
             leftIcon={<CalendarFill />}
+            onClick={(e) => {
+              e.preventDefault();
+              atcb_action({
+                name:
+                  type === InvitationType.Resepsi
+                    ? "Resepsi Pernikahan Soffi & Reza"
+                    : type === InvitationType.Unduh
+                    ? "Unduh Mantu Pernikahan Soffi & Reza"
+                    : type === InvitationType.ResepsiUnduh
+                    ? "Resepsi & Unduh Mantu Pernikahan Soffi & Reza"
+                    : undefined,
+                startDate:
+                  type === InvitationType.Resepsi
+                    ? "2023-01-14"
+                    : type === InvitationType.Unduh
+                    ? "2023-01-15"
+                    : type === InvitationType.ResepsiUnduh
+                    ? "2023-01-14"
+                    : undefined,
+                endDate:
+                  type === InvitationType.Resepsi
+                    ? "2023-01-14"
+                    : type === InvitationType.Unduh
+                    ? "2023-01-15"
+                    : type === InvitationType.ResepsiUnduh
+                    ? "2023-01-15"
+                    : undefined,
+                options: ["Apple", "Google", "iCal"],
+                timeZone: "Asia/Jakarta",
+                iCalFileName: "soffi-reza-wedding",
+                location: InvitationType.Resepsi
+                  ? "https://www.google.com/maps?ll=-7.60401,110.59788&z=15&t=m&hl=en&gl=ID&mapclient=embed&cid=5549585645485302900"
+                  : type === InvitationType.Unduh
+                  ? "https://www.google.com/maps?ll=-7.376048,110.403896&z=15&t=m&hl=en&gl=ID&mapclient=embed&cid=13414328746546294688"
+                  : type === InvitationType.ResepsiUnduh
+                  ? "https://www.google.com/maps?ll=-7.60401,110.59788&z=15&t=m&hl=en&gl=ID&mapclient=embed&cid=5549585645485302900 & https://www.google.com/maps?ll=-7.376048,110.403896&z=15&t=m&hl=en&gl=ID&mapclient=embed&cid=13414328746546294688"
+                  : undefined,
+              });
+            }}
           >
             Simpan Ke Kalender
           </Button>
+
           <Button
             size={"md"}
             backgroundColor={"grey"}

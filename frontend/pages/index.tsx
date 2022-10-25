@@ -17,6 +17,7 @@ import NotValid from "../components/NotValid";
 import { useDisclosure } from "@chakra-ui/react";
 import ModalOpening from "../components/ModalOpening";
 import InvitationType from "../interfaces/type.interface";
+import Backsound from "../components/Backsound";
 
 interface HomeProps {
   messages: IMessage[];
@@ -28,6 +29,7 @@ const socket = io(process.env.NEXT_PUBLIC_BACKEND_API!);
 
 const Home: NextPage<HomeProps> = ({ messages: messageFromSSR, to, type }) => {
   const [messages, setMessages] = useState(messageFromSSR);
+  const [play, setPlay] = useState(false);
   const { isOpen, onClose } = useDisclosure({ defaultIsOpen: true });
 
   const maps = useRef<HTMLDivElement>(null);
@@ -45,6 +47,12 @@ const Home: NextPage<HomeProps> = ({ messages: messageFromSSR, to, type }) => {
       setMessages([message, ...messages]);
     });
   }, [messages]);
+
+  useEffect(() => {
+    if (!isOpen) {
+      setPlay(true);
+    }
+  }, [isOpen]);
 
   if (!to) {
     return (
@@ -74,8 +82,14 @@ const Home: NextPage<HomeProps> = ({ messages: messageFromSSR, to, type }) => {
 
             <WeddingText />
 
-            {/* @ts-ignore */}
-            <WeddingSchedule maps={maps} handleScroll={handleScroll} />
+            <WeddingSchedule
+              /*
+              // @ts-ignore */
+              maps={maps}
+              handleScroll={handleScroll}
+              type={type}
+            />
+
             {/* @ts-ignore */}
             <MapsInvitation maps={maps} />
 
@@ -89,6 +103,8 @@ const Home: NextPage<HomeProps> = ({ messages: messageFromSSR, to, type }) => {
           </>
         )}
       </MainLayout>
+
+      <Backsound play={play} />
     </>
   );
 };
