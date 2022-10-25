@@ -32,6 +32,7 @@ const Home: NextPage<HomeProps> = ({ messages: messageFromSSR, to, type }) => {
   const [play, setPlay] = useState(false);
   const { isOpen, onClose } = useDisclosure({ defaultIsOpen: true });
 
+  const audioRef = useRef<HTMLAudioElement>(null);
   const maps = useRef<HTMLDivElement>(null);
 
   const handleScroll = (ref: MutableRefObject<HTMLDivElement | undefined>) => {
@@ -51,6 +52,7 @@ const Home: NextPage<HomeProps> = ({ messages: messageFromSSR, to, type }) => {
   useEffect(() => {
     if (!isOpen) {
       setPlay(true);
+      audioRef.current?.play();
     }
   }, [isOpen]);
 
@@ -104,7 +106,8 @@ const Home: NextPage<HomeProps> = ({ messages: messageFromSSR, to, type }) => {
         )}
       </MainLayout>
 
-      <Backsound play={play} />
+      {/* @ts-ignore */}
+      <Backsound play={play} audioRef={audioRef} />
     </>
   );
 };
