@@ -9,7 +9,7 @@ class MyDocument extends Document {
           <meta charSet="utf-8" />
           <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
           <meta name="keywords" content="Undangan Pernikahan Soffi & Reza" />
-          <meta name="theme-color" content="green" />
+          <meta name="theme-color" content="#598784" />
           <meta name="mobile-web-app-capable" content="yes" />
           <meta
             name="apple-mobile-web-app-title"
@@ -20,8 +20,8 @@ class MyDocument extends Document {
             name="apple-mobile-web-app-status-bar-style"
             content="default"
           />
-          <meta name="msapplication-navbutton-color" content="#0085ad" />
-          <meta name="msapplication-TileColor" content="#0085ad" />
+          <meta name="msapplication-navbutton-color" content="#598784" />
+          <meta name="msapplication-TileColor" content="#598784" />
           <meta name="msapplication-TileImage" content="ms-icon-144x144.png" />
           <meta name="msapplication-config" content="browserconfig.xml" />
           <meta
