@@ -13,6 +13,8 @@ import WeddingSchedule from "../components/WeddingSchedule";
 import WeddingText from "../components/WeddingText";
 import { IMessage } from "../interfaces/messages.interface";
 import NotValid from "../components/NotValid";
+import { useDisclosure } from "@chakra-ui/react";
+import ModalOpening from "../components/ModalOpening";
 
 interface HomeProps {
   messages: IMessage[];
@@ -24,6 +26,8 @@ const socket = io(process.env.NEXT_PUBLIC_BACKEND_API!);
 
 const Home: NextPage<HomeProps> = ({ messages: messageFromSSR, error, to }) => {
   const [messages, setMessages] = useState(messageFromSSR);
+  const { isOpen, onOpen, onClose } = useDisclosure({ defaultIsOpen: true });
+
 
   useEffect(() => {
     socket.on("connect", () => {});
@@ -46,6 +50,7 @@ const Home: NextPage<HomeProps> = ({ messages: messageFromSSR, error, to }) => {
 
   return (
     <MainLayout>
+      <ModalOpening name={to} isOpen={isOpen} onClose={onClose} />
       <Hero />
       <WeddingText />
       <WeddingSchedule />
