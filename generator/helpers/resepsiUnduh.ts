@@ -1,7 +1,12 @@
-export default function unduhMantu(name: string, link: string) {
+export default function resepsiUnduh(name: string, link: string) {
   const text = `Assalamu’alaikum wr wb ✨
 
 Tanpa mengurangi rasa hormat, perkenankan kami mengundang Bapak/Ibu/Saudara/i *${name}* untuk menghadiri acara kami
+
+Akad & Resepsi
+🗓 Sabtu, 14 Januari 2023
+⏰ Pukul 08.00 WIB s.d Selesai
+🏠 Bandung RT 02/RW 01, Beji, Tulung, Klaten
 
 Ngunduh Mantu 
 🗓 Ahad, 15 Januari 2023

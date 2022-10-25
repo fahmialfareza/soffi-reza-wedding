@@ -67,7 +67,7 @@ function WeddingText() {
               textAlign={"center"}
               color={"grey-light"}
             >
-              Putra Pertama Bpk. Edi Sutrisno & Ibu Sumiyati
+              Putra Pertama dari Bpk. Edi Sutrisno & Ibu Sumiyati
             </Text>
           </VStack>
           <Text
@@ -97,7 +97,7 @@ function WeddingText() {
               textAlign={"center"}
               color={"grey-light"}
             >
-              Putra Pertama Bpk. Muhammad Amir & Ibu Neni Susilawati
+              Putri Ketiga dari Bpk. Muhammad Amir & Ibu Neni Susilawati
             </Text>
           </VStack>
         </VStack>

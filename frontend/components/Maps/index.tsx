@@ -1,7 +1,11 @@
+import { MutableRefObject } from "react";
 import { AspectRatio, Flex, Text, VStack } from "@chakra-ui/react";
-import React from "react";
 
-function MapsInvitation() {
+interface MapsInvitationProps {
+  maps: MutableRefObject<HTMLDivElement> | undefined;
+}
+
+function MapsInvitation({ maps }: MapsInvitationProps) {
   return (
     <VStack
       width={"100%"}
@@ -10,9 +14,9 @@ function MapsInvitation() {
       justifyContent={"center"}
       gap={{
         base: "1rem",
-        md: "1.5rem"
+        md: "1.5rem",
       }}
-  
+      ref={maps}
       color={"grey-light"}
     >
       <Text className="font-bukhari" fontSize={"3rem"}>
@@ -22,8 +26,13 @@ function MapsInvitation() {
         <Text className="font-bukhari" fontSize={"1.2rem"}>
           Akad Nikah & Resepsi
         </Text>
-        <Text className="font-inter" fontSize={"1rem"} color={"black"} mb={"1rem"}>
-          Dsn. Bandung RT 02/RW 01, Ds. Beji, Kec. Tulung, Kab. Klaten
+        <Text
+          className="font-inter"
+          fontSize={"1rem"}
+          color={"black"}
+          mb={"1rem"}
+        >
+          Dukuh Bandung RT 02/RW 01, Ds. Beji, Kec. Tulung, Kab. Klaten
         </Text>
 
         <AspectRatio ratio={16 / 5} minWidth={"100%"}>
@@ -37,7 +46,12 @@ function MapsInvitation() {
         <Text className="font-bukhari" fontSize={"1.2rem"}>
           Unduh Mantu
         </Text>
-        <Text className="font-inter" fontSize={"1rem"} color={"black"} mb={"1rem"}>
+        <Text
+          className="font-inter"
+          fontSize={"1rem"}
+          color={"black"}
+          mb={"1rem"}
+        >
           Dsn. Dalangan RT 01/RW 01, Ds. Pandean, Kec. Ngablak, Kab. Magelang
         </Text>
 

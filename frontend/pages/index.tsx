@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef, MutableRefObject } from "react";
 import type { NextPage, GetServerSideProps } from "next";
+import Head from "next/head";
 import { io } from "socket.io-client";
 
 import ClosingInvitation from "../components/Clossing";
@@ -15,19 +16,27 @@ import { IMessage } from "../interfaces/messages.interface";
 import NotValid from "../components/NotValid";
 import { useDisclosure } from "@chakra-ui/react";
 import ModalOpening from "../components/ModalOpening";
+import InvitationType from "../interfaces/type.interface";
 
 interface HomeProps {
   messages: IMessage[];
-  error: string;
-  to: string;
+  to: string | null;
+  type: InvitationType;
 }
 
 const socket = io(process.env.NEXT_PUBLIC_BACKEND_API!);
 
-const Home: NextPage<HomeProps> = ({ messages: messageFromSSR, error, to }) => {
+const Home: NextPage<HomeProps> = ({ messages: messageFromSSR, to, type }) => {
   const [messages, setMessages] = useState(messageFromSSR);
-  const { isOpen, onOpen, onClose } = useDisclosure({ defaultIsOpen: true });
+  const { isOpen, onClose } = useDisclosure({ defaultIsOpen: true });
 
+  const maps = useRef<HTMLDivElement>(null);
+
+  const handleScroll = (ref: MutableRefObject<HTMLDivElement | undefined>) => {
+    ref.current?.scrollIntoView({
+      behavior: "smooth",
+    });
+  };
 
   useEffect(() => {
     socket.on("connect", () => {});
@@ -37,7 +46,7 @@ const Home: NextPage<HomeProps> = ({ messages: messageFromSSR, error, to }) => {
     });
   }, [messages]);
 
-  if (error) {
+  if (!to) {
     return (
       <MainLayout>
         <NotValid />
@@ -45,45 +54,85 @@ const Home: NextPage<HomeProps> = ({ messages: messageFromSSR, error, to }) => {
     );
   }
 
-  // TODO: Consume "to" variable to modal
-  // The user need to "Buka Undangan if thet want to look at the invitation"
-
   return (
-    <MainLayout>
-      <ModalOpening name={to} isOpen={isOpen} onClose={onClose} />
-      <Hero />
-      <WeddingText />
-      <WeddingSchedule />
-      <MapsInvitation />
-      <GuestBook messages={messages} />
-      <ProkesCovid />
-      <ClosingInvitation />
-      <Footer />
-    </MainLayout>
+    <>
+      <Head>
+        <title>Undangan Pernikahan Soffi & Reza untuk {to}</title>
+      </Head>
+
+      <MainLayout>
+        {to && type && isOpen ? (
+          <ModalOpening
+            name={to}
+            isOpen={isOpen}
+            onClose={onClose}
+            type={type}
+          />
+        ) : (
+          <>
+            <Hero type={type} />
+
+            <WeddingText />
+
+            {/* @ts-ignore */}
+            <WeddingSchedule maps={maps} handleScroll={handleScroll} />
+            {/* @ts-ignore */}
+            <MapsInvitation maps={maps} />
+
+            <GuestBook messages={messages} to={to} />
+
+            <ProkesCovid />
+
+            <ClosingInvitation />
+
+            <Footer />
+          </>
+        )}
+      </MainLayout>
+    </>
   );
 };
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   let to = "";
+  let type: InvitationType;
 
   try {
-    if (!context.query.to) {
+    if (!context.query.to || !context.query.type) {
       return {
         props: {
-          error: "Undangan tidak valid!",
+          to: null,
         },
       };
     }
 
-    const response = await fetch(`${process.env.BACKEND_API}/api/v1/messages`, {
-      method: "GET",
-    });
-    const messages = (await response.json()).data as IMessage[];
+    if (
+      context.query.type === InvitationType.Resepsi ||
+      context.query.type === InvitationType.Unduh ||
+      context.query.type === InvitationType.ResepsiUnduh
+    ) {
+      type = context.query.type;
+
+      const response = await fetch(
+        `${process.env.BACKEND_API}/api/v1/messages`,
+        {
+          method: "GET",
+        }
+      );
+      const messages = (await response.json()).data as IMessage[];
+
+      return {
+        props: {
+          messages,
+          to: context.query.to,
+          type,
+        },
+      };
+    }
 
     return {
       props: {
-        messages,
-        to: context.query.to,
+        to: null,
       },
     };
   } catch (error) {

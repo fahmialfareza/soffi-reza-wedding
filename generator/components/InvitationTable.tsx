@@ -4,9 +4,12 @@ import { faCopy, faCheck, faCancel } from "@fortawesome/free-solid-svg-icons";
 import { toast } from "react-toastify";
 import { useRouter } from "next/router";
 
-import IInvitation from "../interfaces/invitation.interface";
+import IInvitation, {
+  InvitationType,
+} from "../interfaces/invitation.interface";
 import unduhMantu from "../helpers/unduhMantu";
 import akadResepsi from "../helpers/akadResepsi";
+import resepsiUnduh from "../helpers/resepsiUnduh";
 
 interface InvitationTableProps {
   invitations: IInvitation[];
@@ -23,8 +26,13 @@ function InvitationTable({ invitations }: InvitationTableProps) {
             <th>No</th>
             <th>Nama</th>
             <th>Link</th>
-            <th>Disalin</th>
-            <th>Salin Undangan</th>
+            <th>
+              Salin Undangan <br />
+              <p style={{ fontWeight: "normal" }}>
+                Biru: Undangan pernah disalin <br />
+                Abu-abu: Undangan belum disalin
+              </p>
+            </th>
           </tr>
         </thead>
         <tbody>
@@ -34,30 +42,59 @@ function InvitationTable({ invitations }: InvitationTableProps) {
                 <td className="text-center">{index + 1}</td>
                 <td>{invitation.name}</td>
                 <td>
-                  <a href={invitation.url} target={"_blank"} rel="noreferrer">
-                    {invitation.url}
+                  <h6>Resepsi: </h6>
+                  <a
+                    href={invitation.urlResepsi}
+                    target={"_blank"}
+                    rel="noreferrer"
+                  >
+                    {invitation.urlResepsi}
+                  </a>
+                  <hr />
+                  <h6>Unduh Mantu: </h6>
+                  <a
+                    href={invitation.urlUnduh}
+                    target={"_blank"}
+                    rel="noreferrer"
+                  >
+                    {invitation.urlUnduh}
+                  </a>
+                  <hr />
+                  <h6>Resepsi & Unduh Mantu: </h6>
+                  <a
+                    href={invitation.urlResepsiUnduh}
+                    target={"_blank"}
+                    rel="noreferrer"
+                  >
+                    {invitation.urlResepsiUnduh}
                   </a>
                 </td>
                 <td className="text-center">
-                  {invitation.copied ? (
-                    <FontAwesomeIcon icon={faCheck} size="xl" color="green" />
-                  ) : (
-                    <FontAwesomeIcon icon={faCancel} size="xl" color="red" />
-                  )}
-                </td>
-                <td className="text-center">
                   <Button
-                    variant={"outline-secondary"}
+                    variant={
+                      invitation.copiedResepsi ? "primary" : "outline-secondary"
+                    }
                     className="mx-1"
                     onClick={async () => {
                       try {
                         navigator.clipboard.writeText(
-                          akadResepsi(invitation.name, invitation.url)
+                          akadResepsi(invitation.name, invitation.urlResepsi)
                         );
+
+                        const myHeaders = new Headers();
+                        myHeaders.append("Content-Type", "application/json");
+
+                        const raw = JSON.stringify({
+                          type: InvitationType.Resepsi,
+                        });
 
                         await fetch(
                           `${process.env.NEXT_PUBLIC_BACKEND_API}/api/v1/invitations/${invitation.id}`,
-                          { method: "POST" }
+                          {
+                            method: "POST",
+                            headers: myHeaders,
+                            body: raw,
+                          }
                         );
 
                         toast.success(
@@ -75,21 +112,35 @@ function InvitationTable({ invitations }: InvitationTableProps) {
                       }
                     }}
                   >
-                    <FontAwesomeIcon icon={faCopy} size={"2xl"} /> {"   "} Akad
-                    & Resepsi
+                    <FontAwesomeIcon icon={faCopy} size={"2xl"} /> {"   "}{" "}
+                    Resepsi
                   </Button>
+                  <hr />
                   <Button
-                    variant={"outline-secondary"}
+                    variant={
+                      invitation.copiedUnduh ? "primary" : "outline-secondary"
+                    }
                     className="mx-1"
                     onClick={async () => {
                       try {
                         navigator.clipboard.writeText(
-                          unduhMantu(invitation.name, invitation.url)
+                          unduhMantu(invitation.name, invitation.urlUnduh)
                         );
+
+                        const myHeaders = new Headers();
+                        myHeaders.append("Content-Type", "application/json");
+
+                        const raw = JSON.stringify({
+                          type: InvitationType.Unduh,
+                        });
 
                         await fetch(
                           `${process.env.NEXT_PUBLIC_BACKEND_API}/api/v1/invitations/${invitation.id}`,
-                          { method: "POST" }
+                          {
+                            method: "POST",
+                            headers: myHeaders,
+                            body: raw,
+                          }
                         );
 
                         toast.success(
@@ -109,6 +160,57 @@ function InvitationTable({ invitations }: InvitationTableProps) {
                   >
                     <FontAwesomeIcon icon={faCopy} size={"2xl"} /> {"   "} Unduh
                     Mantu
+                  </Button>
+                  <hr />
+                  <Button
+                    variant={
+                      invitation.copiedResepsiUnduh
+                        ? "primary"
+                        : "outline-secondary"
+                    }
+                    className="mx-1"
+                    onClick={async () => {
+                      try {
+                        navigator.clipboard.writeText(
+                          resepsiUnduh(
+                            invitation.name,
+                            invitation.urlResepsiUnduh
+                          )
+                        );
+
+                        const myHeaders = new Headers();
+                        myHeaders.append("Content-Type", "application/json");
+
+                        const raw = JSON.stringify({
+                          type: InvitationType.ResepsiUnduh,
+                        });
+
+                        await fetch(
+                          `${process.env.NEXT_PUBLIC_BACKEND_API}/api/v1/invitations/${invitation.id}`,
+                          {
+                            method: "POST",
+                            headers: myHeaders,
+                            body: raw,
+                          }
+                        );
+
+                        toast.success(
+                          `Berhasil menyalin undangan untuk ${invitation.name}!`
+                        );
+                        if (router.asPath === "/") {
+                          router.push("/?to=");
+                          return;
+                        }
+                        router.replace(router.asPath);
+                      } catch (error) {
+                        toast.error(
+                          `Gagal menyalin undangan untuk ${invitation.name}!`
+                        );
+                      }
+                    }}
+                  >
+                    <FontAwesomeIcon icon={faCopy} size={"2xl"} /> {"   "}{" "}
+                    Resepsi & Unduh Mantu
                   </Button>
                 </td>
               </tr>

@@ -1,7 +1,10 @@
 import { Router } from "express";
 
 import GeneratorDelivery from "../delivery/generator";
-import { createInvitationValidator } from "../middlewares/generatorValidator";
+import {
+  copyInvitationValidator,
+  createInvitationValidator,
+} from "../middlewares/generatorValidator";
 
 const path = "/api/v1/invitations";
 const router = Router();
@@ -15,6 +18,8 @@ router
 
 router.route(`${path}/:name`).get(generatorDelivery.findByName);
 
-router.route(`${path}/:id`).post(generatorDelivery.copy);
+router
+  .route(`${path}/:id`)
+  .post(copyInvitationValidator, generatorDelivery.copy);
 
 export default router;

@@ -1,9 +1,14 @@
 import { Box, Button, HStack, Image, Text, VStack } from "@chakra-ui/react";
-import React from "react";
+import { MutableRefObject } from "react";
 import { CalendarFill } from "../icons/CalendarFill";
 import { MapsFill } from "../icons/Maps";
 
-function WeddingSchedule() {
+interface WeddingScheduleProps {
+  maps: MutableRefObject<HTMLDivElement> | undefined;
+  handleScroll: (ref: any) => void;
+}
+
+function WeddingSchedule({ maps, handleScroll }: WeddingScheduleProps) {
   return (
     <Box
       width={"100%"}
@@ -57,10 +62,12 @@ function WeddingSchedule() {
           Jadwal
         </Text>
 
-        <VStack gap={{
-          base: "0.5rem",
-          md: "1rem"
-        }}>
+        <VStack
+          gap={{
+            base: "0.5rem",
+            md: "1rem",
+          }}
+        >
           <Text
             className="font-bookerly-bold"
             fontSize={{
@@ -166,6 +173,10 @@ function WeddingSchedule() {
               boxShadow: "0 0 0 2px #FAB8C4",
             }}
             leftIcon={<MapsFill />}
+            onClick={(e) => {
+              e.preventDefault();
+              handleScroll(maps);
+            }}
           >
             Lihat Lokasi
           </Button>

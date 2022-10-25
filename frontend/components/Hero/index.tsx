@@ -1,7 +1,12 @@
 import { Box, HStack, Image, Text, VStack } from "@chakra-ui/react";
 import React from "react";
+import InvitationType from "../../interfaces/type.interface";
 
-function Hero() {
+interface HeroProps {
+  type: InvitationType;
+}
+
+function Hero({ type }: HeroProps) {
   return (
     <Box scrollSnapAlign="center" width={"100%"}>
       <Box position={"absolute"} left={0}>
@@ -14,7 +19,12 @@ function Hero() {
           alt={"hero-flower"}
         ></Image>
       </Box>
-      <Box position={"absolute"} display={"flex"} right={0} justifyContent={"flex-end"}>
+      <Box
+        position={"absolute"}
+        display={"flex"}
+        right={0}
+        justifyContent={"flex-end"}
+      >
         <Image
           src={"/assets/flower-right.png"}
           width={{
@@ -61,7 +71,9 @@ function Hero() {
             }}
             fontWeight={"bold"}
           >
-            14
+            {type === InvitationType.Resepsi && `14`}
+            {type === InvitationType.Unduh && `15`}
+            {type === InvitationType.ResepsiUnduh && `14 & 15`}
           </Text>
           <Text
             className={"font-inter"}

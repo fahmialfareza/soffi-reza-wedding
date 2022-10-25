@@ -1,4 +1,5 @@
 import { NextFunction, Request, Response } from "express";
+import { InvitationType } from "../interfaces/generator.interface";
 
 export const createInvitationValidator = async (
   req: Request,
@@ -31,6 +32,7 @@ export const copyInvitationValidator = async (
 ) => {
   try {
     const params = req.params;
+    const body = req.body;
 
     const errorMessages: string[] = [];
 
@@ -38,11 +40,25 @@ export const copyInvitationValidator = async (
       errorMessages.push("File harus ada!");
     }
 
+    if (!body.type) {
+      errorMessages.push("Type harus ada!");
+    }
+
     if (errorMessages.length > 0) {
       return next({ messages: errorMessages, statusCode: 400 });
     }
 
-    next();
+    if (
+      body.type === InvitationType.Resepsi ||
+      body.type === InvitationType.ResepsiUnduh ||
+      body.type === InvitationType.Unduh
+    ) {
+      return next();
+    }
+
+    errorMessages.push("Type tidak valid!");
+
+    return next({ messages: errorMessages, statusCode: 400 });
   } catch (error) {
     next(error);
   }

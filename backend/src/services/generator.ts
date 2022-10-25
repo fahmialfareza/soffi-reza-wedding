@@ -1,4 +1,4 @@
-import { IGenerator } from "../interfaces/generator.interface";
+import { IGenerator, InvitationType } from "../interfaces/generator.interface";
 import GeneratorRepository from "../repository/generator";
 
 export default class GeneratorService {
@@ -21,11 +21,17 @@ export default class GeneratorService {
 
     for (const generator of generators) {
       const newGenerator = encodeURIComponent(generator);
-      const newURL = `${process.env.URL}/?to=${newGenerator}`;
+      const newURLResepsi = `${process.env.URL}/?to=${newGenerator}&type=resepsi`;
+      const newURLUnduh = `${process.env.URL}/?to=${newGenerator}&type=unduh`;
+      const newURLResepsiUnduh = `${process.env.URL}/?to=${newGenerator}&type=resepsiunduh`;
       newGenerators.push({
-        copied: false,
+        copiedResepsi: false,
+        copiedUnduh: false,
+        copiedResepsiUnduh: false,
         name: generator,
-        url: newURL,
+        urlResepsi: newURLResepsi,
+        urlUnduh: newURLUnduh,
+        urlResepsiUnduh: newURLResepsiUnduh,
         id: 0,
       });
     }
@@ -33,7 +39,7 @@ export default class GeneratorService {
     return this.generatorService.createGenerators(newGenerators);
   }
 
-  async copy(id: string) {
-    return this.generatorService.copy(id);
+  async copy(id: string, type: InvitationType) {
+    return this.generatorService.copy(id, type);
   }
 }

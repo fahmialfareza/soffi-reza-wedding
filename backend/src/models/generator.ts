@@ -2,14 +2,22 @@ import mongoose from "mongoose";
 
 interface GeneratorAttrs {
   name: string;
-  url: string;
-  copied: boolean;
+  urlResepsi: string;
+  urlUnduh: string;
+  urlResepsiUnduh: string;
+  copiedResepsi: boolean;
+  copiedUnduh: boolean;
+  copiedResepsiUnduh: boolean;
 }
 
 interface GeneratorDoc extends mongoose.Document {
   name: string;
-  url: string;
-  copied: boolean;
+  urlResepsi: string;
+  urlUnduh: string;
+  urlResepsiUnduh: string;
+  copiedResepsi: boolean;
+  copiedUnduh: boolean;
+  copiedResepsiUnduh: boolean;
 }
 
 interface GeneratorModel extends mongoose.Model<GeneratorDoc> {
@@ -22,11 +30,27 @@ const generatorSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    url: {
+    urlResepsi: {
       type: String,
       required: true,
     },
-    copied: {
+    urlUnduh: {
+      type: String,
+      required: true,
+    },
+    urlResepsiUnduh: {
+      type: String,
+      required: true,
+    },
+    copiedResepsi: {
+      type: Boolean,
+      default: false,
+    },
+    copiedUnduh: {
+      type: Boolean,
+      default: false,
+    },
+    copiedResepsiUnduh: {
       type: Boolean,
       default: false,
     },

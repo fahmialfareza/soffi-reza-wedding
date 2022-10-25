@@ -55,7 +55,7 @@ function NotValid() {
               md: "3.25rem",
             }}
           >
-            UNDANGAN TIDAK VALID
+            Undangan Tidak Valid
           </Text>
         </HStack>
       </VStack>

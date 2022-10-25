@@ -1,4 +1,4 @@
-import { IGenerator } from "../interfaces/generator.interface";
+import { IGenerator, InvitationType } from "../interfaces/generator.interface";
 import { Generator } from "../models";
 
 export default class GeneratorRepository {
@@ -20,7 +20,17 @@ export default class GeneratorRepository {
     return Generator.deleteMany({});
   }
 
-  async copy(id: string) {
-    return Generator.updateOne({ _id: id }, { copied: true });
+  async copy(id: string, type: InvitationType) {
+    let copied = {};
+
+    if (type === InvitationType.Resepsi) {
+      copied = { copiedResepsi: true };
+    } else if (type === InvitationType.Unduh) {
+      copied = { copiedUnduh: true };
+    } else if (type === InvitationType.ResepsiUnduh) {
+      copied = { copiedResepsiUnduh: true };
+    }
+
+    return Generator.updateOne({ _id: id }, copied);
   }
 }

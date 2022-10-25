@@ -22,10 +22,11 @@ import isNullEmptyBlank from "../../helpers/isEmpty";
 interface ModalUcapanProps {
   isOpen: boolean;
   onClose: () => void;
+  to: string;
 }
 
-function ModalUcapan({ isOpen, onClose }: ModalUcapanProps) {
-  const [name, setName] = useState("");
+function ModalUcapan({ isOpen, onClose, to }: ModalUcapanProps) {
+  const [name, setName] = useState(to);
   const [message, setMessage] = useState("");
   const [attending, setAttending] = useState("");
 
@@ -61,7 +62,7 @@ function ModalUcapan({ isOpen, onClose }: ModalUcapanProps) {
         requestOptions
       );
 
-      setName("");
+      setName(to);
       setAttending("");
       setMessage("");
 
@@ -142,7 +143,7 @@ function ModalUcapan({ isOpen, onClose }: ModalUcapanProps) {
                 size={"lg"}
                 backgroundColor={"green"}
                 _hover={{
-                  backgroundColor:"green"
+                  backgroundColor: "green",
                 }}
                 color={"white"}
                 type="submit"

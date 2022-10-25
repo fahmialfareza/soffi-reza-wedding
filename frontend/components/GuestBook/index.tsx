@@ -21,6 +21,7 @@ import convertToMonth from "../../helpers/month";
 
 interface GuestBookProps {
   messages: IMessage[];
+  to: string;
 }
 
 const animationKeyframes = keyframes`
@@ -54,7 +55,7 @@ const animationKeyframes = keyframes`
 
 const animation = `${animationKeyframes} 1s ease-in-out infinite`;
 
-const GuestBook: NextPage<GuestBookProps> = ({ messages }) => {
+const GuestBook: NextPage<GuestBookProps> = ({ messages, to }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const {
     isOpen: isOpenGiftModal,
@@ -182,7 +183,7 @@ const GuestBook: NextPage<GuestBookProps> = ({ messages }) => {
         </HStack>
       </VStack>
 
-      <ModalUcapan isOpen={isOpen} onClose={onClose} />
+      <ModalUcapan isOpen={isOpen} onClose={onClose} to={to} />
       <ModalGift isOpen={isOpenGiftModal} onClose={onCloseGiftModal} />
 
       <Image

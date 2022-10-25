@@ -99,8 +99,9 @@ export default class GeneratorDelivery {
   public copy = async (req: Request, res: Response, next: NextFunction) => {
     try {
       const { id } = req.params;
+      const { type } = req.body;
 
-      const data = await this.generatorService.copy(id);
+      const data = await this.generatorService.copy(id, type);
 
       const response: IResponse = {
         data,

@@ -15,6 +15,7 @@ import {
 
 import { modalAnatomy as parts } from "@chakra-ui/anatomy";
 import { createMultiStyleConfigHelpers } from "@chakra-ui/styled-system";
+import InvitationType from "../../interfaces/type.interface";
 
 const { definePartsStyle, defineMultiStyleConfig } =
   createMultiStyleConfigHelpers(parts.keys);
@@ -29,9 +30,6 @@ export const modalTheme = defineMultiStyleConfig({
   variants: { green },
 });
 
-
-
-
 export const theme = extendTheme({
   components: { Modal: modalTheme },
 });
@@ -40,9 +38,10 @@ interface ModalOpeningProps {
   name: string;
   isOpen: boolean;
   onClose: () => void;
+  type: InvitationType;
 }
 
-function ModalOpening({ isOpen, onClose, name }: ModalOpeningProps) {
+function ModalOpening({ isOpen, onClose, name, type }: ModalOpeningProps) {
   return (
     <ThemeProvider theme={theme}>
       <Modal
@@ -103,7 +102,7 @@ function ModalOpening({ isOpen, onClose, name }: ModalOpeningProps) {
                   className={"font-pacifio"}
                   fontSize={"2rem"}
                 >
-                  Helo, We Are Getting Married
+                  The Wedding Of
                 </Text>
                 <Image src={"/assets/bride.png"} alt={"Bride"} />
                 <Text
@@ -111,7 +110,7 @@ function ModalOpening({ isOpen, onClose, name }: ModalOpeningProps) {
                   className={"font-inter"}
                   fontWeight={"medium"}
                   fontSize={"2rem"}
-                >{`Dear: ${name}`}</Text>
+                >{`Untuk: ${name}`}</Text>
                 <VStack>
                   <Text
                     color={"white"}
@@ -121,7 +120,7 @@ function ModalOpening({ isOpen, onClose, name }: ModalOpeningProps) {
                       md: "1.5rem",
                     }}
                   >
-                    You`re Invited
+                    Kami mengundang
                   </Text>
                   <Text
                     color={"white"}
@@ -131,7 +130,14 @@ function ModalOpening({ isOpen, onClose, name }: ModalOpeningProps) {
                       md: "1.5rem",
                     }}
                   >
-                    Please Come to My Wedding
+                    Untuk datang ke{" "}
+                    {type === InvitationType.Resepsi
+                      ? "Resepsi"
+                      : type === InvitationType.Unduh
+                      ? "Unduh Mantu"
+                      : type === InvitationType.ResepsiUnduh &&
+                        "Resepsi & Unduh Mantu"}{" "}
+                    Pernikahan Soffi & Reza
                   </Text>
                 </VStack>
                 <Text
@@ -143,7 +149,10 @@ function ModalOpening({ isOpen, onClose, name }: ModalOpeningProps) {
                   }}
                   fontWeight={"bold"}
                 >
-                  January 14th 2023
+                  {type === InvitationType.Resepsi && `14 Januari 2023`}
+                  {type === InvitationType.Unduh && `15 Januari 2023`}
+                  {type === InvitationType.ResepsiUnduh &&
+                    `14 & 15 Januari 2023`}
                 </Text>
 
                 <Button
@@ -160,7 +169,7 @@ function ModalOpening({ isOpen, onClose, name }: ModalOpeningProps) {
                     boxShadow: "0 0 0 2px #FAB8C4",
                   }}
                 >
-                  Open Invitation
+                  Buka Undangan
                 </Button>
               </VStack>
             </Center>
