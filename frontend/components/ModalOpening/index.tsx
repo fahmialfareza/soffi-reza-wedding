@@ -29,12 +29,6 @@ export const modalTheme = defineMultiStyleConfig({
   variants: { green },
 });
 
-function titleCaseWord(word: string) {
-  if (!word) return word;
-  return word[0].toUpperCase() + word.substr(1).toLowerCase();
-}
-
-
 export const theme = extendTheme({
   components: { Modal: modalTheme },
 });
@@ -114,7 +108,7 @@ function ModalOpening({ isOpen, onClose, name }: ModalOpeningProps) {
                   className={"font-inter"}
                   fontWeight={"medium"}
                   fontSize={"2rem"}
-                >{`Dear: ${titleCaseWord(name)}`}</Text>
+                >{`Dear: ${name}`}</Text>
                 <VStack>
                   <Text
                     color={"white"}
