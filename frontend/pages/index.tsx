@@ -13,7 +13,6 @@ import ProkesCovid from "../components/Prokes";
 import WeddingSchedule from "../components/WeddingSchedule";
 import WeddingText from "../components/WeddingText";
 import { IMessage } from "../interfaces/messages.interface";
-import NotValid from "../components/NotValid";
 import { useDisclosure } from "@chakra-ui/react";
 import ModalOpening from "../components/ModalOpening";
 import InvitationType from "../interfaces/type.interface";
@@ -59,7 +58,13 @@ const Home: NextPage<HomeProps> = ({ messages: messageFromSSR, to, type }) => {
   if (!to) {
     return (
       <MainLayout>
-        <NotValid />
+        <ModalOpening
+          name={""}
+          isOpen={isOpen}
+          onClose={onClose}
+          type={type}
+          isValid={false}
+        />
       </MainLayout>
     );
   }

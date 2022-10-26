@@ -35,10 +35,10 @@ function Backsound({ play, audioRef }: BacksoundProps) {
       {play && (
         <FontAwesomeIcon
           style={{
-            position: "sticky",
+            position: "fixed",
             zIndex: 99999999,
             bottom: 10,
-            left: 10,
+            right: 10,
           }}
           icon={onPlay ? faPauseCircle : faPlayCircle}
           size={"2xl"}
@@ -46,7 +46,12 @@ function Backsound({ play, audioRef }: BacksoundProps) {
         />
       )}
 
-      <audio loop src="audio/theweddingnasheed.mp3" ref={audioRef}></audio>
+      <audio
+        style={{ display: "none" }}
+        loop
+        src="audio/theweddingnasheed.mp3"
+        ref={audioRef}
+      ></audio>
     </>
   );
 }

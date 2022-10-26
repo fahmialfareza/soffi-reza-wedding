@@ -39,9 +39,16 @@ interface ModalOpeningProps {
   isOpen: boolean;
   onClose: () => void;
   type: InvitationType;
+  isValid?: boolean;
 }
 
-function ModalOpening({ isOpen, onClose, name, type }: ModalOpeningProps) {
+function ModalOpening({
+  isOpen,
+  onClose,
+  name,
+  type,
+  isValid = true,
+}: ModalOpeningProps) {
   return (
     <ThemeProvider theme={theme}>
       <Modal
@@ -105,72 +112,90 @@ function ModalOpening({ isOpen, onClose, name, type }: ModalOpeningProps) {
                   The Wedding Of
                 </Text>
                 <Image src={"/assets/bride.png"} alt={"Bride"} />
-                <Text
-                  color={"white"}
-                  className={"font-inter"}
-                  fontWeight={"medium"}
-                  fontSize={"2rem"}
-                >{`Untuk: ${name}`}</Text>
-                <VStack>
-                  <Text
-                    color={"white"}
-                    className={"font-inter"}
-                    fontSize={{
-                      base: "1rem",
-                      md: "1.5rem",
-                    }}
-                  >
-                    Kami mengundang
-                  </Text>
-                  <Text
-                    color={"white"}
-                    className={"font-inter"}
-                    fontSize={{
-                      base: "1rem",
-                      md: "1.5rem",
-                    }}
-                  >
-                    Untuk datang ke{" "}
-                    {type === InvitationType.Resepsi
-                      ? "Resepsi"
-                      : type === InvitationType.Unduh
-                      ? "Unduh Mantu"
-                      : type === InvitationType.ResepsiUnduh &&
-                        "Resepsi & Unduh Mantu"}{" "}
-                    Pernikahan Soffi & Reza
-                  </Text>
-                </VStack>
-                <Text
-                  color={"white"}
-                  className={"font-inter"}
-                  fontSize={{
-                    base: "1.2rem",
-                    md: "2rem",
-                  }}
-                  fontWeight={"bold"}
-                >
-                  {type === InvitationType.Resepsi && `14 Januari 2023`}
-                  {type === InvitationType.Unduh && `15 Januari 2023`}
-                  {type === InvitationType.ResepsiUnduh &&
-                    `14 & 15 Januari 2023`}
-                </Text>
+                {isValid ? (
+                  <>
+                    <Text
+                      color={"white"}
+                      className={"font-inter"}
+                      fontWeight={"medium"}
+                      fontSize={"2rem"}
+                    >{`Untuk: ${name}`}</Text>
+                    <VStack>
+                      <Text
+                        color={"white"}
+                        className={"font-inter"}
+                        fontSize={{
+                          base: "1rem",
+                          md: "1.5rem",
+                        }}
+                      >
+                        Kami mengundang
+                      </Text>
+                      <Text
+                        color={"white"}
+                        className={"font-inter"}
+                        fontSize={{
+                          base: "1rem",
+                          md: "1.5rem",
+                        }}
+                      >
+                        Untuk datang ke{" "}
+                        {type === InvitationType.Resepsi
+                          ? "Resepsi"
+                          : type === InvitationType.Unduh
+                          ? "Unduh Mantu"
+                          : type === InvitationType.ResepsiUnduh &&
+                            "Resepsi & Unduh Mantu"}{" "}
+                        Pernikahan Soffi & Reza
+                      </Text>
+                    </VStack>
+                    <Text
+                      color={"white"}
+                      className={"font-inter"}
+                      fontSize={{
+                        base: "1.2rem",
+                        md: "2rem",
+                      }}
+                      fontWeight={"bold"}
+                    >
+                      {type === InvitationType.Resepsi && `14 Januari 2023`}
+                      {type === InvitationType.Unduh && `15 Januari 2023`}
+                      {type === InvitationType.ResepsiUnduh &&
+                        `14 & 15 Januari 2023`}
+                    </Text>
 
-                <Button
-                  onClick={onClose}
-                  size={{
-                    base: "md",
-                    md: "lg",
-                  }}
-                  backgroundColor={"black"}
-                  className={"font-inter"}
-                  color={"white"}
-                  _hover={{
-                    backgroundColor: "black",
-                    boxShadow: "0 0 0 2px #FAB8C4",
-                  }}
-                >
-                  Buka Undangan
-                </Button>
+                    <Button
+                      onClick={onClose}
+                      size={{
+                        base: "md",
+                        md: "lg",
+                      }}
+                      backgroundColor={"black"}
+                      className={"font-inter"}
+                      color={"white"}
+                      _hover={{
+                        backgroundColor: "black",
+                        boxShadow: "0 0 0 2px #FAB8C4",
+                      }}
+                    >
+                      Buka Undangan
+                    </Button>
+                  </>
+                ) : (
+                  <>
+                    <Text
+                      color={"white"}
+                      className={"font-inter"}
+                      fontSize={{
+                        base: "1.2rem",
+                        md: "2rem",
+                      }}
+                      fontWeight={"bold"}
+                    >
+                      Undangan Tidak Valid
+                    </Text>
+                  </>
+                )}
               </VStack>
             </Center>
           </ModalBody>
