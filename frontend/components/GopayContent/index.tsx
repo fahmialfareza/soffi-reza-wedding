@@ -9,24 +9,34 @@ import {
   Show,
   Text,
   VStack,
-} from "@chakra-ui/react"
-import React from 'react'
+} from "@chakra-ui/react";
+import React from "react";
 
 function GopayContent() {
+  const [copySuccess, setCopySuccess] = React.useState("");
+  const [soffiSuccess, setSoffiSuccess] = React.useState("");
 
-    const [copySuccess, setCopySuccess] = React.useState("");
+  // your function to copy here
 
-    // your function to copy here
+  const copyToClipBoard = async (copyMe: string) => {
+    try {
+      await navigator.clipboard.writeText(copyMe);
+      setCopySuccess("Copied!");
+      setTimeout(() => setCopySuccess(""), 3000);
+    } catch (err) {
+      setCopySuccess("Failed to copy!");
+    }
+  };
 
-    const copyToClipBoard = async (copyMe: string) => {
-      try {
-        await navigator.clipboard.writeText(copyMe);
-        setCopySuccess("Copied!");
-        setTimeout(() => setCopySuccess(""), 3000);
-      } catch (err) {
-        setCopySuccess("Failed to copy!");
-      }
-    };
+  const copyToClipBoardSoffi = async (copyMe: string) => {
+    try {
+      await navigator.clipboard.writeText(copyMe);
+      setSoffiSuccess("Copied!");
+      setTimeout(() => setSoffiSuccess(""), 3000);
+    } catch (err) {
+      setSoffiSuccess("Failed to copy!");
+    }
+  };
 
   return (
     <Center>
@@ -53,6 +63,28 @@ function GopayContent() {
                 onClick={() => copyToClipBoard("085172481997")}
               >
                 {copySuccess ? copySuccess : "Copy"}
+              </Button>
+            </InputRightElement>
+          </InputGroup>
+        </VStack>
+
+        <Show above={"sm"}>
+          <Image src={"/assets/gopay-soffi.jpg"} alt={"BSI Soffi"} />
+        </Show>
+
+        <VStack>
+          <FormLabel className="font-inter">
+            a.n. Soffi Lutfia Dewi Trizana
+          </FormLabel>
+          <InputGroup size="md">
+            <Input pr="4.5rem" value="GOPAY 082295322098" />
+            <InputRightElement width="4.5rem">
+              <Button
+                h="1.75rem"
+                size="sm"
+                onClick={() => copyToClipBoardSoffi("082295322098")}
+              >
+                {soffiSuccess ? soffiSuccess : "Copy"}
               </Button>
             </InputRightElement>
           </InputGroup>

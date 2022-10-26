@@ -10,34 +10,30 @@ import {
   Text,
   VStack,
 } from "@chakra-ui/react";
-import React from 'react'
-
+import React from "react";
 
 function BsiModalContent() {
+  const [copySuccess, setCopySuccess] = React.useState("");
+  const [soffiSuccess, setSoffiSuccess] = React.useState("");
 
-    const [copySuccess, setCopySuccess] = React.useState("");
-    const [soffiSuccess, setSoffiSuccess] = React.useState("");
-
-
-    const copyToClipBoard = async (copyMe: string) => {
-      try {
-        await navigator.clipboard.writeText(copyMe);
-        setCopySuccess("Copied!");
-        setTimeout(() => setCopySuccess(""), 3000);
-      } catch (err) {
-        setCopySuccess("Failed to copy!");
-      }
-    };
-    const copyToClipBoardSoffi = async (copyMe: string) => {
-      try {
-        await navigator.clipboard.writeText(copyMe);
-        setSoffiSuccess("Copied!");
-        setTimeout(() => setSoffiSuccess(""), 3000);
-
-      } catch (err) {
-        setSoffiSuccess("Failed to copy!");
-      }
-    };
+  const copyToClipBoard = async (copyMe: string) => {
+    try {
+      await navigator.clipboard.writeText(copyMe);
+      setCopySuccess("Copied!");
+      setTimeout(() => setCopySuccess(""), 3000);
+    } catch (err) {
+      setCopySuccess("Failed to copy!");
+    }
+  };
+  const copyToClipBoardSoffi = async (copyMe: string) => {
+    try {
+      await navigator.clipboard.writeText(copyMe);
+      setSoffiSuccess("Copied!");
+      setTimeout(() => setSoffiSuccess(""), 3000);
+    } catch (err) {
+      setSoffiSuccess("Failed to copy!");
+    }
+  };
 
   return (
     <Center>

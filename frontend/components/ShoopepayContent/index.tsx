@@ -14,6 +14,7 @@ import React from "react";
 
 function ShoopepayContent() {
   const [copySuccess, setCopySuccess] = React.useState("");
+  const [soffiSuccess, setSoffiSuccess] = React.useState("");
 
   // your function to copy here
 
@@ -21,11 +22,22 @@ function ShoopepayContent() {
     try {
       await navigator.clipboard.writeText(copyMe);
       setCopySuccess("Copied!");
-        setTimeout(() => setCopySuccess(""), 3000);
+      setTimeout(() => setCopySuccess(""), 3000);
     } catch (err) {
       setCopySuccess("Failed to copy!");
     }
   };
+
+  const copyToClipBoardSoffi = async (copyMe: string) => {
+    try {
+      await navigator.clipboard.writeText(copyMe);
+      setSoffiSuccess("Copied!");
+      setTimeout(() => setSoffiSuccess(""), 3000);
+    } catch (err) {
+      setSoffiSuccess("Failed to copy!");
+    }
+  };
+
   return (
     <Center>
       <VStack>
@@ -51,6 +63,28 @@ function ShoopepayContent() {
                 onClick={() => copyToClipBoard("085172481997")}
               >
                 {copySuccess ? copySuccess : "Copy"}
+              </Button>
+            </InputRightElement>
+          </InputGroup>
+        </VStack>
+
+        <Show above={"sm"}>
+          <Image src={"/assets/shopeepay-soffi.png"} alt={"BSI Soffi"} />
+        </Show>
+
+        <VStack>
+          <FormLabel className="font-inter">
+            a.n. Soffi Lutfia Dewi Trizana
+          </FormLabel>
+          <InputGroup size="md">
+            <Input pr="4.5rem" value="ShopeePay 082295322098" />
+            <InputRightElement width="4.5rem">
+              <Button
+                h="1.75rem"
+                size="sm"
+                onClick={() => copyToClipBoardSoffi("082295322098")}
+              >
+                {soffiSuccess ? soffiSuccess : "Copy"}
               </Button>
             </InputRightElement>
           </InputGroup>
