@@ -95,7 +95,7 @@ function ModalUcapan({ isOpen, onClose, to }: ModalUcapanProps) {
                   onChange={(e) => setName(e.target.value)}
                 />
                 {!isNameError ? (
-                  <FormHelperText>Masukkan nama kamu.</FormHelperText>
+                  <FormHelperText>Masukan nama kamu.</FormHelperText>
                 ) : (
                   <FormErrorMessage>Nama wajib diisi.</FormErrorMessage>
                 )}
@@ -104,7 +104,7 @@ function ModalUcapan({ isOpen, onClose, to }: ModalUcapanProps) {
                 <FormLabel className="font-inter">Ucapan dan Doa</FormLabel>
                 <Textarea
                   className="font-inter"
-                  placeholder="Ucapan dan doa (Maksimal 200 Huruf Yaa )"
+                  placeholder="Ucapan dan doa (Maksimal 200 Huruf Ya ...  )"
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
                 />

@@ -37,7 +37,7 @@ function BsiModalContent() {
 
   return (
     <Center>
-      <VStack>
+      <VStack gap={"1rem"}>
         <Show above={"sm"}>
           <Text
             className="font-inter"

@@ -1,15 +1,31 @@
 import { Box, HStack, Image, Text, VStack } from "@chakra-ui/react";
-import React from "react";
 import InvitationType from "../../interfaces/type.interface";
+
+import { motion } from "framer-motion";
+import { AnimationBox } from "../layout/AnimationBox";
 
 interface HeroProps {
   type: InvitationType;
 }
 
+const container = {
+  visible: {
+    transition: {
+      staggerChildren: 0.025,
+    },
+  },
+};
+
 function Hero({ type }: HeroProps) {
   return (
     <Box scrollSnapAlign="center" width={"100%"}>
-      <Box position={"absolute"} left={0}>
+      <Box
+        position={"absolute"}
+        left={0}
+        as={motion.div}
+        initial={{ opacity: 0, x: -200 }}
+        animate={{ x: 0, opacity: 1 }}
+      >
         <Image
           src={"/assets/flower-left.png"}
           width={{
@@ -24,6 +40,9 @@ function Hero({ type }: HeroProps) {
         display={"flex"}
         right={0}
         justifyContent={"flex-end"}
+        as={motion.div}
+        initial={{ opacity: 0, x: 200 }}
+        animate={{ x: 0, opacity: 1 }}
       >
         <Image
           src={"/assets/flower-right.png"}
@@ -40,51 +59,100 @@ function Hero({ type }: HeroProps) {
         justifyContent={"center"}
         gap={"3rem"}
       >
-        <Text
-          fontSize={{
-            base: "4xl",
-            md: "6xl",
-          }}
-          className={"font-pacifio"}
-          color={"grey"}
+        <AnimationBox
+          initial={{ opacity: 0, y: -100 }}
+          animate={{ y: 0, opacity: 1 }}
+          // @ts-ignore no problem in operation, although type error appears.
+          transition={{ type: "spring", bounce: 0.75 }}
         >
-          The Wedding Of
-        </Text>
-        <Image src="/assets/bride.png" alt="mempelai" />
+          <Text
+            fontSize={{
+              base: "4xl",
+              md: "6xl",
+            }}
+            className={"font-pacifio"}
+            color={"grey"}
+          >
+            The Wedding Of
+          </Text>
+        </AnimationBox>
+
+        <AnimationBox
+          initial={{ opacity: 0, scale: 0.5 }}
+          animate={{ opacity: 1, scale: 1 }}
+          // @ts-ignore no problem in operation, although type error appears.
+          transition={{
+            default: {
+              duration: 0.3,
+              ease: [0, 0.71, 0.2, 1.01],
+            },
+            scale: {
+              type: "spring",
+              damping: 5,
+              stiffness: 100,
+              restDelta: 0.001,
+            },
+          }}
+        >
+          <Image src="/assets/bride.png" alt="mempelai" />
+        </AnimationBox>
+
         <HStack spacing={"1.5rem"}>
-          <Text
-            className={"font-inter"}
-            color={"grey"}
-            fontSize={{
-              base: "2rem",
-              md: "3.25rem",
-            }}
+          <AnimationBox
+            initial={{ opacity: 0, y: -100 }}
+            animate={{ y: 0, opacity: 1 }}
+            // @ts-ignore no problem in operation, although type error appears.
+            transition={{ type: "spring", bounce: 0.75, delay: 0.5 }}
           >
-            JAN{" "}
-          </Text>
-          <Text
-            className={"font-inter"}
-            color={"grey"}
-            fontSize={{
-              base: "3rem",
-              md: "6rem",
-            }}
-            fontWeight={"bold"}
+            <Text
+              className={"font-inter"}
+              color={"grey"}
+              fontSize={{
+                base: "2rem",
+                md: "3.25rem",
+              }}
+            >
+              JAN{" "}
+            </Text>
+          </AnimationBox>
+
+          <AnimationBox
+            initial={{ opacity: 0, y: -100 }}
+            animate={{ y: 0, opacity: 1 }}
+            // @ts-ignore no problem in operation, although type error appears.
+            transition={{ type: "spring", bounce: 0.75, delay: 1 }}
           >
-            {type === InvitationType.Resepsi && `14`}
-            {type === InvitationType.Unduh && `15`}
-            {type === InvitationType.ResepsiUnduh && `14 & 15`}
-          </Text>
-          <Text
-            className={"font-inter"}
-            color={"grey"}
-            fontSize={{
-              base: "2rem",
-              md: "3.25rem",
-            }}
+            <Text
+              className={"font-inter"}
+              color={"grey"}
+              fontSize={{
+                base: "3rem",
+                md: "6rem",
+              }}
+              fontWeight={"bold"}
+            >
+              {type === InvitationType.Resepsi && `14`}
+              {type === InvitationType.Unduh && `15`}
+              {type === InvitationType.ResepsiUnduh && `14 & 15`}
+            </Text>
+          </AnimationBox>
+          <AnimationBox
+            initial={{ opacity: 0, y: -100 }}
+            animate={{ y: 0, opacity: 1 }}
+            // @ts-ignore no problem in operation, although type error appears.
+            transition={{ type: "spring", bounce: 0.75, delay: 1.5 }}
           >
-            2023
-          </Text>
+            <Text
+              className={"font-inter"}
+              color={"grey"}
+              fontSize={{
+                base: "2rem",
+                md: "3.25rem",
+              }}
+            >
+              2023
+            </Text>
+          </AnimationBox>
         </HStack>
       </VStack>
     </Box>
