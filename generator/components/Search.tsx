@@ -17,7 +17,7 @@ function Search({ onSearch, search, setSearch }: SearchProps) {
   const router = useRouter();
 
   return (
-    <Form onSubmit={onSearch} className="my-4">
+    <Form onSubmit={onSearch} className="mt-4">
       <Row>
         <Col md={8} sm={8} xs={6}>
           <Form.Group className="mb-3">
@@ -26,13 +26,12 @@ function Search({ onSearch, search, setSearch }: SearchProps) {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Cari Undangan"
-              size="lg"
             />
           </Form.Group>
         </Col>
         <Col md={2} sm={2} xs={3}>
           <div className="d-grid gap-2">
-            <Button type="submit" variant="primary" size="lg">
+            <Button type="submit" variant="primary">
               <FontAwesomeIcon icon={faSearch} />
             </Button>
           </div>
@@ -41,7 +40,6 @@ function Search({ onSearch, search, setSearch }: SearchProps) {
           <div className="d-grid gap-2">
             <Button
               variant="danger"
-              size="lg"
               onClick={async (e) => {
                 e.preventDefault();
 

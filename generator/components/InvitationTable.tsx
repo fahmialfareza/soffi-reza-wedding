@@ -1,9 +1,11 @@
-import { MouseEvent, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Button, Table, Alert, Row, Col } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCopy } from "@fortawesome/free-solid-svg-icons";
+import { faCopy, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { toast } from "react-toastify";
 import { useRouter } from "next/router";
+import Dropdown from "react-bootstrap/Dropdown";
+import DropdownButton from "react-bootstrap/DropdownButton";
 
 import IInvitation, {
   InvitationType,
@@ -24,6 +26,55 @@ function InvitationTable({
   const [filter, setFilter] = useState(0);
   const [invitations, setInvitations] =
     useState<IInvitation[]>(invitationsFromIndex);
+
+  const onLinkCopy = (url: string, name: string, eventName: string) => {
+    try {
+      navigator.clipboard.writeText(url);
+      toast.success(`Berhasil menyalin link ${eventName} untuk ${name}`);
+    } catch (error) {
+      toast.error(`Gagal menyalin link ${eventName} untuk ${name}`);
+    }
+  };
+
+  const onInvitationCopy = async (
+    id: string,
+    name: string,
+    url: string,
+    type: InvitationType
+  ) => {
+    try {
+      if (type === InvitationType.Resepsi) {
+        navigator.clipboard.writeText(akadResepsi(name, url));
+      } else if (type === InvitationType.Unduh) {
+        navigator.clipboard.writeText(unduhMantu(name, url));
+      } else if (type === InvitationType.ResepsiUnduh) {
+        navigator.clipboard.writeText(resepsiUnduh(name, url));
+      }
+
+      const myHeaders = new Headers();
+      myHeaders.append("Content-Type", "application/json");
+
+      const raw = JSON.stringify({ type });
+
+      await fetch(
+        `${process.env.NEXT_PUBLIC_BACKEND_API}/api/v1/invitations/${id}`,
+        {
+          method: "POST",
+          headers: myHeaders,
+          body: raw,
+        }
+      );
+
+      toast.success(`Berhasil menyalin undangan untuk ${name}!`);
+      if (router.asPath === "/") {
+        router.push("/?to=");
+        return;
+      }
+      router.replace(router.asPath);
+    } catch (error) {
+      toast.error(`Gagal menyalin undangan untuk ${name}!`);
+    }
+  };
 
   useEffect(() => {
     if (filter === 0) {
@@ -51,68 +102,62 @@ function InvitationTable({
 
   return (
     <>
-      <div>
-        <Alert variant="primary">Biru: Undangan pernah disalin</Alert>
-        <Alert variant="secondary">Abu-abu: Undangan belum disalin</Alert>
-      </div>
-
-      <Row className="my-4">
+      <Row>
         <Col>
-          <div className="d-grid gap-2">
-            <Button
-              variant={filter === 0 ? "primary" : "secondary"}
+          <Alert variant="primary">
+            <FontAwesomeIcon icon={faInfoCircle} /> Biru: Undangan pernah
+            disalin
+          </Alert>
+        </Col>
+        <Col>
+          <Alert variant="secondary">
+            <FontAwesomeIcon icon={faInfoCircle} /> Abu-abu: Undangan belum
+            disalin
+          </Alert>
+        </Col>
+      </Row>
+
+      <Row className="mb-4">
+        <Col>
+          <DropdownButton id="filter" title="Tampilkan">
+            <Dropdown.Item
+              active={filter === 0}
               onClick={(e) => {
                 e.preventDefault();
                 setFilter(0);
               }}
             >
-              Tampilkan semua undangan
-            </Button>
-          </div>
-        </Col>
-        <Col>
-          <div className="d-grid gap-2">
-            <Button
-              variant={filter === 1 ? "primary" : "secondary"}
+              Tampilkan Semua
+            </Dropdown.Item>
+            <Dropdown.Item
+              active={filter === 1}
               onClick={(e) => {
                 e.preventDefault();
                 setFilter(1);
               }}
             >
-              Tampilkan undangan yang pernah disalin
-            </Button>
-          </div>
-        </Col>
-        <Col>
-          <div className="d-grid gap-2">
-            <Button
-              variant={filter === 2 ? "primary" : "secondary"}
+              Tampilkan Yang Sudah Pernah Disalin
+            </Dropdown.Item>
+            <Dropdown.Item
+              active={filter === 2}
               onClick={(e) => {
                 e.preventDefault();
                 setFilter(2);
               }}
             >
-              Tampilkan undangan yang belum disalin
-            </Button>
-          </div>
+              Tampilkan Yang Belum Pernah Disalin
+            </Dropdown.Item>
+          </DropdownButton>
         </Col>
       </Row>
 
       <Table bordered striped hover responsive className="mb-5">
         <thead>
           <tr className="text-center">
-            <th rowSpan={2}>No</th>
-            <th rowSpan={2}>Nama</th>
-            <th colSpan={3}>Link</th>
-            <th colSpan={3}>Salin Undangan</th>
-          </tr>
-          <tr className="text-center">
-            <th>Resepsi</th>
-            <th>Unduh Mantu</th>
-            <th>Resepsi & Unduh Mantu</th>
-            <th>Resepsi</th>
-            <th>Unduh Mantu</th>
-            <th>Resepsi & Unduh Mantu</th>
+            <th>No</th>
+            <th>Nama</th>
+            <th>Link</th>
+            <th>Undangan</th>
           </tr>
         </thead>
         <tbody>
@@ -122,207 +167,97 @@ function InvitationTable({
                 <td className="text-center">{index + 1}</td>
                 <td>{invitation.name}</td>
                 <td className="text-center">
-                  <FontAwesomeIcon
-                    icon={faCopy}
-                    size={"xl"}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      navigator.clipboard.writeText(invitation.urlResepsi);
-                      toast.success(
-                        `Berhasil menyalin link resepsi untuk ${invitation.name}`
-                      );
-                    }}
-                  />{" "}
-                  <a
-                    href={invitation.urlResepsi}
-                    target={"_blank"}
-                    rel="noreferrer"
-                  >
-                    Buka
-                  </a>
+                  <DropdownButton id="copy-link" title="Salin">
+                    <Dropdown.Item
+                      onClick={(e) => {
+                        e.preventDefault();
+                        onLinkCopy(
+                          invitation.urlResepsi,
+                          invitation.name,
+                          "resepsi"
+                        );
+                      }}
+                    >
+                      <FontAwesomeIcon icon={faCopy} /> Resepsi
+                    </Dropdown.Item>
+                    <Dropdown.Item
+                      onClick={(e) => {
+                        e.preventDefault();
+                        onLinkCopy(
+                          invitation.urlUnduh,
+                          invitation.name,
+                          "unduh mantu"
+                        );
+                      }}
+                    >
+                      <FontAwesomeIcon icon={faCopy} /> Unduh Mantu
+                    </Dropdown.Item>
+                    <Dropdown.Item
+                      onClick={(e) => {
+                        e.preventDefault();
+                        onLinkCopy(
+                          invitation.urlResepsiUnduh,
+                          invitation.name,
+                          "resepsi & unduh mantu"
+                        );
+                      }}
+                    >
+                      <FontAwesomeIcon icon={faCopy} /> Resepsi & Unduh Mantu
+                    </Dropdown.Item>
+                  </DropdownButton>
                 </td>
                 <td className="text-center">
-                  <FontAwesomeIcon
-                    icon={faCopy}
-                    size={"xl"}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      navigator.clipboard.writeText(invitation.urlUnduh);
-                      toast.success(
-                        `Berhasil menyalin link unduh mantu untuk ${invitation.name}`
-                      );
-                    }}
-                  />{" "}
-                  <a
-                    href={invitation.urlUnduh}
-                    target={"_blank"}
-                    rel="noreferrer"
-                  >
-                    Buka
-                  </a>
-                </td>
-                <td className="text-center">
-                  <FontAwesomeIcon
-                    icon={faCopy}
-                    size={"xl"}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      navigator.clipboard.writeText(invitation.urlResepsiUnduh);
-                      toast.success(
-                        `Berhasil menyalin link resepsi & unduh mantu untuk ${invitation.name}`
-                      );
-                    }}
-                  />{" "}
-                  <a
-                    href={invitation.urlResepsiUnduh}
-                    target={"_blank"}
-                    rel="noreferrer"
-                  >
-                    Buka
-                  </a>
-                </td>
-                <td className="text-center">
-                  <Button
+                  <DropdownButton
+                    id="copy-invitation"
+                    title="Salin"
                     variant={
-                      invitation.copiedResepsi ? "primary" : "outline-secondary"
-                    }
-                    className="mx-1"
-                    onClick={async () => {
-                      try {
-                        navigator.clipboard.writeText(
-                          akadResepsi(invitation.name, invitation.urlResepsi)
-                        );
-
-                        const myHeaders = new Headers();
-                        myHeaders.append("Content-Type", "application/json");
-
-                        const raw = JSON.stringify({
-                          type: InvitationType.Resepsi,
-                        });
-
-                        await fetch(
-                          `${process.env.NEXT_PUBLIC_BACKEND_API}/api/v1/invitations/${invitation.id}`,
-                          {
-                            method: "POST",
-                            headers: myHeaders,
-                            body: raw,
-                          }
-                        );
-
-                        toast.success(
-                          `Berhasil menyalin undangan untuk ${invitation.name}!`
-                        );
-                        if (router.asPath === "/") {
-                          router.push("/?to=");
-                          return;
-                        }
-                        router.replace(router.asPath);
-                      } catch (error) {
-                        toast.error(
-                          `Gagal menyalin undangan untuk ${invitation.name}!`
-                        );
-                      }
-                    }}
-                  >
-                    <FontAwesomeIcon icon={faCopy} size={"2xl"} />
-                  </Button>
-                </td>
-                <td className="text-center">
-                  <Button
-                    variant={
-                      invitation.copiedUnduh ? "primary" : "outline-secondary"
-                    }
-                    className="mx-1"
-                    onClick={async () => {
-                      try {
-                        navigator.clipboard.writeText(
-                          unduhMantu(invitation.name, invitation.urlUnduh)
-                        );
-
-                        const myHeaders = new Headers();
-                        myHeaders.append("Content-Type", "application/json");
-
-                        const raw = JSON.stringify({
-                          type: InvitationType.Unduh,
-                        });
-
-                        await fetch(
-                          `${process.env.NEXT_PUBLIC_BACKEND_API}/api/v1/invitations/${invitation.id}`,
-                          {
-                            method: "POST",
-                            headers: myHeaders,
-                            body: raw,
-                          }
-                        );
-
-                        toast.success(
-                          `Berhasil menyalin undangan untuk ${invitation.name}!`
-                        );
-                        if (router.asPath === "/") {
-                          router.push("/?to=");
-                          return;
-                        }
-                        router.replace(router.asPath);
-                      } catch (error) {
-                        toast.error(
-                          `Gagal menyalin undangan untuk ${invitation.name}!`
-                        );
-                      }
-                    }}
-                  >
-                    <FontAwesomeIcon icon={faCopy} size={"2xl"} />
-                  </Button>
-                </td>
-                <td className="text-center">
-                  <Button
-                    variant={
+                      invitation.copiedResepsi ||
+                      invitation.copiedUnduh ||
                       invitation.copiedResepsiUnduh
                         ? "primary"
-                        : "outline-secondary"
+                        : "secondary"
                     }
-                    className="mx-1"
-                    onClick={async () => {
-                      try {
-                        navigator.clipboard.writeText(
-                          resepsiUnduh(
-                            invitation.name,
-                            invitation.urlResepsiUnduh
-                          )
-                        );
-
-                        const myHeaders = new Headers();
-                        myHeaders.append("Content-Type", "application/json");
-
-                        const raw = JSON.stringify({
-                          type: InvitationType.ResepsiUnduh,
-                        });
-
-                        await fetch(
-                          `${process.env.NEXT_PUBLIC_BACKEND_API}/api/v1/invitations/${invitation.id}`,
-                          {
-                            method: "POST",
-                            headers: myHeaders,
-                            body: raw,
-                          }
-                        );
-
-                        toast.success(
-                          `Berhasil menyalin undangan untuk ${invitation.name}!`
-                        );
-                        if (router.asPath === "/") {
-                          router.push("/?to=");
-                          return;
-                        }
-                        router.replace(router.asPath);
-                      } catch (error) {
-                        toast.error(
-                          `Gagal menyalin undangan untuk ${invitation.name}!`
-                        );
-                      }
-                    }}
                   >
-                    <FontAwesomeIcon icon={faCopy} size={"2xl"} />
-                  </Button>
+                    <Dropdown.Item
+                      onClick={(e) => {
+                        e.preventDefault();
+                        onInvitationCopy(
+                          invitation.id,
+                          invitation.name,
+                          invitation.urlResepsi,
+                          InvitationType.Resepsi
+                        );
+                      }}
+                    >
+                      <FontAwesomeIcon icon={faCopy} /> Resepsi
+                    </Dropdown.Item>
+                    <Dropdown.Item
+                      onClick={(e) => {
+                        e.preventDefault();
+                        onInvitationCopy(
+                          invitation.id,
+                          invitation.name,
+                          invitation.urlUnduh,
+                          InvitationType.Unduh
+                        );
+                      }}
+                    >
+                      <FontAwesomeIcon icon={faCopy} /> Unduh Mantu
+                    </Dropdown.Item>
+                    <Dropdown.Item
+                      onClick={(e) => {
+                        e.preventDefault();
+                        onInvitationCopy(
+                          invitation.id,
+                          invitation.name,
+                          invitation.urlResepsiUnduh,
+                          InvitationType.ResepsiUnduh
+                        );
+                      }}
+                    >
+                      <FontAwesomeIcon icon={faCopy} /> Resepsi & Unduh Mantu
+                    </Dropdown.Item>
+                  </DropdownButton>
                 </td>
               </tr>
             ))
