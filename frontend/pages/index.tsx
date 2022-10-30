@@ -30,7 +30,7 @@ const socket = io(process.env.NEXT_PUBLIC_BACKEND_API!);
 const Home: NextPage<HomeProps> = ({ messages: messageFromSSR, to, type }) => {
   const [messages, setMessages] = useState(messageFromSSR);
   const [play, setPlay] = useState(false);
-  const { isOpen, onClose } = useDisclosure({ defaultIsOpen: false });
+  const { isOpen, onClose } = useDisclosure({ defaultIsOpen: true });
 
   const audioRef = useRef<HTMLAudioElement>(null);
   const maps = useRef<HTMLDivElement>(null);
