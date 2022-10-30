@@ -18,13 +18,17 @@ const container = {
 
 function Hero({ type }: HeroProps) {
   return (
-    <Box scrollSnapAlign="center" width={"100%"}>
+    <Box
+      scrollSnapAlign="center"
+      width={"100%"}
+      backgroundColor={"rgba(255, 245, 245, 0.9)"}
+    >
       <Box
         position={"absolute"}
         left={0}
         as={motion.div}
         initial={{ opacity: 0, x: -200 }}
-        animate={{ x: 0, opacity: 1 }}
+        whileInView={{ x: 0, opacity: 1 }}
       >
         <Image
           src={"/assets/flower-left.png"}
@@ -42,7 +46,7 @@ function Hero({ type }: HeroProps) {
         justifyContent={"flex-end"}
         as={motion.div}
         initial={{ opacity: 0, x: 200 }}
-        animate={{ x: 0, opacity: 1 }}
+        whileInView={{ x: 0, opacity: 1 }}
       >
         <Image
           src={"/assets/flower-right.png"}
@@ -61,7 +65,7 @@ function Hero({ type }: HeroProps) {
       >
         <AnimationBox
           initial={{ opacity: 0, y: -100 }}
-          animate={{ y: 0, opacity: 1 }}
+          whileInView={{ y: 0, opacity: 1 }}
           // @ts-ignore no problem in operation, although type error appears.
           transition={{ type: "spring", bounce: 0.75 }}
         >
@@ -79,7 +83,7 @@ function Hero({ type }: HeroProps) {
 
         <AnimationBox
           initial={{ opacity: 0, scale: 0.5 }}
-          animate={{ opacity: 1, scale: 1 }}
+          whileInView={{ opacity: 1, scale: 1 }}
           // @ts-ignore no problem in operation, although type error appears.
           transition={{
             default: {
@@ -100,7 +104,7 @@ function Hero({ type }: HeroProps) {
         <HStack spacing={"1.5rem"}>
           <AnimationBox
             initial={{ opacity: 0, y: -100 }}
-            animate={{ y: 0, opacity: 1 }}
+            whileInView={{ y: 0, opacity: 1 }}
             // @ts-ignore no problem in operation, although type error appears.
             transition={{ type: "spring", bounce: 0.75, delay: 0.5 }}
           >
@@ -118,7 +122,7 @@ function Hero({ type }: HeroProps) {
 
           <AnimationBox
             initial={{ opacity: 0, y: -100 }}
-            animate={{ y: 0, opacity: 1 }}
+            whileInView={{ y: 0, opacity: 1 }}
             // @ts-ignore no problem in operation, although type error appears.
             transition={{ type: "spring", bounce: 0.75, delay: 1 }}
           >
@@ -137,10 +141,10 @@ function Hero({ type }: HeroProps) {
             </Text>
           </AnimationBox>
           <AnimationBox
-            initial={{ opacity: 0, y: -100 }}
-            animate={{ y: 0, opacity: 1 }}
+            initial={{ opacity: 0, y: -100, scale: 0 }}
+            whileInView={{ y: 0, opacity: 1, scale: 1 }}
             // @ts-ignore no problem in operation, although type error appears.
-            transition={{ type: "spring", bounce: 0.75, delay: 1.5 }}
+            transition={{ type: "spring", bounce: 0.5, delay: 1 }}
           >
             <Text
               className={"font-inter"}

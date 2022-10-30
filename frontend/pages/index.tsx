@@ -13,10 +13,11 @@ import ProkesCovid from "../components/Prokes";
 import WeddingSchedule from "../components/WeddingSchedule";
 import WeddingText from "../components/WeddingText";
 import { IMessage } from "../interfaces/messages.interface";
-import { useDisclosure } from "@chakra-ui/react";
+import { Box, useDisclosure, VStack } from "@chakra-ui/react";
 import ModalOpening from "../components/ModalOpening";
 import InvitationType from "../interfaces/type.interface";
 import Backsound from "../components/Backsound";
+import BackgroundFixed from "../components/layout/BackgroundFixed";
 
 interface HomeProps {
   messages: IMessage[];
@@ -29,7 +30,7 @@ const socket = io(process.env.NEXT_PUBLIC_BACKEND_API!);
 const Home: NextPage<HomeProps> = ({ messages: messageFromSSR, to, type }) => {
   const [messages, setMessages] = useState(messageFromSSR);
   const [play, setPlay] = useState(false);
-  const { isOpen, onClose } = useDisclosure({ defaultIsOpen: true });
+  const { isOpen, onClose } = useDisclosure({ defaultIsOpen: false });
 
   const audioRef = useRef<HTMLAudioElement>(null);
   const maps = useRef<HTMLDivElement>(null);
@@ -85,34 +86,50 @@ const Home: NextPage<HomeProps> = ({ messages: messageFromSSR, to, type }) => {
           />
         ) : (
           <>
-            <Hero type={type} />
-
-            <WeddingText />
-
-            <WeddingSchedule
-              /*
+             <BackgroundFixed />
+              <Box h={"100vh"} scrollSnapAlign="center" width="100%">
+                <Hero type={type} />
+              </Box>
+              <Box h={"100vh"} scrollSnapAlign="center" width="100%">
+                <WeddingText />
+              </Box>
+              <Box h={"100vh"} scrollSnapAlign="center" width="100%">
+                <WeddingSchedule
+                  /*
               // @ts-ignore */
-              maps={maps}
-              handleScroll={handleScroll}
-              type={type}
-            />
+                  maps={maps}
+                  handleScroll={handleScroll}
+                  type={type}
+                />
+              </Box>
 
-            {/* @ts-ignore */}
-            <MapsInvitation maps={maps} />
+              <Box h={"100vh"} scrollSnapAlign="center" width="100%">
+                {/* @ts-ignore */}
+                <MapsInvitation maps={maps} />
+              </Box>
+              <Box h={"100vh"} scrollSnapAlign="center" maxWidth="100%">
+                <GuestBook messages={messages} to={to} />
+              </Box>
 
-            <GuestBook messages={messages} to={to} />
-
-            <ProkesCovid />
-
-            <ClosingInvitation />
-
-            <Footer />
+              <Box h={"100vh"} scrollSnapAlign="center" width="100%">
+                <ProkesCovid />
+              </Box>
+              <Box h={"100vh"} scrollSnapAlign="center" width="100%">
+                <ClosingInvitation />
+                
+              </Box>
+              <Box h={"10vh"} scrollSnapAlign="center" width="100%">
+                <Footer />
+                
+              </Box>
+           
+            
           </>
         )}
       </MainLayout>
 
       {/* @ts-ignore */}
-      <Backsound play={play} audioRef={audioRef} />
+      {/* <Backsound play={play} audioRef={audioRef} /> */}
     </>
   );
 };
