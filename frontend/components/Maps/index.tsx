@@ -12,6 +12,7 @@ function MapsInvitation({ maps }: MapsInvitationProps) {
       px={"3rem"}
       minHeight={"100vh"}
       justifyContent={"center"}
+      backgroundColor={"rgba(255, 245, 245, 0.9)"}
       gap={{
         base: "1rem",
         md: "1.5rem",
