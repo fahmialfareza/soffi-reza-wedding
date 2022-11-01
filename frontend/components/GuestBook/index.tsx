@@ -72,28 +72,40 @@ const GuestBook: NextPage<GuestBookProps> = ({ messages, to }) => {
       position={"relative"}
       scrollSnapAlign="center"
     >
-      <Image
-        src="/assets/white-flower-up-left.png"
-        alt="white-flower-up-left"
-        position={"absolute"}
-        width={{
-          base: "20%",
-          md: "15%",
-        }}
-        top={-20}
-        left={0}
-      ></Image>
-      <Image
-        src="/assets/white-flower-up-right.png"
-        alt="white-flower-up-left"
-        position={"absolute"}
-        width={{
-          base: "20%",
-          md: "15%",
-        }}
-        top={-20}
-        right={0}
-      ></Image>
+      <motion.div
+        initial={{ x: -200, opacity: 0 }}
+        whileInView={{ x: 0, opacity: 1 }}
+        transition={{ duration: 1 }}
+      >
+        <Image
+          src="/assets/white-flower-up-left.png"
+          alt="white-flower-up-left"
+          position={"absolute"}
+          width={{
+            base: "20%",
+            md: "15%",
+          }}
+          top={-20}
+          left={0}
+        ></Image>
+      </motion.div>
+      <motion.div
+        initial={{ x: 200, opacity: 0 }}
+        whileInView={{ x: 0, opacity: 1 }}
+        transition={{ duration: 1 }}
+      >
+        <Image
+          src="/assets/white-flower-up-right.png"
+          alt="white-flower-up-left"
+          position={"absolute"}
+          width={{
+            base: "20%",
+            md: "15%",
+          }}
+          top={-20}
+          right={0}
+        ></Image>
+      </motion.div>
 
       <VStack
         textAlign={"center"}
@@ -105,9 +117,16 @@ const GuestBook: NextPage<GuestBookProps> = ({ messages, to }) => {
         justifyContent={"center"}
         height={"100vh"}
       >
-        <Text className="font-bukhari" color="white" fontSize={"3rem"}>
-          Buku Tamu
-        </Text>
+        <motion.div
+          initial={{ y: -100, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          // @ts-ignore no problem in operation, although type error appears.
+          transition={{ bounce: 0.5, type: "spring", duration: 1, delay:0.5 }}
+        >
+          <Text className="font-bukhari" color="white" fontSize={"3rem"}>
+            Buku Tamu
+          </Text>
+        </motion.div>
 
         <VStack
           gap={"1rem"}
@@ -153,20 +172,12 @@ const GuestBook: NextPage<GuestBookProps> = ({ messages, to }) => {
             md: "8rem",
           }}
         >
-          <Button
-            size={"lg"}
-            backgroundColor={"grey"}
-            _hover={{
-              backgroundColor: "grey",
-              boxShadow: "0 0 0 2px #FAB8C4",
-            }}
-            leftIcon={<BubbleChat />}
-            onClick={onOpen}
+          <motion.div
+            initial={{ y: 100, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            // @ts-ignore no problem in operation, although type error appears.
+            transition={{ bounce: 0.5, type: "spring", duration: 1, delay:0.5 }}
           >
-            Kirim Ucapan
-          </Button>
-
-          <Box as={motion.div} animation={animation}>
             <Button
               size={"lg"}
               backgroundColor={"grey"}
@@ -174,40 +185,78 @@ const GuestBook: NextPage<GuestBookProps> = ({ messages, to }) => {
                 backgroundColor: "grey",
                 boxShadow: "0 0 0 2px #FAB8C4",
               }}
-              leftIcon={<Gift />}
-              onClick={onOpenGiftModal}
+              leftIcon={<BubbleChat className="shaking" />}
+              onClick={onOpen}
             >
-              Kirim Amplop
+              Kirim Ucapan
             </Button>
-          </Box>
+          </motion.div>
+          <motion.div
+            initial={{ y: 100, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            // @ts-ignore no problem in operation, although type error appears.
+            transition={{
+              bounce: 0.5,
+              type: "spring",
+              duration: 1,
+              delay: 0.5,
+            }}
+          >
+            <Box as={motion.div} animation={animation}>
+              <Button
+                size={"lg"}
+                backgroundColor={"grey"}
+                _hover={{
+                  backgroundColor: "grey",
+                  boxShadow: "0 0 0 2px #FAB8C4",
+                }}
+                leftIcon={<Gift className="shaking" />}
+                onClick={onOpenGiftModal}
+              >
+                Kirim Amplop
+              </Button>
+            </Box>
+          </motion.div>
         </HStack>
       </VStack>
 
       <ModalUcapan isOpen={isOpen} onClose={onClose} to={to} />
       <ModalGift isOpen={isOpenGiftModal} onClose={onCloseGiftModal} />
 
-      <Image
-        src="/assets/white-flower-down-left.png"
-        alt="white-flower-up-left"
-        position={"absolute"}
-        width={{
-          base: "20%",
-          md: "15%",
-        }}
-        bottom={0}
-        left={0}
-      ></Image>
-      <Image
-        src="/assets/white-flower-down-right.png"
-        alt="white-flower-up-left"
-        position={"absolute"}
-        width={{
-          base: "20%",
-          md: "15%",
-        }}
-        bottom={0}
-        right={0}
-      ></Image>
+      <motion.div
+        initial={{ x: -200, opacity: 0 }}
+        whileInView={{ x: 0, opacity: 1 }}
+        transition={{ duration: 1 }}
+      >
+        <Image
+          src="/assets/white-flower-down-left.png"
+          alt="white-flower-up-left"
+          position={"absolute"}
+          width={{
+            base: "20%",
+            md: "15%",
+          }}
+          bottom={0}
+          left={0}
+        ></Image>
+      </motion.div>
+      <motion.div
+        initial={{ x: 200, opacity: 0 }}
+        whileInView={{ x: 0, opacity: 1 }}
+        transition={{ duration: 1 }}
+      >
+        <Image
+          src="/assets/white-flower-down-right.png"
+          alt="white-flower-up-left"
+          position={"absolute"}
+          width={{
+            base: "20%",
+            md: "15%",
+          }}
+          bottom={0}
+          right={0}
+        ></Image>
+      </motion.div>
     </Box>
   );
 };

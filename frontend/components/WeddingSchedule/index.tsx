@@ -230,7 +230,7 @@ function WeddingSchedule({ maps, handleScroll, type }: WeddingScheduleProps) {
               backgroundColor: "grey",
               boxShadow: "0 0 0 2px #FAB8C4",
             }}
-            leftIcon={<CalendarFill />}
+            leftIcon={<CalendarFill className="shaking" />}
             onClick={(e) => {
               e.preventDefault();
               atcb_action({
@@ -284,7 +284,7 @@ function WeddingSchedule({ maps, handleScroll, type }: WeddingScheduleProps) {
               backgroundColor: "grey",
               boxShadow: "0 0 0 2px #FAB8C4",
             }}
-            leftIcon={<MapsFill />}
+            leftIcon={<MapsFill className="shaking" />}
             onClick={(e) => {
               e.preventDefault();
               handleScroll(maps);

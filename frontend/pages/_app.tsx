@@ -1,4 +1,5 @@
 import "../styles/globals.css";
+import "../styles/shake.css";
 import type { AppProps } from "next/app";
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 import Head from "next/head";

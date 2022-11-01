@@ -14,6 +14,10 @@ function MainLayout({ children }: Props) {
           // zIndex="docked"
           spacing={0}
           maxWidth={"924px"}
+          minWidth={{
+            base: "100%",
+            lg: "924px",
+          }}
           zIndex={"100"}
         >
           {children}
