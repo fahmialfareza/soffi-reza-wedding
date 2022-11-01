@@ -1,21 +1,10 @@
-import React, { FormEvent, useState } from "react";
 import {
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalCloseButton,
-  ModalBody,
   Button,
-  FormControl,
-  FormLabel,
-  Input,
-  Textarea,
-  Select,
-  VStack,
-  FormHelperText,
-  FormErrorMessage,
+  FormControl, FormErrorMessage, FormHelperText, FormLabel,
+  Input, Modal, ModalBody, ModalCloseButton, ModalContent,
+  ModalHeader, ModalOverlay, Select, Textarea, VStack
 } from "@chakra-ui/react";
+import { FormEvent, useState } from "react";
 import { toast } from "react-toastify";
 import isNullEmptyBlank from "../../helpers/isEmpty";
 
@@ -23,9 +12,12 @@ interface ModalUcapanProps {
   isOpen: boolean;
   onClose: () => void;
   to: string;
+  onConvetti: () => void
 }
 
-function ModalUcapan({ isOpen, onClose, to }: ModalUcapanProps) {
+function ModalUcapan({ isOpen, onClose, to, onConvetti }: ModalUcapanProps) {
+  
+
   const [name, setName] = useState(to);
   const [message, setMessage] = useState("");
   const [attending, setAttending] = useState("");
@@ -65,7 +57,7 @@ function ModalUcapan({ isOpen, onClose, to }: ModalUcapanProps) {
       setName(to);
       setAttending("");
       setMessage("");
-
+      onConvetti()
       toast.success("Berhasil memberikan ucapan dan doa!");
       onClose();
     } catch (error) {
