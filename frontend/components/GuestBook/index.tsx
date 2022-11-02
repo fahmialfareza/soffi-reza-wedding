@@ -1,5 +1,5 @@
 import { NextPage } from "next";
-import React, { FormEvent, useState, useCallback, useRef } from "react";
+import React, { useCallback, useRef, CSSProperties } from "react";
 
 import {
   Box,
@@ -21,6 +21,7 @@ import ModalGift from "../ModalGift";
 import { IMessage } from "../../interfaces/messages.interface";
 import convertToMonth from "../../helpers/month";
 import ReactCanvasConfetti from "react-canvas-confetti";
+import { CreateTypes } from "canvas-confetti";
 
 interface GuestBookProps {
   messages: IMessage[];
@@ -59,7 +60,7 @@ const animationKeyframes = keyframes`
 const animation = `${animationKeyframes} 1s ease-in-out infinite`;
 
 const GuestBook: NextPage<GuestBookProps> = ({ messages, to }) => {
-  const canvasStyles = {
+  const canvasStyles: CSSProperties = {
     position: "fixed",
     pointerEvents: "none",
     width: "100%",
@@ -68,14 +69,16 @@ const GuestBook: NextPage<GuestBookProps> = ({ messages, to }) => {
     left: 0,
   };
 
-  const refAnimationInstance = useRef(null);
+  const refAnimationInstance = useRef<HTMLCanvasElement>(null);
 
-  const getInstance = useCallback((instance: any) => {
+  const getInstance = useCallback((instance: CreateTypes | null) => {
+    // @ts-ignore
     refAnimationInstance.current = instance;
   }, []);
 
   const makeShot = useCallback((particleRatio: number, opts: any) => {
     refAnimationInstance.current &&
+      // @ts-ignore
       refAnimationInstance.current({
         ...opts,
         origin: { y: 0.7 },
