@@ -1,4 +1,6 @@
 import { NextPage } from "next";
+import React, { FormEvent, useState, useCallback, useRef } from "react";
+
 import {
   Box,
   Button,
@@ -18,6 +20,7 @@ import ModalUcapan from "../ModalUcapan";
 import ModalGift from "../ModalGift";
 import { IMessage } from "../../interfaces/messages.interface";
 import convertToMonth from "../../helpers/month";
+import ReactCanvasConfetti from "react-canvas-confetti";
 
 interface GuestBookProps {
   messages: IMessage[];
@@ -56,6 +59,59 @@ const animationKeyframes = keyframes`
 const animation = `${animationKeyframes} 1s ease-in-out infinite`;
 
 const GuestBook: NextPage<GuestBookProps> = ({ messages, to }) => {
+  const canvasStyles = {
+    position: "fixed",
+    pointerEvents: "none",
+    width: "100%",
+    height: "100%",
+    top: 0,
+    left: 0,
+  };
+
+  const refAnimationInstance = useRef(null);
+
+  const getInstance = useCallback((instance: any) => {
+    refAnimationInstance.current = instance;
+  }, []);
+
+  const makeShot = useCallback((particleRatio: number, opts: any) => {
+    refAnimationInstance.current &&
+      refAnimationInstance.current({
+        ...opts,
+        origin: { y: 0.7 },
+        particleCount: Math.floor(200 * particleRatio),
+      });
+  }, []);
+
+  const fire = useCallback(() => {
+    makeShot(0.25, {
+      spread: 26,
+      startVelocity: 55,
+    });
+
+    makeShot(0.2, {
+      spread: 60,
+    });
+
+    makeShot(0.35, {
+      spread: 100,
+      decay: 0.91,
+      scalar: 0.8,
+    });
+
+    makeShot(0.1, {
+      spread: 120,
+      startVelocity: 25,
+      decay: 0.92,
+      scalar: 1.2,
+    });
+
+    makeShot(0.1, {
+      spread: 120,
+      startVelocity: 45,
+    });
+  }, [makeShot]);
+
   const { isOpen, onOpen, onClose } = useDisclosure();
   const {
     isOpen: isOpenGiftModal,
@@ -121,7 +177,7 @@ const GuestBook: NextPage<GuestBookProps> = ({ messages, to }) => {
           initial={{ y: -100, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
           // @ts-ignore no problem in operation, although type error appears.
-          transition={{ bounce: 0.5, type: "spring", duration: 1, delay:0.5 }}
+          transition={{ bounce: 0.5, type: "spring", duration: 1, delay: 0.5 }}
         >
           <Text className="font-bukhari" color="white" fontSize={"3rem"}>
             Buku Tamu
@@ -176,7 +232,12 @@ const GuestBook: NextPage<GuestBookProps> = ({ messages, to }) => {
             initial={{ y: 100, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
             // @ts-ignore no problem in operation, although type error appears.
-            transition={{ bounce: 0.5, type: "spring", duration: 1, delay:0.5 }}
+            transition={{
+              bounce: 0.5,
+              type: "spring",
+              duration: 1,
+              delay: 0.5,
+            }}
           >
             <Button
               size={"lg"}
@@ -219,8 +280,14 @@ const GuestBook: NextPage<GuestBookProps> = ({ messages, to }) => {
           </motion.div>
         </HStack>
       </VStack>
+      <ReactCanvasConfetti refConfetti={getInstance} style={canvasStyles} />
 
-      <ModalUcapan isOpen={isOpen} onClose={onClose} to={to} />
+      <ModalUcapan
+        isOpen={isOpen}
+        onClose={onClose}
+        to={to}
+        onConvetti={fire}
+      />
       <ModalGift isOpen={isOpenGiftModal} onClose={onCloseGiftModal} />
 
       <motion.div
