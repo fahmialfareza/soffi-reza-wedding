@@ -1,14 +1,14 @@
 @font-face {
-  font-family: 'bookerly-bold';
+  font-family: "bookerly-bold";
   src: url(./fonts/BookerlyBold.ttf) format("truetype");
   font-weight: bold;
 }
 @font-face {
-  font-family: 'Bookerly';
+  font-family: "Bookerly";
   src: url(./fonts/Bookerly.ttf) format("truetype");
 }
 @font-face {
-  font-family: 'Bukhari';
+  font-family: "Bukhari";
   src: url(./fonts/BukhariScript.ttf) format("truetype");
 }
 
@@ -36,24 +36,23 @@ html {
   font-weight: 700;
 }
 
-
 .scroolbar::-webkit-scrollbar {
-    width: 8px;
+  width: 8px;
 }
 
 body.thin::-webkit-scrollbar {
-    width: 2px;
+  width: 2px;
 }
 
 ::-webkit-scrollbar-track {
-    border-radius: 10px;
-    background: #eee;
+  border-radius: 10px;
+  background: #eee;
 }
 
 ::-webkit-scrollbar-thumb {
-    border-radius: 10px;
-    background: #888;
+  border-radius: 10px;
+  background: #888;
 }
 ::-webkit-scrollbar-thumb:window-inactive {
-    background: rgba(100,100,100,0.4); 
+  background: rgba(100, 100, 100, 0.4);
 }

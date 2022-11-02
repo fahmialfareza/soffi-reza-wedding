@@ -1,10 +1,19 @@
 import {
-  Center, Image, Modal, ModalBody, ModalCloseButton, ModalContent,
-  ModalHeader, ModalOverlay, Tab,
+  Center,
+  Image,
+  Modal,
+  ModalBody,
+  ModalCloseButton,
+  ModalContent,
+  ModalHeader,
+  ModalOverlay,
+  Tab,
   TabList,
   TabPanel,
   TabPanels,
-  Tabs, Text, VStack
+  Tabs,
+  Text,
+  VStack,
 } from "@chakra-ui/react";
 import BsiModalContent from "../BsiContent";
 import GopayContent from "../GopayContent";
@@ -48,7 +57,7 @@ function ModalGift({ isOpen, onClose }: ModalGiftProps) {
                   border={"1px solid #DFE1E8"}
                   mx={{
                     base: "0.5rem",
-                    md:"1rem"
+                    md: "1rem",
                   }}
                   borderRadius={"8px"}
                 >
@@ -61,9 +70,9 @@ function ModalGift({ isOpen, onClose }: ModalGiftProps) {
                     md: "126px",
                   }}
                   border={"1px solid #DFE1E8"}
-                    mx={{
+                  mx={{
                     base: "0.5rem",
-                    md:"1rem"
+                    md: "1rem",
                   }}
                   borderRadius={"8px"}
                 >
@@ -77,9 +86,9 @@ function ModalGift({ isOpen, onClose }: ModalGiftProps) {
                     md: "126px",
                   }}
                   border={"1px solid #DFE1E8"}
-                    mx={{
+                  mx={{
                     base: "0.5rem",
-                    md:"1rem"
+                    md: "1rem",
                   }}
                   borderRadius={"8px"}
                 >

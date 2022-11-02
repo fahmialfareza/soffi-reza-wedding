@@ -34,6 +34,7 @@ const Home: NextPage<HomeProps> = ({ messages: messageFromSSR, to, type }) => {
 
   const audioRef = useRef<HTMLAudioElement>(null);
   const maps = useRef<HTMLDivElement>(null);
+  const convetti = useRef(null);
 
   const handleScroll = (ref: MutableRefObject<HTMLDivElement | undefined>) => {
     ref.current?.scrollIntoView({
@@ -46,6 +47,8 @@ const Home: NextPage<HomeProps> = ({ messages: messageFromSSR, to, type }) => {
 
     socket.on("message", (message: IMessage) => {
       setMessages([message, ...messages]);
+      // @ts-ignore
+      convetti?.current?.runConvetti();
     });
   }, [messages]);
 
@@ -109,7 +112,8 @@ const Home: NextPage<HomeProps> = ({ messages: messageFromSSR, to, type }) => {
               />
             </Box>
             <Box h={"100vh"} scrollSnapAlign="center" maxWidth="100%">
-              <GuestBook messages={messages} to={to} />
+              {/* @ts-ignore */}
+              <GuestBook messages={messages} to={to} ref={convetti} />
             </Box>
             <Box h={"100vh"} scrollSnapAlign="center" width="100%">
               <ProkesCovid />

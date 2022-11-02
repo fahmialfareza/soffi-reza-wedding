@@ -2,7 +2,7 @@ import { createIcon } from "@chakra-ui/icons";
 
 export const CalendarFill = createIcon({
   displayName: "CalendarFill",
-   viewBox:"0 0 24 25",
+  viewBox: "0 0 24 25",
   // path can also be an array of elements, if you have multiple paths, lines, shapes, etc.
   path: (
     <path
@@ -11,4 +11,3 @@ export const CalendarFill = createIcon({
     />
   ),
 });
-

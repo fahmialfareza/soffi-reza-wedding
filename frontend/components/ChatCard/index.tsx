@@ -2,10 +2,10 @@ import { Box, Button, Divider, HStack, VStack, Text } from "@chakra-ui/react";
 import React from "react";
 
 interface CardChatProps {
-    date: string;
-    name: string;
-    message: string;
-    status: string;
+  date: string;
+  name: string;
+  message: string;
+  status: string;
 }
 
 function CardChat({ date, name, message, status }: CardChatProps) {
@@ -35,11 +35,15 @@ function CardChat({ date, name, message, status }: CardChatProps) {
       >
         <Text className={"font-inter"}>{date}</Text>
         <Divider orientation="vertical" height={"100%"} border={"1px"} />
-        <Text textAlign={"left"} className={"font-inter"} minWidth={{
-          base: "150px",
-          md: "400px",
-          lg: "460px"
-        }}>
+        <Text
+          textAlign={"left"}
+          className={"font-inter"}
+          minWidth={{
+            base: "150px",
+            md: "400px",
+            lg: "460px",
+          }}
+        >
           {message}
         </Text>
         <Divider orientation="vertical" height={"100%"} border={"1px"} />
