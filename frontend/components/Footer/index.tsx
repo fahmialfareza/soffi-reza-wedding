@@ -6,6 +6,7 @@ function Footer() {
     <Box
       py={"2rem"}
       textAlign={"center"}
+      overflowX={"hidden"}
       backgroundColor={"rgba(255, 245, 245, 0.9)"}
     >
       <Text

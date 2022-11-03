@@ -93,9 +93,11 @@ const Home: NextPage<HomeProps> = ({ messages: messageFromSSR, to, type }) => {
             <Box h={"100vh"} scrollSnapAlign="center" width="100%">
               <Hero type={type} />
             </Box>
+
             <Box h={"100vh"} scrollSnapAlign="center" width="100%">
               <WeddingText />
             </Box>
+
             <Box h={"100vh"} scrollSnapAlign="center" width="100%">
               <WeddingSchedule
                 // @ts-ignore

@@ -9,6 +9,8 @@ function BackgroundFixed() {
       height={"100vh"}
       position={"fixed"}
       zIndex={"-100"}
+      overflowX={"hidden"}
+
       // overflow={"hidden"}
     >
       <Box
@@ -21,7 +23,7 @@ function BackgroundFixed() {
         <Image
           width={{
             md: "480px",
-            sm: "100%",
+            sm: "100px",
           }}
           src={"./assets/bg-up-left.png"}
           alt={"bg-up-left"}

@@ -143,6 +143,7 @@ const GuestBook: NextPage<GuestBookProps> = forwardRef(
         mx={0}
         px={0}
         position={"relative"}
+        overflowX={"hidden"}
         scrollSnapAlign="center"
       >
         <motion.div
@@ -262,7 +263,11 @@ const GuestBook: NextPage<GuestBookProps> = forwardRef(
               }}
             >
               <Button
-                size={"lg"}
+                size={{
+                  base: "sm",
+                  md: "lg",
+                  ld: "lg",
+                }}
                 backgroundColor={"grey"}
                 _hover={{
                   backgroundColor: "grey",
@@ -287,7 +292,11 @@ const GuestBook: NextPage<GuestBookProps> = forwardRef(
             >
               <Box as={motion.div} animation={animation}>
                 <Button
-                  size={"lg"}
+                  size={{
+                    base: "sm",
+                    md: "lg",
+                    ld: "lg",
+                  }}
                   backgroundColor={"grey"}
                   _hover={{
                     backgroundColor: "grey",

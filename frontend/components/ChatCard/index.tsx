@@ -1,4 +1,12 @@
-import { Box, Button, Divider, HStack, VStack, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Divider,
+  HStack,
+  VStack,
+  Text,
+  Badge,
+} from "@chakra-ui/react";
 import React from "react";
 
 interface CardChatProps {
@@ -33,13 +41,38 @@ function CardChat({ date, name, message, status }: CardChatProps) {
           md: "row",
         }}
       >
-        <Text className={"font-inter"}>{date}</Text>
+        <Text
+          className={"font-inter"}
+          fontSize={{
+            base: "0.8rem",
+            md: "1rem",
+          }}
+          maxW={{
+            base: "2rem",
+            md: "2.5rem",
+          }}
+        >
+          {date}
+        </Text>
         <Divider orientation="vertical" height={"100%"} border={"1px"} />
         <Text
           textAlign={"left"}
+          fontSize={{
+            base: "0.8rem",
+            md: "1rem",
+          }}
+          noOfLines={{
+            base: 2,
+            md: 3
+          }}
           className={"font-inter"}
           minWidth={{
-            base: "150px",
+            base: "180px",
+            md: "400px",
+            lg: "460px",
+          }}
+          maxWidth={{
+            base: "180px",
             md: "400px",
             lg: "460px",
           }}
@@ -49,35 +82,45 @@ function CardChat({ date, name, message, status }: CardChatProps) {
         <Divider orientation="vertical" height={"100%"} border={"1px"} />
         <VStack
           minWidth={{
+            base: "80px",
             md: "146px",
           }}
+          justifyContent={"center"}
+          alignItems={"center"}
         >
-          <Text className={"font-inter"}>{name}</Text>
+          <Text
+            noOfLines={1}
+            className={"font-inter"}
+            fontSize={{
+              base: "0.8rem",
+              md: "1rem",
+            }}
+          >
+            {name}
+          </Text>
 
           {status === "hadir" ? (
-            <Button
+            <Badge
               size={{
                 base: "xs",
                 md: "sm",
               }}
-              px={"2rem"}
-              textTransform={"uppercase"}
+              textTransform={"lowercase"}
               colorScheme={"green"}
             >
               Hadir
-            </Button>
+            </Badge>
           ) : (
-            <Button
+            <Badge
               size={{
                 base: "xs",
                 md: "sm",
               }}
-              px={"2rem"}
-              textTransform={"uppercase"}
+              textTransform={"lowercase"}
               colorScheme={"red"}
             >
               Tdak Hadir
-            </Button>
+            </Badge>
           )}
         </VStack>
       </HStack>

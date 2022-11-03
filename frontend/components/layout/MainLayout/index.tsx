@@ -14,6 +14,7 @@ function MainLayout({ children }: Props) {
           // zIndex="docked"
           spacing={0}
           maxWidth={"924px"}
+          overflowX={"hidden"}
           minWidth={{
             base: "100%",
             lg: "924px",

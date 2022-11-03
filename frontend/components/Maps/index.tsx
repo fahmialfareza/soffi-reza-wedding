@@ -20,6 +20,7 @@ function MapsInvitation({ maps }: MapsInvitationProps) {
       }}
       ref={maps}
       color={"grey-light"}
+      overflowX={"hidden"}
     >
       <Text className="font-bukhari" fontSize={"3rem"}>
         Peta

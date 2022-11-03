@@ -21,6 +21,7 @@ function Hero({ type }: HeroProps) {
     <Box
       scrollSnapAlign="center"
       width={"100%"}
+      overflow={"hidden"}
       backgroundColor={"rgba(255, 245, 245, 0.9)"}
     >
       <Box

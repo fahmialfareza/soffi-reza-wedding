@@ -13,6 +13,7 @@ function ClosingInvitation() {
       mx={0}
       px={0}
       position={"relative"}
+      overflowX={"hidden"}
       scrollSnapAlign="center"
       textAlign={"center"}
     >
