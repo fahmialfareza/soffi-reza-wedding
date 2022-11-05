@@ -30,7 +30,7 @@ const socket = io(process.env.NEXT_PUBLIC_BACKEND_API!);
 const Home: NextPage<HomeProps> = ({ messages: messageFromSSR, to, type }) => {
   const [messages, setMessages] = useState(messageFromSSR);
   const [play, setPlay] = useState(false);
-  const { isOpen, onClose } = useDisclosure({ defaultIsOpen: false });
+  const { isOpen, onClose } = useDisclosure({ defaultIsOpen: true });
 
   const audioRef = useRef<HTMLAudioElement>(null);
   const maps = useRef<HTMLDivElement>(null);
@@ -89,7 +89,7 @@ const Home: NextPage<HomeProps> = ({ messages: messageFromSSR, to, type }) => {
           />
         ) : (
           <>
-            {/* <BackgroundFixed /> */}
+            <BackgroundFixed />
 
             <Box h={"100vh"} scrollSnapAlign="center" width="100%">
               <Hero type={type} />
@@ -97,6 +97,15 @@ const Home: NextPage<HomeProps> = ({ messages: messageFromSSR, to, type }) => {
 
             <Box h={"100vh"} scrollSnapAlign="center" width="100%">
               <WeddingText />
+            </Box>
+
+            <Box h={"100vh"} scrollSnapAlign="center" width="100%">
+              <WeddingSchedule
+                // @ts-ignore
+                maps={maps}
+                handleScroll={handleScroll}
+                type={type}
+              />
             </Box>
 
             <Box h={"100vh"} scrollSnapAlign="center" width="100%">
@@ -113,7 +122,12 @@ const Home: NextPage<HomeProps> = ({ messages: messageFromSSR, to, type }) => {
             <Box h={"100vh"} scrollSnapAlign="center" width="100%">
               <ProkesCovid />
             </Box>
-            <Box h={"100vh"} maxHeight={"100vh"} scrollSnapAlign="center" width="100%">
+            <Box
+              h={"100vh"}
+              maxHeight={"100vh"}
+              scrollSnapAlign="center"
+              width="100%"
+            >
               <ClosingInvitation />
             </Box>
 
@@ -125,7 +139,7 @@ const Home: NextPage<HomeProps> = ({ messages: messageFromSSR, to, type }) => {
       </MainLayout>
 
       {/* @ts-ignore */}
-      {/* <Backsound play={play} audioRef={audioRef} /> */}
+      <Backsound play={play} audioRef={audioRef} />
     </>
   );
 };

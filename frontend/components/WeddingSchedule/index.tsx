@@ -225,7 +225,11 @@ function WeddingSchedule({ maps, handleScroll, type }: WeddingScheduleProps) {
         </VStack>
         <HStack justifyContent={"space-between"}>
           <Button
-            size={"md"}
+            size={{
+              base: "sm",
+              md: "md",
+              lg: "lg",
+            }}
             backgroundColor={"grey"}
             _hover={{
               backgroundColor: "grey",
@@ -279,7 +283,11 @@ function WeddingSchedule({ maps, handleScroll, type }: WeddingScheduleProps) {
           </Button>
 
           <Button
-            size={"md"}
+            size={{
+              base: "sm",
+              md: "md",
+              lg: "lg",
+            }}
             backgroundColor={"grey"}
             _hover={{
               backgroundColor: "grey",

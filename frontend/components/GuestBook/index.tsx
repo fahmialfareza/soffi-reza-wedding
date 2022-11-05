@@ -266,8 +266,8 @@ const GuestBook: NextPage<GuestBookProps> = forwardRef(
               <Button
                 size={{
                   base: "sm",
-                  md: "lg",
-                  ld: "lg",
+                  md: "md",
+                  lg: "lg",
                 }}
                 backgroundColor={"grey"}
                 _hover={{
@@ -295,8 +295,8 @@ const GuestBook: NextPage<GuestBookProps> = forwardRef(
                 <Button
                   size={{
                     base: "sm",
-                    md: "lg",
-                    ld: "lg",
+                    md: "md",
+                    lg: "lg",
                   }}
                   backgroundColor={"grey"}
                   _hover={{
