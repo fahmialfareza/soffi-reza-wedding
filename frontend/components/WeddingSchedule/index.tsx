@@ -60,6 +60,8 @@ function WeddingSchedule({ maps, handleScroll, type }: WeddingScheduleProps) {
       </motion.div>
 
       <VStack
+      justifyContent={"center"}
+      height={"100%"}
         textAlign={"center"}
         color={"white"}
         gap={{
@@ -67,8 +69,6 @@ function WeddingSchedule({ maps, handleScroll, type }: WeddingScheduleProps) {
           md: "1.5rem",
           lg: "1.5rem",
         }}
-        justifyContent={"center"}
-        height={"100vh"}
       >
         <motion.div
           initial={{ y: 200, opacity: 0 }}

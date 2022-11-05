@@ -139,7 +139,7 @@ const Home: NextPage<HomeProps> = ({ messages: messageFromSSR, to, type }) => {
       </MainLayout>
 
       {/* @ts-ignore */}
-      <Backsound play={play} audioRef={audioRef} />
+      {/* <Backsound play={play} audioRef={audioRef} /> */}
     </>
   );
 };
