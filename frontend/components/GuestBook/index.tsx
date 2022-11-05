@@ -143,12 +143,12 @@ const GuestBook: NextPage<GuestBookProps> = forwardRef(
         mx={0}
         px={0}
         position={"relative"}
-        overflowX={"hidden"}
+        // overflowX={"hidden"}
         scrollSnapAlign="center"
       >
         <motion.div
-          initial={{ x: -200, opacity: 0 }}
-          whileInView={{ x: 0, opacity: 1 }}
+          initial={{ y: 20, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
           transition={{ duration: 1 }}
         >
           <Image
@@ -156,16 +156,16 @@ const GuestBook: NextPage<GuestBookProps> = forwardRef(
             alt="white-flower-up-left"
             position={"absolute"}
             width={{
-              base: "20%",
-              md: "15%",
+              base: "10%",
+              md: "10%",
             }}
-            top={-20}
+            top={0}
             left={0}
           ></Image>
         </motion.div>
         <motion.div
-          initial={{ x: 200, opacity: 0 }}
-          whileInView={{ x: 0, opacity: 1 }}
+          initial={{ y: 20, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
           transition={{ duration: 1 }}
         >
           <Image
@@ -173,10 +173,10 @@ const GuestBook: NextPage<GuestBookProps> = forwardRef(
             alt="white-flower-up-left"
             position={"absolute"}
             width={{
-              base: "20%",
-              md: "15%",
+              base: "10%",
+              md: "10%",
             }}
-            top={-20}
+            top={0}
             right={0}
           ></Image>
         </motion.div>
@@ -222,6 +222,7 @@ const GuestBook: NextPage<GuestBookProps> = forwardRef(
               scrollbarWidth: "thin",
               "&::-webkit-scrollbar-thumb": {
                 borderRadius: "24px",
+                // display: "none"
               },
             }}
           >
@@ -322,8 +323,8 @@ const GuestBook: NextPage<GuestBookProps> = forwardRef(
         <ModalGift isOpen={isOpenGiftModal} onClose={onCloseGiftModal} />
 
         <motion.div
-          initial={{ x: -200, opacity: 0 }}
-          whileInView={{ x: 0, opacity: 1 }}
+          initial={{ y: -40, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
           transition={{ duration: 1 }}
         >
           <Image
@@ -332,15 +333,15 @@ const GuestBook: NextPage<GuestBookProps> = forwardRef(
             position={"absolute"}
             width={{
               base: "20%",
-              md: "15%",
+              md: "10%",
             }}
             bottom={0}
             left={0}
           ></Image>
         </motion.div>
         <motion.div
-          initial={{ x: 200, opacity: 0 }}
-          whileInView={{ x: 0, opacity: 1 }}
+          initial={{ y: -40, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
           transition={{ duration: 1 }}
         >
           <Image
@@ -349,7 +350,7 @@ const GuestBook: NextPage<GuestBookProps> = forwardRef(
             position={"absolute"}
             width={{
               base: "20%",
-              md: "15%",
+              md: "10%",
             }}
             bottom={0}
             right={0}

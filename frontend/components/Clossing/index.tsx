@@ -1,25 +1,22 @@
-import { Box, Button, HStack, Image, Text, VStack } from "@chakra-ui/react";
-import React from "react";
-import { CalendarFill } from "../icons/CalendarFill";
-import { MapsFill } from "../icons/Maps";
+import { Box, Image, Text, VStack } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 
 function ClosingInvitation() {
   return (
     <Box
       width={"100%"}
-      height={"100vh"}
+      maxH={"100vh"}
       backgroundColor={"green"}
       mx={0}
       px={0}
       position={"relative"}
-      overflowX={"hidden"}
+    
       scrollSnapAlign="center"
       textAlign={"center"}
     >
       <motion.div
-        initial={{ x: -200, opacity: 0 }}
-        whileInView={{ x: 0, opacity: 1 }}
+        initial={{ y: -20, opacity: 0 }}
+        whileInView={{ y: 0, opacity: 1 }}
         transition={{ duration: 1 }}
       >
         <Image
@@ -27,7 +24,7 @@ function ClosingInvitation() {
           alt="clossing-up-left"
           position={"absolute"}
           width={{
-            base: "15%",
+            base: "12%",
           }}
           top={0}
           left={0}
@@ -35,8 +32,8 @@ function ClosingInvitation() {
       </motion.div>
 
       <motion.div
-        initial={{ x: 200, opacity: 0 }}
-        whileInView={{ x: 0, opacity: 1 }}
+        initial={{ y: -20, opacity: 0 }}
+        whileInView={{ y: 0, opacity: 1 }}
         transition={{ duration: 1 }}
       >
         <Image
@@ -44,7 +41,7 @@ function ClosingInvitation() {
           alt="clossing-up-right"
           position={"absolute"}
           width={{
-            base: "15%",
+            base: "12%",
           }}
           top={0}
           right={0}
@@ -111,7 +108,7 @@ function ClosingInvitation() {
         </motion.div>
 
         <motion.div
-          initial={{ y: 200, opacity: 0 }}
+          initial={{ y: -200, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
           // @ts-ignore no problem in operation, although type error appears.
           transition={{ bounce: 0.5, type: "spring", duration: 1 }}
@@ -131,7 +128,7 @@ function ClosingInvitation() {
           />
         </motion.div>
         <motion.div
-          initial={{ y: 200, opacity: 0 }}
+          initial={{ y: -200, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
           // @ts-ignore no problem in operation, although type error appears.
           transition={{ bounce: 0.5, type: "spring", duration: 1 }}
@@ -161,8 +158,8 @@ function ClosingInvitation() {
       </VStack>
 
       <motion.div
-        initial={{ x: -200, opacity: 0 }}
-        whileInView={{ x: 0, opacity: 1 }}
+        initial={{ y: -20, opacity: 0 }}
+        whileInView={{ y: 0, opacity: 1 }}
         transition={{ duration: 1, delay: 0.5 }}
       >
         <Image
@@ -170,7 +167,7 @@ function ClosingInvitation() {
           alt="white-flower-up-left"
           position={"absolute"}
           width={{
-            base: "15%",
+            base: "12%",
           }}
           bottom={0}
           left={0}
@@ -178,8 +175,8 @@ function ClosingInvitation() {
       </motion.div>
 
       <motion.div
-        initial={{ x: 200, opacity: 0 }}
-        whileInView={{ x: 0, opacity: 1 }}
+        initial={{ y: -20, opacity: 0 }}
+        whileInView={{ y: 0, opacity: 1 }}
         transition={{ duration: 1, delay: 0.5 }}
       >
         <Image
@@ -187,7 +184,7 @@ function ClosingInvitation() {
           alt="white-flower-up-left"
           position={"absolute"}
           width={{
-            base: "15%",
+            base: "12%",
           }}
           bottom={0}
           right={0}

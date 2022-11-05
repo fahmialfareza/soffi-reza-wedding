@@ -6,7 +6,7 @@ interface Props {
 
 function MainLayout({ children }: Props) {
   return (
-    <VStack>
+  
       <Center>
         <VStack
           scrollSnapType="y mandatory"
@@ -14,7 +14,7 @@ function MainLayout({ children }: Props) {
           // zIndex="docked"
           spacing={0}
           maxWidth={"924px"}
-          overflowX={"hidden"}
+          // overflowX={"hidden"}
           minWidth={{
             base: "100%",
             lg: "924px",
@@ -24,7 +24,7 @@ function MainLayout({ children }: Props) {
           {children}
         </VStack>
       </Center>
-    </VStack>
+   
   );
 }
 

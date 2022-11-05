@@ -19,7 +19,7 @@ function WeddingText() {
       mx={0}
       px={0}
       position={"relative"}
-      overflow={"hidden"}
+      overflowX={"hidden"}
       backgroundColor={"rgba(255, 245, 245, 0.9)"}
     >
       <VStack

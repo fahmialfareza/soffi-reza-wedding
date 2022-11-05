@@ -8,28 +8,21 @@ interface HeroProps {
   type: InvitationType;
 }
 
-const container = {
-  visible: {
-    transition: {
-      staggerChildren: 0.025,
-    },
-  },
-};
-
 function Hero({ type }: HeroProps) {
   return (
     <Box
       scrollSnapAlign="center"
       width={"100%"}
-      overflow={"hidden"}
+      overflowX={"hidden"}
       backgroundColor={"rgba(255, 245, 245, 0.9)"}
     >
       <Box
         position={"absolute"}
         left={0}
+        overflowX={"hidden"}
         as={motion.div}
-        initial={{ opacity: 0, x: -200 }}
-        whileInView={{ x: 0, opacity: 1 }}
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ y: 0, opacity: 1 }}
       >
         <Image
           src={"/assets/flower-left.png"}
@@ -46,8 +39,8 @@ function Hero({ type }: HeroProps) {
         right={0}
         justifyContent={"flex-end"}
         as={motion.div}
-        initial={{ opacity: 0, x: 200 }}
-        whileInView={{ x: 0, opacity: 1 }}
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ y: 0, opacity: 1 }}
       >
         <Image
           src={"/assets/flower-right.png"}

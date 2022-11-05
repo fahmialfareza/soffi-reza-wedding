@@ -20,15 +20,14 @@ function MapsInvitation({ maps }: MapsInvitationProps) {
       }}
       ref={maps}
       color={"grey-light"}
-      overflowX={"hidden"}
     >
       <Text className="font-bukhari" fontSize={"3rem"}>
         Peta
       </Text>
 
       <motion.div
-        initial={{ x: 200, opacity: 0 }}
-        whileInView={{ x: 0, opacity: 1 }}
+        initial={{ y: 200, opacity: 0 }}
+        whileInView={{ y: 0, opacity: 1 }}
         transition={{ duration: 1 }}
         style={{ width: "100%" }}
       >
@@ -54,8 +53,8 @@ function MapsInvitation({ maps }: MapsInvitationProps) {
         </Flex>
       </motion.div>
       <motion.div
-        initial={{ x: -200, opacity: 0 }}
-        whileInView={{ x: 0, opacity: 1 }}
+        initial={{ y: 200, opacity: 0 }}
+        whileInView={{ y: 0, opacity: 1 }}
         transition={{ duration: 1, delay: 0.5 }}
         style={{ width: "100%" }}
       >

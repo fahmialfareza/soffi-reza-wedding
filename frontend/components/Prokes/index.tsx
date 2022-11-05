@@ -8,7 +8,6 @@ function ProkesCovid() {
       justifyContent={"center"}
       height={"100vh"}
       gap={"4rem"}
-      overflowX={"hidden"}
       backgroundColor={"rgba(255, 245, 245, 0.9)"}
     >
       <motion.div

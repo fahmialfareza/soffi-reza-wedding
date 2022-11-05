@@ -13,7 +13,7 @@ import ProkesCovid from "../components/Prokes";
 import WeddingSchedule from "../components/WeddingSchedule";
 import WeddingText from "../components/WeddingText";
 import { IMessage } from "../interfaces/messages.interface";
-import { Box, useDisclosure, VStack } from "@chakra-ui/react";
+import { Box, Container, useDisclosure, VStack } from "@chakra-ui/react";
 import ModalOpening from "../components/ModalOpening";
 import InvitationType from "../interfaces/type.interface";
 import Backsound from "../components/Backsound";
@@ -89,7 +89,8 @@ const Home: NextPage<HomeProps> = ({ messages: messageFromSSR, to, type }) => {
           />
         ) : (
           <>
-            <BackgroundFixed />
+            {/* <BackgroundFixed /> */}
+
             <Box h={"100vh"} scrollSnapAlign="center" width="100%">
               <Hero type={type} />
             </Box>
@@ -99,20 +100,12 @@ const Home: NextPage<HomeProps> = ({ messages: messageFromSSR, to, type }) => {
             </Box>
 
             <Box h={"100vh"} scrollSnapAlign="center" width="100%">
-              <WeddingSchedule
-                // @ts-ignore
-                maps={maps}
-                handleScroll={handleScroll}
-                type={type}
-              />
-            </Box>
-
-            <Box h={"100vh"} scrollSnapAlign="center" width="100%">
               <MapsInvitation
                 // @ts-ignore
                 maps={maps}
               />
             </Box>
+
             <Box h={"100vh"} scrollSnapAlign="center" maxWidth="100%">
               {/* @ts-ignore */}
               <GuestBook messages={messages} to={to} ref={convetti} />
@@ -120,9 +113,10 @@ const Home: NextPage<HomeProps> = ({ messages: messageFromSSR, to, type }) => {
             <Box h={"100vh"} scrollSnapAlign="center" width="100%">
               <ProkesCovid />
             </Box>
-            <Box h={"100vh"} scrollSnapAlign="center" width="100%">
+            <Box h={"100vh"} maxHeight={"100vh"} scrollSnapAlign="center" width="100%">
               <ClosingInvitation />
             </Box>
+
             <Box h={"10vh"} scrollSnapAlign="center" width="100%">
               <Footer />
             </Box>

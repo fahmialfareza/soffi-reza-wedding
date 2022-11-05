@@ -23,12 +23,12 @@ function WeddingSchedule({ maps, handleScroll, type }: WeddingScheduleProps) {
       mx={0}
       px={0}
       position={"relative"}
-      overflowX={"hidden"}
+      // overflowX={"hidden"}
       scrollSnapAlign="center"
     >
       <motion.div
-        initial={{ x: -200, opacity: 0 }}
-        whileInView={{ x: 0, opacity: 1 }}
+        initial={{ y: 20, opacity: 0 }}
+        whileInView={{ y: 0, opacity: 1 }}
         transition={{ duration: 1 }}
       >
         <Image
@@ -43,8 +43,8 @@ function WeddingSchedule({ maps, handleScroll, type }: WeddingScheduleProps) {
         ></Image>
       </motion.div>
       <motion.div
-        initial={{ x: 200, opacity: 0 }}
-        whileInView={{ x: 0, opacity: 1 }}
+        initial={{ y: 20, opacity: 0 }}
+        whileInView={{ y: 0, opacity: 1 }}
         transition={{ duration: 1 }}
       >
         <Image
@@ -297,8 +297,8 @@ function WeddingSchedule({ maps, handleScroll, type }: WeddingScheduleProps) {
       </VStack>
 
       <motion.div
-        initial={{ x: -200, opacity: 0 }}
-        whileInView={{ x: 0, opacity: 1 }}
+        initial={{ y: 20, opacity: 0 }}
+        whileInView={{ y: 0, opacity: 1 }}
         transition={{ duration: 1 }}
       >
         <Image
@@ -314,8 +314,8 @@ function WeddingSchedule({ maps, handleScroll, type }: WeddingScheduleProps) {
       </motion.div>
 
       <motion.div
-        initial={{ x: 200, opacity: 0 }}
-        whileInView={{ x: 0, opacity: 1 }}
+        initial={{ y: 20, opacity: 0 }}
+        whileInView={{ y: 0, opacity: 1 }}
         transition={{ duration: 1 }}
       >
         <Image
