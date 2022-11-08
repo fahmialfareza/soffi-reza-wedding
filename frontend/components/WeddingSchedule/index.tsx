@@ -60,8 +60,8 @@ function WeddingSchedule({ maps, handleScroll, type }: WeddingScheduleProps) {
       </motion.div>
 
       <VStack
-      justifyContent={"center"}
-      height={"100%"}
+        justifyContent={"center"}
+        height={"100%"}
         textAlign={"center"}
         color={"white"}
         gap={{
@@ -88,30 +88,14 @@ function WeddingSchedule({ maps, handleScroll, type }: WeddingScheduleProps) {
           </Text>
         </motion.div>
 
-        <VStack
-          gap={{
-            base: "0.5rem",
-            md: "1rem",
-          }}
-        >
-          <motion.div
-            initial={{ y: 200, opacity: 0 }}
-            whileInView={{ y: 0, opacity: 1 }}
-            // @ts-ignore no problem in operation, although type error appears.
-            transition={{ bounce: 0.5, type: "spring", duration: 1 }}
+        {(type === InvitationType.ResepsiUnduh ||
+          type === InvitationType.Resepsi) && (
+          <VStack
+            gap={{
+              base: "0.5rem",
+              md: "1rem",
+            }}
           >
-            <Text
-              className="font-bookerly-bold"
-              fontSize={{
-                base: "1rem",
-                md: "2rem",
-              }}
-            >
-              Akad Nikah & Resepsi
-            </Text>
-          </motion.div>
-
-          <VStack>
             <motion.div
               initial={{ y: 200, opacity: 0 }}
               whileInView={{ y: 0, opacity: 1 }}
@@ -122,62 +106,65 @@ function WeddingSchedule({ maps, handleScroll, type }: WeddingScheduleProps) {
                 className="font-bookerly-bold"
                 fontSize={{
                   base: "1rem",
-                  md: "1.5rem",
+                  md: "2rem",
                 }}
               >
-                Sabtu, 14 Januari 2023 <br /> Pukul 07:00 WIB - selesai
+                Akad Nikah & Resepsi
               </Text>
+            </motion.div>
+
+            <VStack>
+              <motion.div
+                initial={{ y: 200, opacity: 0 }}
+                whileInView={{ y: 0, opacity: 1 }}
+                // @ts-ignore no problem in operation, although type error appears.
+                transition={{ bounce: 0.5, type: "spring", duration: 1 }}
+              >
+                <Text
+                  className="font-bookerly-bold"
+                  fontSize={{
+                    base: "1rem",
+                    md: "1.5rem",
+                  }}
+                >
+                  Sabtu, 14 Januari 2023 <br /> Pukul 07:00 WIB - selesai
+                </Text>
+                <Text
+                  className="font-bookerly"
+                  fontSize={{
+                    base: "1rem",
+                    md: "1.5rem",
+                  }}
+                >
+                  Kediaman mempelai wanita
+                </Text>
+              </motion.div>
+            </VStack>
+
+            <motion.div
+              initial={{ y: 200, opacity: 0 }}
+              whileInView={{ y: 0, opacity: 1 }}
+              // @ts-ignore no problem in operation, although type error appears.
+              transition={{ bounce: 0.5, type: "spring", duration: 1 }}
+            >
               <Text
-                className="font-bookerly"
+                className="font-inter"
                 fontSize={{
                   base: "1rem",
                   md: "1.5rem",
                 }}
+                fontWeight={"bold"}
               >
-                Kediaman mempelai wanita
+                Dsn. Bandung RT 02/RW 01 <br />
+                Ds. Beji, Kec. Tulung, Kab. Klaten
               </Text>
             </motion.div>
           </VStack>
+        )}
 
-          <motion.div
-            initial={{ y: 200, opacity: 0 }}
-            whileInView={{ y: 0, opacity: 1 }}
-            // @ts-ignore no problem in operation, although type error appears.
-            transition={{ bounce: 0.5, type: "spring", duration: 1 }}
-          >
-            <Text
-              className="font-inter"
-              fontSize={{
-                base: "1rem",
-                md: "1.5rem",
-              }}
-              fontWeight={"bold"}
-            >
-              Dsn. Bandung RT 02/RW 01 <br />
-              Ds. Beji, Kec. Tulung, Kab. Klaten
-            </Text>
-          </motion.div>
-        </VStack>
-
-        <VStack gap={"1rem"}>
-          <motion.div
-            initial={{ y: 200, opacity: 0 }}
-            whileInView={{ y: 0, opacity: 1 }}
-            // @ts-ignore no problem in operation, although type error appears.
-            transition={{ bounce: 0.5, type: "spring", duration: 1.5 }}
-          >
-            <Text
-              className="font-bookerly-bold"
-              fontSize={{
-                base: "1rem",
-                md: "2rem",
-              }}
-            >
-              Unduh Mantu
-            </Text>
-          </motion.div>
-
-          <VStack>
+        {(type === InvitationType.ResepsiUnduh ||
+          type === InvitationType.Unduh) && (
+          <VStack gap={"1rem"}>
             <motion.div
               initial={{ y: 200, opacity: 0 }}
               whileInView={{ y: 0, opacity: 1 }}
@@ -188,41 +175,61 @@ function WeddingSchedule({ maps, handleScroll, type }: WeddingScheduleProps) {
                 className="font-bookerly-bold"
                 fontSize={{
                   base: "1rem",
-                  md: "1.5rem",
+                  md: "2rem",
                 }}
               >
-                Ahad, 15 Januari 2023 <br /> Pukul 08:00 WIB - selesai
+                Unduh Mantu
               </Text>
+            </motion.div>
+
+            <VStack>
+              <motion.div
+                initial={{ y: 200, opacity: 0 }}
+                whileInView={{ y: 0, opacity: 1 }}
+                // @ts-ignore no problem in operation, although type error appears.
+                transition={{ bounce: 0.5, type: "spring", duration: 1.5 }}
+              >
+                <Text
+                  className="font-bookerly-bold"
+                  fontSize={{
+                    base: "1rem",
+                    md: "1.5rem",
+                  }}
+                >
+                  Ahad, 15 Januari 2023 <br /> Pukul 08:00 WIB - selesai
+                </Text>
+                <Text
+                  className="font-bookerly"
+                  fontSize={{
+                    base: "1rem",
+                    md: "1.5rem",
+                  }}
+                >
+                  Kediaman mempelai pria
+                </Text>
+              </motion.div>
+            </VStack>
+            <motion.div
+              initial={{ y: 200, opacity: 0 }}
+              whileInView={{ y: 0, opacity: 1 }}
+              // @ts-ignore no problem in operation, although type error appears.
+              transition={{ bounce: 0.5, type: "spring", duration: 1.5 }}
+            >
               <Text
-                className="font-bookerly"
+                className="font-inter"
                 fontSize={{
                   base: "1rem",
                   md: "1.5rem",
                 }}
+                fontWeight={"bold"}
               >
-                Kediaman mempelai pria
+                Dsn. Dalangan RT 01/RW 01 <br />
+                Ds. Pandean, Kec. Ngablak, Kab. Magelang
               </Text>
             </motion.div>
           </VStack>
-          <motion.div
-            initial={{ y: 200, opacity: 0 }}
-            whileInView={{ y: 0, opacity: 1 }}
-            // @ts-ignore no problem in operation, although type error appears.
-            transition={{ bounce: 0.5, type: "spring", duration: 1.5 }}
-          >
-            <Text
-              className="font-inter"
-              fontSize={{
-                base: "1rem",
-                md: "1.5rem",
-              }}
-              fontWeight={"bold"}
-            >
-              Dsn. Dalangan RT 01/RW 01 <br />
-              Ds. Pandean, Kec. Ngablak, Kab. Magelang
-            </Text>
-          </motion.div>
-        </VStack>
+        )}
+
         <HStack justifyContent={"space-between"}>
           <Button
             size={{

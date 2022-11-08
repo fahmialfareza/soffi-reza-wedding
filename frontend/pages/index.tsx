@@ -112,6 +112,7 @@ const Home: NextPage<HomeProps> = ({ messages: messageFromSSR, to, type }) => {
               <MapsInvitation
                 // @ts-ignore
                 maps={maps}
+                type={type}
               />
             </Box>
 
@@ -139,7 +140,7 @@ const Home: NextPage<HomeProps> = ({ messages: messageFromSSR, to, type }) => {
       </MainLayout>
 
       {/* @ts-ignore */}
-      {/* <Backsound play={play} audioRef={audioRef} /> */}
+      <Backsound play={play} audioRef={audioRef} />
     </>
   );
 };

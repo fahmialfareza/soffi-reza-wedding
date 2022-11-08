@@ -93,7 +93,7 @@ function WeddingText() {
                   md: "2.2rem",
                 }}
               >
-                Fahmi Alfareza
+                Soffi Lutfia Dewi Trizana
               </Text>
             </motion.div>
             <motion.div
@@ -115,7 +115,7 @@ function WeddingText() {
                 textAlign={"center"}
                 color={"grey-light"}
               >
-                Putra Pertama dari Bpk. Edi Sutrisno & Ibu Sumiyati
+                Putri Ketiga dari Bpk. Muhammad Amir & Ibu Neni Susilawati
               </Text>
             </motion.div>
           </VStack>
@@ -156,7 +156,7 @@ function WeddingText() {
                   md: "2.2rem",
                 }}
               >
-                Soffi Lutfia Dewi Trizana
+                Fahmi Alfareza
               </Text>
               <Text
                 className="font-inter"
@@ -167,7 +167,7 @@ function WeddingText() {
                 textAlign={"center"}
                 color={"grey-light"}
               >
-                Putri Ketiga dari Bpk. Muhammad Amir & Ibu Neni Susilawati
+                Putra Pertama dari Bpk. Edi Sutrisno & Ibu Sumiyati
               </Text>
             </motion.div>
           </VStack>

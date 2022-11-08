@@ -19,7 +19,7 @@ function BsiModalContent() {
   const copyToClipBoard = async (copyMe: string) => {
     try {
       await navigator.clipboard.writeText(copyMe);
-      setCopySuccess("Copied!");
+      setCopySuccess("Disalin!");
       setTimeout(() => setCopySuccess(""), 3000);
     } catch (err) {
       setCopySuccess("Failed to copy!");
@@ -28,7 +28,7 @@ function BsiModalContent() {
   const copyToClipBoardSoffi = async (copyMe: string) => {
     try {
       await navigator.clipboard.writeText(copyMe);
-      setSoffiSuccess("Copied!");
+      setSoffiSuccess("Disalin!");
       setTimeout(() => setSoffiSuccess(""), 3000);
     } catch (err) {
       setSoffiSuccess("Failed to copy!");
@@ -59,7 +59,7 @@ function BsiModalContent() {
                 size="sm"
                 onClick={() => copyToClipBoard("5882308970")}
               >
-                {copySuccess ? copySuccess : "Copy"}
+                {copySuccess ? copySuccess : "Salin"}
               </Button>
             </InputRightElement>
           </InputGroup>
@@ -81,7 +81,7 @@ function BsiModalContent() {
                 size="sm"
                 onClick={() => copyToClipBoardSoffi("7118619115")}
               >
-                {soffiSuccess ? soffiSuccess : "Copy"}
+                {soffiSuccess ? soffiSuccess : "Salin"}
               </Button>
             </InputRightElement>
           </InputGroup>

@@ -21,7 +21,7 @@ function ShoopepayContent() {
   const copyToClipBoard = async (copyMe: string) => {
     try {
       await navigator.clipboard.writeText(copyMe);
-      setCopySuccess("Copied!");
+      setCopySuccess("Disalin!");
       setTimeout(() => setCopySuccess(""), 3000);
     } catch (err) {
       setCopySuccess("Failed to copy!");
@@ -31,7 +31,7 @@ function ShoopepayContent() {
   const copyToClipBoardSoffi = async (copyMe: string) => {
     try {
       await navigator.clipboard.writeText(copyMe);
-      setSoffiSuccess("Copied!");
+      setSoffiSuccess("Disalin!");
       setTimeout(() => setSoffiSuccess(""), 3000);
     } catch (err) {
       setSoffiSuccess("Failed to copy!");
@@ -62,7 +62,7 @@ function ShoopepayContent() {
                 size="sm"
                 onClick={() => copyToClipBoard("085172481997")}
               >
-                {copySuccess ? copySuccess : "Copy"}
+                {copySuccess ? copySuccess : "Salin"}
               </Button>
             </InputRightElement>
           </InputGroup>
@@ -84,7 +84,7 @@ function ShoopepayContent() {
                 size="sm"
                 onClick={() => copyToClipBoardSoffi("082295322098")}
               >
-                {soffiSuccess ? soffiSuccess : "Copy"}
+                {soffiSuccess ? soffiSuccess : "Salin"}
               </Button>
             </InputRightElement>
           </InputGroup>
