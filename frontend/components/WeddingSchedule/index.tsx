@@ -312,7 +312,7 @@ function WeddingSchedule({ maps, handleScroll, type }: WeddingScheduleProps) {
       </VStack>
 
       <motion.div
-        initial={{ y: 20, opacity: 0 }}
+        initial={{ y: -20, opacity: 0 }}
         whileInView={{ y: 0, opacity: 1 }}
         transition={{ duration: 1 }}
       >
@@ -329,7 +329,7 @@ function WeddingSchedule({ maps, handleScroll, type }: WeddingScheduleProps) {
       </motion.div>
 
       <motion.div
-        initial={{ y: 20, opacity: 0 }}
+        initial={{ y: -20, opacity: 0 }}
         whileInView={{ y: 0, opacity: 1 }}
         transition={{ duration: 1 }}
       >

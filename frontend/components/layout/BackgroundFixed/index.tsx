@@ -1,5 +1,4 @@
-import React from "react";
-import { Box, Center, Container, Image, VStack } from "@chakra-ui/react";
+import { Box, Image } from "@chakra-ui/react";
 
 function BackgroundFixed() {
   return (
@@ -9,9 +8,7 @@ function BackgroundFixed() {
       height={"100vh"}
       position={"fixed"}
       zIndex={"-100"}
-      overflowX={"hidden"}
-
-      // overflow={"hidden"}
+      overflow={"hidden"}
     >
       <Box
         height={"100%"}
