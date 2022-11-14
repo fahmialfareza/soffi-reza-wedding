@@ -49,7 +49,7 @@ function Backsound({ play, audioRef }: BacksoundProps) {
       <audio
         style={{ display: "none" }}
         loop
-        src="audio/wedding_music.mp3"
+        src="/audio/new_wedding_nasheed.mp3"
         ref={audioRef}
       ></audio>
     </>
