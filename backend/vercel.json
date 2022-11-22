@@ -1,14 +1,17 @@
 {
+  "name": "vercel-typescript-rest-api",
+  "version": 2,
+  "public": true,
   "builds": [
     {
-      "src": "dist/index.js",
+      "src": "src/index.ts",
       "use": "@vercel/node"
     }
   ],
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "dist/index.js"
+      "dest": "/src/index.ts"
     }
   ]
 }
