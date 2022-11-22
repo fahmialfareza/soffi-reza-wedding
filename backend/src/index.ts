@@ -97,6 +97,8 @@ app.use(
 
 if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
+} else if (process.env.VERCEL === "true") {
+  app.use(morgan("common"));
 } else {
   // create a write stream (in serverend mode)
   let accessLogStream = fs.createWriteStream(
@@ -108,35 +110,35 @@ if (process.env.NODE_ENV === "development") {
 
   // setup the logger
   app.use(morgan("combined", { stream: accessLogStream }));
-
-  // Use static files
-  app.use(express.static("public"));
-
-  // Routes
-  app.use(messageRoute);
-  app.use(generatorRoute);
-
-  // Docs
-  app.get("/api/docs", (req, res, next) => {
-    try {
-      res.redirect("https://documenter.getpostman.com/view/3884681/2s847Cxadd");
-    } catch (error) {
-      next(error);
-    }
-  });
-
-  // Error Handler
-  app.use(errorHandler);
-
-  /* Socket.io */
-  io.on("connection", (socket) => {
-    console.log(socket.id + " connected!");
-
-    /* ... */
-    socket.on("disconnect", (reason) => {
-      console.log(socket.id + " disconnected because " + reason);
-    });
-  });
-
-  server.listen(PORT, () => console.log(`Server started on port ${PORT}`));
 }
+
+// Use static files
+app.use(express.static("public"));
+
+// Routes
+app.use(messageRoute);
+app.use(generatorRoute);
+
+// Docs
+app.get("/api/docs", (req, res, next) => {
+  try {
+    res.redirect("https://documenter.getpostman.com/view/3884681/2s847Cxadd");
+  } catch (error) {
+    next(error);
+  }
+});
+
+// Error Handler
+app.use(errorHandler);
+
+/* Socket.io */
+io.on("connection", (socket) => {
+  console.log(socket.id + " connected!");
+
+  /* ... */
+  socket.on("disconnect", (reason) => {
+    console.log(socket.id + " disconnected because " + reason);
+  });
+});
+
+server.listen(PORT, () => console.log(`Server started on port ${PORT}`));

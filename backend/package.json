@@ -2,7 +2,7 @@
   "name": "sr-wedding-backend",
   "version": "1.0.0",
   "description": "SR Wedding backend",
-  "main": "index.js",
+  "main": "src/index.ts",
   "repository": "git@github.com:fahmialfareza/sr-wedding-backend.git",
   "author": "Fahmi Alfareza <fahmialfareza@icloud.com>",
   "license": "MIT",
