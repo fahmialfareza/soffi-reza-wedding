@@ -138,7 +138,6 @@ const GuestBook: NextPage<GuestBookProps> = forwardRef(
     return (
       <Box
         width={"100%"}
-        height={"100vh"}
         backgroundColor={"green"}
         mx={0}
         px={0}
@@ -253,13 +252,13 @@ const GuestBook: NextPage<GuestBookProps> = forwardRef(
             }}
           >
             <motion.div
-              initial={{ y: 100, opacity: 0 }}
+              initial={{ y: -50, opacity: 0 }}
               whileInView={{ y: 0, opacity: 1 }}
               // @ts-ignore no problem in operation, although type error appears.
               transition={{
                 bounce: 0.5,
                 type: "spring",
-                duration: 1,
+                duration: 0.5,
                 delay: 0.5,
               }}
             >
@@ -281,13 +280,13 @@ const GuestBook: NextPage<GuestBookProps> = forwardRef(
               </Button>
             </motion.div>
             <motion.div
-              initial={{ y: 100, opacity: 0 }}
+              initial={{ y: -50, opacity: 0 }}
               whileInView={{ y: 0, opacity: 1 }}
               // @ts-ignore no problem in operation, although type error appears.
               transition={{
                 bounce: 0.5,
                 type: "spring",
-                duration: 1,
+                duration: 0.5,
                 delay: 0.5,
               }}
             >
