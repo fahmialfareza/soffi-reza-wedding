@@ -220,3 +220,4 @@
 ::ffff:127.0.0.1 - - [25/Oct/2022:05:52:06 +0000] "GET /api/v1/invitations HTTP/1.1" 200 2579 "-" "node-fetch/1.0 (+https://github.com/bitinn/node-fetch)"
 ::1 - - [25/Oct/2022:05:52:14 +0000] "POST /api/v1/invitations/6357732e84460770372bdb6f HTTP/1.1" 200 114 "http://localhost:3000/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36"
 ::ffff:127.0.0.1 - - [25/Oct/2022:05:52:14 +0000] "GET /api/v1/invitations HTTP/1.1" 200 2579 "-" "node-fetch/1.0 (+https://github.com/bitinn/node-fetch)"
+::1 - - [23/Nov/2022:16:29:43 +0000] "GET / HTTP/1.1" 404 139 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36"
