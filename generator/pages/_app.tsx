@@ -8,6 +8,7 @@ import Router from "next/router";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import NProgress from "nprogress";
+import { Analytics } from "@vercel/analytics/react";
 
 import Footer from "../components/Footer";
 import Header from "../components/Header";
@@ -50,6 +51,8 @@ function MyApp({ Component, pageProps }: AppProps) {
       <Footer />
 
       <ToastContainer theme="colored" />
+
+      <Analytics />
     </>
   );
 }

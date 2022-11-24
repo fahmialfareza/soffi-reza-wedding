@@ -3,6 +3,7 @@ import "../styles/shake.css";
 import type { AppProps } from "next/app";
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 import Head from "next/head";
+import { Analytics } from "@vercel/analytics/react";
 
 import "@fontsource/pacifico";
 import "@fontsource/inter";
@@ -49,6 +50,8 @@ function MyApp({ Component, pageProps }: AppProps) {
       <Component {...pageProps} />
 
       <ToastContainer theme="colored" />
+
+      <Analytics />
     </ChakraProvider>
   );
 }
