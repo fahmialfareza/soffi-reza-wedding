@@ -5,10 +5,20 @@ export default class MessageService {
   public messageRepository = new MessageRepository();
 
   async getMesssages() {
-    return this.messageRepository.getMesssages();
+    let messages = await this.messageRepository.getMessagesCache();
+    if (!messages) {
+      messages = await this.messageRepository.getMesssages();
+      this.messageRepository.setMessagesCache(messages);
+    }
+
+    return messages;
   }
 
   async createMessage(message: IMessage) {
-    return this.messageRepository.createMessage(message);
+    const newMessage = await this.messageRepository.createMessage(message);
+    const messages = await this.messageRepository.getMesssages();
+    this.messageRepository.setMessagesCache(messages);
+
+    return newMessage;
   }
 }

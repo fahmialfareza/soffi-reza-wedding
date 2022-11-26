@@ -2,18 +2,29 @@ import { IGenerator, InvitationType } from "../interfaces/generator.interface";
 import GeneratorRepository from "../repository/generator";
 
 export default class GeneratorService {
-  public generatorService = new GeneratorRepository();
+  public generatorRepository = new GeneratorRepository();
 
   async getURLs() {
-    return this.generatorService.getURLs();
+    let urls = await this.generatorRepository.getURLsCache();
+    if (!urls) {
+      urls = await this.generatorRepository.getURLs();
+      this.generatorRepository.setURLsCache(urls);
+    }
+
+    return urls;
   }
 
   async findByName(name: string) {
-    return this.generatorService.findByName(name);
+    const generators = await this.generatorRepository.findByName(name);
+
+    return generators;
   }
 
   async deleteGenerators() {
-    return this.generatorService.deleteGenerators();
+    const deletedGenerators = await this.generatorRepository.deleteGenerators();
+    this.generatorRepository.deleteGeneratorsCache();
+
+    return deletedGenerators;
   }
 
   async createGenerators(generators: string[]) {
@@ -36,10 +47,20 @@ export default class GeneratorService {
       });
     }
 
-    return this.generatorService.createGenerators(newGenerators);
+    const createdGenerators = await this.generatorRepository.createGenerators(
+      newGenerators
+    );
+    const urls = await this.generatorRepository.getURLs();
+    this.generatorRepository.setURLsCache(urls);
+
+    return createdGenerators;
   }
 
   async copy(id: string, type: InvitationType) {
-    return this.generatorService.copy(id, type);
+    const generator = await this.generatorRepository.copy(id, type);
+    const urls = await this.generatorRepository.getURLs();
+    this.generatorRepository.setURLsCache(urls);
+
+    return generator;
   }
 }

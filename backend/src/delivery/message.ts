@@ -34,10 +34,7 @@ export default class MessageDelivery {
     try {
       const message = req.body as IMessage;
 
-      const messageData = await this.messageService.createMessage(message);
-
-      // Convert to IMessage
-      const data: IMessage = JSON.parse(JSON.stringify(messageData));
+      const data = await this.messageService.createMessage(message);
 
       // socket.io
       req.io?.emit("message", data);
