@@ -63,7 +63,7 @@ function CardChat({ date, name, message, status }: CardChatProps) {
           }}
           noOfLines={{
             base: 2,
-            md: 3
+            md: 3,
           }}
           className={"font-inter"}
           minWidth={{
@@ -99,7 +99,7 @@ function CardChat({ date, name, message, status }: CardChatProps) {
             {name}
           </Text>
 
-          {status === "hadir" ? (
+          {status === "" ? null : status === "hadir" ? (
             <Badge
               size={{
                 base: "xs",

@@ -225,8 +225,7 @@ const GuestBook: NextPage<GuestBookProps> = forwardRef(
               },
             }}
           >
-            {messages &&
-              messages.length > 0 &&
+            {messages && messages.length > 0 ? (
               messages.map((message) => {
                 const date = new Date(message.createdAt);
                 const displayedDate = `${date.getDate()} ${convertToMonth(
@@ -242,7 +241,10 @@ const GuestBook: NextPage<GuestBookProps> = forwardRef(
                     status={message.attending ? "hadir" : "tidakhadir"}
                   />
                 );
-              })}
+              })
+            ) : (
+              <CardChat key={1} date={""} name={""} message={""} status={""} />
+            )}
           </VStack>
 
           <HStack
