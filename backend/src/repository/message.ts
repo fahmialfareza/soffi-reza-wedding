@@ -14,10 +14,10 @@ export default class MessageRepository {
     const redis = await redisClient();
 
     const messagesRedis = await redis.get(messagesKey);
+    await redis.disconnect();
     if (!messagesRedis) {
       return null;
     }
-    await redis.disconnect();
 
     const messages = JSON.parse(messagesRedis) as [IMessage];
     return messages;

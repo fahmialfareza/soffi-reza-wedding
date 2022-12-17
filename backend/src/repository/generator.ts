@@ -14,10 +14,10 @@ export default class GeneratorRepository {
     const redis = await redisClient();
 
     const urlsRedis = await redis.get(urlsKey);
+    await redis.disconnect();
     if (!urlsRedis) {
       return null;
     }
-    await redis.disconnect();
 
     const urls = JSON.parse(urlsRedis) as [IGenerator];
     return urls;
