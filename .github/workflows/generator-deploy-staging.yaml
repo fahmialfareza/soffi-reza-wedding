@@ -24,4 +24,4 @@ jobs:
         id: vercel-deployment
         run: vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }}
       - name: Assign Domain to Vercel Staging
-        run: vercel alias ${{ steps.vercel-deployment.outputs.preview-url }} ${{ secrets.VERCEL_STAGING_GEN }} --token=${{ secrets.VERCEL_TOKEN }}
+        run: vercel alias https://soffi-reza-wedding-generator-fahmialfareza.vercel.app ${{ secrets.VERCEL_STAGING_GEN }} --token=${{ secrets.VERCEL_TOKEN }}
