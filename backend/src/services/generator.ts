@@ -31,20 +31,22 @@ export default class GeneratorService {
     const newGenerators: IGenerator[] = [];
 
     for (const generator of generators) {
-      const newGenerator = encodeURIComponent(generator);
-      const newURLResepsi = `${process.env.URL}/?to=${newGenerator}&type=resepsi`;
-      const newURLUnduh = `${process.env.URL}/?to=${newGenerator}&type=unduh`;
-      const newURLResepsiUnduh = `${process.env.URL}/?to=${newGenerator}&type=resepsiunduh`;
-      newGenerators.push({
-        copiedResepsi: false,
-        copiedUnduh: false,
-        copiedResepsiUnduh: false,
-        name: generator,
-        urlResepsi: newURLResepsi,
-        urlUnduh: newURLUnduh,
-        urlResepsiUnduh: newURLResepsiUnduh,
-        id: 0,
-      });
+      if (generator) {
+        const newGenerator = encodeURIComponent(generator);
+        const newURLResepsi = `${process.env.URL}/?to=${newGenerator}&type=resepsi`;
+        const newURLUnduh = `${process.env.URL}/?to=${newGenerator}&type=unduh`;
+        const newURLResepsiUnduh = `${process.env.URL}/?to=${newGenerator}&type=resepsiunduh`;
+        newGenerators.push({
+          copiedResepsi: false,
+          copiedUnduh: false,
+          copiedResepsiUnduh: false,
+          name: generator,
+          urlResepsi: newURLResepsi,
+          urlUnduh: newURLUnduh,
+          urlResepsiUnduh: newURLResepsiUnduh,
+          id: 0,
+        });
+      }
     }
 
     const createdGenerators = await this.generatorRepository.createGenerators(
