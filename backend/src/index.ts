@@ -51,6 +51,7 @@ const options = {
     methods: "*",
   },
 };
+// Create io server
 const io = new Server<
   IClientToServerEvents,
   IServerToClientEvents,
