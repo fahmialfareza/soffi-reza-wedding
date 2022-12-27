@@ -155,7 +155,7 @@ function WeddingSchedule({ maps, handleScroll, type }: WeddingScheduleProps) {
                 }}
                 fontWeight={"bold"}
               >
-                Dsn. Bandung RT 02/RW 01 <br />
+                Dkh. Bandung RT 02/RW 01 <br />
                 Ds. Beji, Kec. Tulung, Kab. Klaten
               </Text>
             </motion.div>

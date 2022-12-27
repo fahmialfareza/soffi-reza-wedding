@@ -116,10 +116,20 @@ function ModalOpening({
                   <>
                     <Text
                       color={"white"}
+                      // className={"font-inter"}
+                      fontWeight={"small"}
+                      fontSize={"2rem"}
+                    >
+                      Untuk Bapak/Ibu/Sdr/Sdri:
+                    </Text>
+                    <Text
+                      color={"white"}
                       className={"font-inter"}
                       fontWeight={"medium"}
                       fontSize={"2rem"}
-                    >{`Untuk: ${name}`}</Text>
+                    >
+                      {name}
+                    </Text>
                     <VStack>
                       <Text
                         color={"white"}
