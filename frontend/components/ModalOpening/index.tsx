@@ -116,9 +116,11 @@ function ModalOpening({
                   <>
                     <Text
                       color={"white"}
-                      // className={"font-inter"}
-                      fontWeight={"small"}
-                      fontSize={"2rem"}
+                      className={"font-inter"}
+                      fontSize={{
+                        base: "1rem",
+                        md: "1.5rem",
+                      }}
                     >
                       Untuk Bapak/Ibu/Sdr/Sdri:
                     </Text>

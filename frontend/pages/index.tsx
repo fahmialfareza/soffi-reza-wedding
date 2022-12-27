@@ -73,10 +73,12 @@ const Home: NextPage<HomeProps> = ({ messages: messageFromSSR, to, type }) => {
     );
   }
 
+  const title = `Undangan Pernikahan Soffi & Reza untuk ${to}`;
+
   return (
     <>
       <Head>
-        <title>Undangan Pernikahan Soffi & Reza untuk {to}</title>
+        <title>{title}</title>
       </Head>
 
       <MainLayout>
