@@ -1,12 +1,4 @@
-import {
-  Box,
-  Button,
-  Divider,
-  HStack,
-  VStack,
-  Text,
-  Badge,
-} from "@chakra-ui/react";
+import { Box, Divider, HStack, VStack, Text, Badge } from "@chakra-ui/react";
 import React from "react";
 
 interface CardChatProps {

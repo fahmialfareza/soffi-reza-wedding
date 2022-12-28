@@ -18,7 +18,7 @@ import {
 import BsiModalContent from "../BsiContent";
 import GopayContent from "../GopayContent";
 import { GiftBox } from "../icons/GiftBox";
-import ShoopepayContent from "../ShoopepayContent";
+import ShoopepayContent from "../FlipContent";
 
 interface ModalGiftProps {
   isOpen: boolean;
@@ -93,7 +93,7 @@ function ModalGift({ isOpen, onClose }: ModalGiftProps) {
                   borderRadius={"8px"}
                 >
                   {" "}
-                  <Image src={"/assets/shoopepay-icon.png"} alt={"bsi"} />
+                  <Image src={"/assets/flip-icon.png"} alt={"bsi"} />
                 </Tab>
               </TabList>
               <TabPanels>

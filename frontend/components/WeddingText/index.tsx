@@ -2,15 +2,6 @@ import { Box, Text, VStack } from "@chakra-ui/react";
 import React from "react";
 import { motion } from "framer-motion";
 
-const getRandomTransformOrigin = () => {
-  const value = (16 + 40 * Math.random()) / 100;
-  const value2 = (15 + 36 * Math.random()) / 100;
-  return {
-    originX: value,
-    originY: value2,
-  };
-};
-
 function WeddingText() {
   return (
     <Box
