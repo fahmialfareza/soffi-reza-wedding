@@ -5,7 +5,7 @@ _Assalamu'alaikum Warahmatullahi Wabarakatuh_
 
 Maha suci Allah yang telah menjadikan segala sesuatu lebih indah dan sempurna. 
 
-Tanpa mengurangi rasa hormat, perkenankan kami mengundang Bapak/Ibu/Saudara/i ${name} untuk menghadiri acara pernikahan kami
+Tanpa mengurangi rasa hormat, perkenankan kami mengundang Bapak/Ibu/Saudara/i *${name}* untuk menghadiri acara pernikahan kami
 
 *Akad & Resepsi*
 🗓 Sabtu, 14 Januari 2023
