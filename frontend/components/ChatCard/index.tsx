@@ -53,10 +53,6 @@ function CardChat({ date, name, message, status }: CardChatProps) {
             base: "0.8rem",
             md: "1rem",
           }}
-          noOfLines={{
-            base: 2,
-            md: 3,
-          }}
           className={"font-inter"}
           minWidth={{
             base: "180px",

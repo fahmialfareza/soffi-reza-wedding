@@ -22,6 +22,14 @@ import "@fontsource/inter/900.css";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+// const breakpoints = {
+//   sm: "320px",
+//   md: "768px",
+//   lg: "960px",
+//   xl: "1200px",
+//   "2xl": "1536px",
+// };
+
 const theme = extendTheme({
   semanticTokens: {
     colors: {
@@ -34,6 +42,7 @@ const theme = extendTheme({
       success: "#58BF8E",
     },
   },
+  // breakpoints,
 });
 
 function MyApp({ Component, pageProps }: AppProps) {
