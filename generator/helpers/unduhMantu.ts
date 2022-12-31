@@ -5,7 +5,7 @@ _Assalamu'alaikum Warahmatullahi Wabarakatuh_
 
 Maha suci Allah yang telah menjadikan segala sesuatu lebih indah dan sempurna. 
 
-Tanpa mengurangi rasa hormat, perkenankan kami mengundang Bapak/Ibu/Saudara/i Ade Faisal untuk menghadiri acara pernikahan kami
+Tanpa mengurangi rasa hormat, perkenankan kami mengundang Bapak/Ibu/Saudara/i ${name} untuk menghadiri acara pernikahan kami
 
 *Ngunduh Mantu*
 🗓 Ahad, 15 Januari 2023
