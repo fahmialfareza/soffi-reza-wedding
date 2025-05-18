@@ -51,13 +51,7 @@ function ModalOpening({
 }: ModalOpeningProps) {
   return (
     <ThemeProvider theme={theme}>
-      <Modal
-        blockScrollOnMount={false}
-        isOpen={isOpen}
-        onClose={onClose}
-        size={"full"}
-        variant={"green"}
-      >
+      <Modal isOpen={isOpen} onClose={onClose} size={"full"} variant={"green"}>
         <ModalOverlay />
         <ModalContent padding={"1rem"} color={"grey"}>
           <ModalBody mb={"1rem"}>
@@ -100,7 +94,10 @@ function ModalOpening({
               <VStack
                 justifyContent={"center"}
                 height={"100vh"}
-                gap={"1rem"}
+                gap={{
+                  base: "0.2rem",
+                  md: "1rem",
+                }}
                 textAlign={"center"}
                 zIndex={"100"}
               >
@@ -128,7 +125,11 @@ function ModalOpening({
                       color={"white"}
                       className={"font-inter"}
                       fontWeight={"medium"}
-                      fontSize={"2rem"}
+                      fontSize={{
+                        base: "1.5rem",
+                        md: "2rem",
+                        sm: "1rem",
+                      }}
                     >
                       {name}
                     </Text>
