@@ -41,5 +41,9 @@
     "pre-prod": "rimraf dist && sucrase ./src -d ./dist --transforms typescript,imports",
     "start": "node dist/index.js",
     "dev": "npx nodemon src/index.ts"
+  },
+  "volta": {
+    "node": "18.16.0",
+    "pnpm": "8.6.0"
   }
 }
